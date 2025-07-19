@@ -1,20 +1,27 @@
 class_name Player extends Node3D
 
+const SPLAT = preload("res://prefabs/splat.tscn");
+
 @export var MAX_SPEED: int = 25; ## Maximum allowed speed (linear or angular).
 @export var ACC_RATE: float = 0.001; ## The rate at which ball will speed up.
 @export var STRAFE_MULTIPLIER: float = 1; ## Speed multiplier for left/right movement.
 @export var BASE_FOV: float = 75.0; ## Default camera FOV.
 @export var MAX_FOV: float = 110.0; ## Maximum allowed camera FOV.
+@export var SHATTER_THRESHOLD: float = 6.0;
+@export var MAX_HEALTH: int = 3;
 
 @onready var camera_pivot: Node3D = %CameraPivot;
 @onready var camera: Camera3D = %Camera;
 @onready var ball: RigidBody3D = %Ball;
 
+var health: int 
 var forward: Vector3 = Vector3.ZERO; ## The calculated forward direction, based on direction of camera.
 var default_camera_orientation: Vector3;
 var last_frames_velocity: Vector3 = Vector3.ZERO;
+var splat_scene: DecalCompatibility;
 
 func _ready() -> void:
+	health = MAX_HEALTH;
 	camera.fov = BASE_FOV;
 	default_camera_orientation = camera_pivot.rotation;
 	ball.body_entered.connect(_on_hit_ground);
@@ -54,10 +61,9 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		var invert = 1 if Globals.is_look_inverted else -1;
 		camera_pivot.rotation.x += invert * event.relative.y * 0.01 * Globals.camera_sensitivity_setting; 
-		camera_pivot.rotation.x = clampf(camera_pivot.rotation.x, -deg_to_rad(75), deg_to_rad(20));
+		camera_pivot.rotation.x = clampf(camera_pivot.rotation.x, -deg_to_rad(75), deg_to_rad(0));
 		camera_pivot.rotation.y += invert * event.relative.x * 0.01 * Globals.camera_sensitivity_setting;
 		camera_pivot.rotation.z = 0;
-
 
 func move(dir) -> void:
 	# Push the ball by applying torque along a direction at a passed in rate.
@@ -88,4 +94,13 @@ func reset_camera() -> void:
 	tween.tween_property(camera_pivot, "rotation", default_camera_orientation, 0.15);
 
 func _on_hit_ground(_body: Node3D) -> void:
-	pass
+	#print(ball.linear_velocity.length(), " ", last_frames_velocity.length())
+	if abs(last_frames_velocity.length()) - abs(ball.linear_velocity.length()) > 1:
+		health = clamp(health - 1, 0, MAX_HEALTH);
+		splat_scene = SPLAT.instantiate();
+		get_parent().add_child(splat_scene);
+		splat_scene.enable_fade = false;
+		splat_scene.global_position = ball.global_position;
+		splat_scene.rotation_degrees = Vector3(-24, 0, 24);
+		
+		print("splat")
