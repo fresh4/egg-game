@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://duyto7qy4vigj"]
+[gd_scene load_steps=4 format=3 uid="uid://duyto7qy4vigj"]
 
 [ext_resource type="Theme" uid="uid://cshd85xo1vlb2" path="res://assets/themes/ui_theme.tres" id="1_r257w"]
 [ext_resource type="Script" uid="uid://c2ocmwbftkucd" path="res://prefabs/ui/start_menu/start_menu.gd" id="2_iee88"]
+[ext_resource type="FontFile" uid="uid://cqqew4olthptn" path="res://assets/fonts/SuperShape-PV9qE.ttf" id="3_iee88"]
 
 [node name="StartMenu" type="Control"]
 process_mode = 3
@@ -14,16 +15,20 @@ grow_vertical = 2
 theme = ExtResource("1_r257w")
 script = ExtResource("2_iee88")
 
-[node name="Title" type="Label" parent="."]
+[node name="Title" type="RichTextLabel" parent="."]
 layout_mode = 1
-anchors_preset = 10
+anchors_preset = -1
+anchor_top = 0.133
 anchor_right = 1.0
-offset_top = 96.0
-offset_bottom = 263.0
+anchor_bottom = 0.365
+offset_top = 0.239998
+offset_bottom = 0.199982
 grow_horizontal = 2
+theme_override_colors/font_outline_color = Color(0.780392, 0.568627, 0.117647, 1)
 theme_override_constants/outline_size = 40
-theme_override_font_sizes/font_size = 100
-text = "🥚nly 🥚ne"
+theme_override_fonts/normal_font = ExtResource("3_iee88")
+theme_override_font_sizes/normal_font_size = 80
+text = "Title"
 horizontal_alignment = 1
 vertical_alignment = 1
 

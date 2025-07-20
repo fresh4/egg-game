@@ -8,23 +8,12 @@ length = 0.5
 tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("ColorRect:size:x")
+tracks/0/path = NodePath("ColorRect:anchor_right")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1280, -0.125, 0, 0.125, 0),
-"times": PackedFloat32Array(0, 0.5)
-}
-tracks/1/type = "bezier"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("ColorRect:size:y")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(720, -0.25, 0, 0.25, 0, 720, -0.125, 0, 0.125, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0, 0.5)
 }
 
@@ -33,23 +22,12 @@ length = 0.001
 tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("ColorRect:size:x")
+tracks/0/path = NodePath("ColorRect:anchor_right")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "handle_modes": PackedInt32Array(0),
 "points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/1/type = "bezier"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("ColorRect:size:y")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(720, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
 }
 
@@ -65,10 +43,8 @@ layer = 10
 script = ExtResource("1_5vvjm")
 
 [node name="ColorRect" type="ColorRect" parent="."]
-anchors_preset = 15
-anchor_right = 1.0
+anchors_preset = -1
 anchor_bottom = 1.0
-offset_right = -1280.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -79,3 +55,4 @@ unique_name_in_owner = true
 libraries = {
 &"": SubResource("AnimationLibrary_5xr55")
 }
+autoplay = "RESET"
