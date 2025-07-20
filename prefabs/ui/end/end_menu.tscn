@@ -1,15 +1,18 @@
-[gd_scene load_steps=2 format=3 uid="uid://2ruyo1dp14rb"]
+[gd_scene load_steps=3 format=3 uid="uid://2ruyo1dp14rb"]
 
-[ext_resource type="Theme" uid="uid://cshd85xo1vlb2" path="res://assets/themes/ui_theme.tres" id="1_t1npc"]
+[ext_resource type="Theme" uid="uid://cshd85xo1vlb2" path="res://assets/themes/ui_theme.tres" id="1_gcic6"]
+[ext_resource type="Script" uid="uid://b1ii7p5qb1bwd" path="res://prefabs/ui/end/end_menu.gd" id="2_jg23x"]
 
-[node name="Victory" type="Control"]
+[node name="End" type="Control"]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_t1npc")
+theme = ExtResource("1_gcic6")
+script = ExtResource("2_jg23x")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -32,7 +35,8 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 35
 
-[node name="Victory" type="Label" parent="VBoxContainer"]
+[node name="MessageLabel" type="Label" parent="VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 1
@@ -44,6 +48,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="PointsLabel" type="Label" parent="VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 35
 text = "0 points"
@@ -53,6 +58,7 @@ horizontal_alignment = 1
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="Button" type="Button" parent="VBoxContainer/HBoxContainer"]
+[node name="RestartButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "Fry Again"

@@ -1,19 +1,24 @@
 class_name UI extends CanvasLayer
 
-const SETTINGS = preload("res://prefabs/ui/settings/settings.tscn");
-const VICTORY = preload("res://prefabs/ui/victory/victory.tscn");
+const START_MENU = preload("res://prefabs/ui/start_menu/start_menu.tscn")
+const SETTINGS = preload("res://prefabs/ui/settings/settings_menu.tscn");
+const END = preload("res://prefabs/ui/end/end_menu.tscn");
 
 var settings_scene: Control;
+var start_menu: Control;
 
 func _ready() -> void:
-	settings_scene = SETTINGS.instantiate();
-	add_child(settings_scene);
-	settings_scene.visible = false;
+	start_menu = instance_scene(START_MENU);
+	start_menu.visible = true;
+	settings_scene = instance_scene(SETTINGS);
+	instance_scene(END);
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("pause") and Globals.is_game_started:
-		@warning_ignore("standalone_ternary")
-		pause() if !get_tree().paused else await unpause();
+		if get_tree().paused:
+			await unpause();
+		else:
+			pause();
 
 func pause() -> void:
 	get_tree().paused = true;
@@ -35,7 +40,14 @@ func unpause() -> void:
 	
 	if !Globals.is_game_started:
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE;
-		$StartMenu.visible = true;
+		start_menu.visible = true;
 		return
 	
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED;
+
+func instance_scene(scene) -> Node:
+	var instance = scene.instantiate();
+	add_child(instance);
+	instance.visible = false;
+	
+	return instance;

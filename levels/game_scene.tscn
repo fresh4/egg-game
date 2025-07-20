@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://4qsc0hl2loma"]
+[gd_scene load_steps=17 format=3 uid="uid://4qsc0hl2loma"]
 
 [ext_resource type="Script" uid="uid://b0w2yf7v8tn01" path="res://scripts/game_manager.gd" id="1_3eeut"]
 [ext_resource type="Material" uid="uid://b0ucncha25vky" path="res://assets/materials/proto_material.tres" id="1_r6nt2"]
@@ -9,7 +9,6 @@
 [ext_resource type="Texture2D" uid="uid://dnr6xxlsry8kg" path="res://assets/proto_textures/Light/texture_04.png" id="4_0pacg"]
 [ext_resource type="PackedScene" uid="uid://diuoumeppaqyk" path="res://prefabs/player/player.tscn" id="6_0pacg"]
 [ext_resource type="Script" uid="uid://c7y3tqd43oaps" path="res://scripts/ui.gd" id="6_3eeut"]
-[ext_resource type="PackedScene" uid="uid://duyto7qy4vigj" path="res://prefabs/ui/start_menu/start_menu.tscn" id="10_xtttx"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_or7ky"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -46,14 +45,16 @@ albedo_texture = ExtResource("4_0pacg")
 uv1_scale = Vector3(0.25, 0.25, 0.25)
 uv1_triplanar = true
 
-[node name="World" type="Node3D"]
+[node name="Level" type="Node3D" groups=["GameManager"]]
 script = ExtResource("1_3eeut")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_xtttx")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+light_bake_mode = 0
 shadow_enabled = true
+directional_shadow_mode = 0
 
 [node name="Whitebox" type="Node3D" parent="."]
 
@@ -169,7 +170,7 @@ use_collision = true
 polygon = PackedVector2Array(0, 0, 0, 0, 1, 0.45, 1, 0)
 
 [node name="Player" parent="." instance=ExtResource("6_0pacg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.65, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.6, 0)
 
 [node name="UI" type="CanvasLayer" parent="."]
 process_mode = 3
@@ -181,5 +182,3 @@ offset_bottom = 23.0
 text = "60fps"
 script = ExtResource("3_4yu2r")
 enabled = true
-
-[node name="StartMenu" parent="UI" instance=ExtResource("10_xtttx")]

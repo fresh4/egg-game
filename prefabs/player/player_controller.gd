@@ -116,6 +116,7 @@ func shatter_egg() -> void:
 	for piece: RigidBody3D in shattered_egg_scene.get_children():
 		piece.freeze = false;
 		piece.apply_impulse(piece.position * 2);
+	SignalBus.egg_shattered.emit();
 
 func draw_splat() -> void:
 	splat_scene = SPLAT.instantiate();
