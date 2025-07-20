@@ -49,7 +49,7 @@ func _physics_process(_delta: float) -> void:
 	if ball.global_position.y < -40: ball.global_position = Vector3(0, 10, 0);
 
 func _input(event: InputEvent) -> void:
-	#if not Globals.is_game_started: return;
+	if not Globals.is_game_started: return;
 	
 	# If key is tapped, not held, reset camera rotation.
 	if Input.is_action_just_pressed("rotate_camera"):

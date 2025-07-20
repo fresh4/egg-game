@@ -17,6 +17,7 @@ config/features=PackedStringArray("4.4", "Forward Plus")
 [autoload]
 
 Globals="*res://scripts/autoloads/globals.gd"
+AudioManager="*res://scripts/autoloads/audio_manager.gd"
 
 [editor_plugins]
 
@@ -30,6 +31,10 @@ folder_colors={
 "res://prefabs/": "blue",
 "res://scripts/": "green"
 }
+
+[global_group]
+
+Player=""
 
 [input]
 

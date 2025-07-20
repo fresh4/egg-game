@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://4qsc0hl2loma"]
+[gd_scene load_steps=18 format=3 uid="uid://4qsc0hl2loma"]
 
 [ext_resource type="Script" uid="uid://b0w2yf7v8tn01" path="res://scripts/game_manager.gd" id="1_3eeut"]
 [ext_resource type="Material" uid="uid://b0ucncha25vky" path="res://assets/materials/proto_material.tres" id="1_r6nt2"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://dnr6xxlsry8kg" path="res://assets/proto_textures/Light/texture_04.png" id="4_0pacg"]
 [ext_resource type="PackedScene" uid="uid://diuoumeppaqyk" path="res://prefabs/player/player.tscn" id="6_0pacg"]
 [ext_resource type="Script" uid="uid://c7y3tqd43oaps" path="res://scripts/ui.gd" id="6_3eeut"]
+[ext_resource type="PackedScene" uid="uid://duyto7qy4vigj" path="res://prefabs/ui/start_menu/start_menu.tscn" id="10_xtttx"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_or7ky"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -180,3 +181,5 @@ offset_bottom = 23.0
 text = "60fps"
 script = ExtResource("3_4yu2r")
 enabled = true
+
+[node name="StartMenu" parent="UI" instance=ExtResource("10_xtttx")]
