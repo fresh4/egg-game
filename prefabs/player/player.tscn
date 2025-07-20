@@ -29,6 +29,7 @@ SHATTERED_EGG = ExtResource("2_binfn")
 unique_name_in_owner = true
 collision_mask = 3
 mass = 0.1
+continuous_cd = true
 contact_monitor = true
 max_contacts_reported = 1
 

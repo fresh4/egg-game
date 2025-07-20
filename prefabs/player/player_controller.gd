@@ -119,14 +119,20 @@ func shatter_egg() -> void:
 	SignalBus.egg_shattered.emit();
 
 func draw_splat() -> void:
-	splat_scene = SPLAT.instantiate();
-	get_parent().add_child(splat_scene);
+	splat_scene.visible = true;
 	splat_scene.enable_fade = false;
 	splat_scene.global_position = ball.global_position;
 	splat_scene.rotation_degrees = Vector3(-24, 0, 24);
 
 func spawn_fragmented_egg() -> void:
+	# TODO: Hacky solution to precompile decal shaders, optimize this.
+	splat_scene = SPLAT.instantiate();
+	get_parent().add_child(splat_scene);
+	splat_scene.global_position = ball.global_position;
+	await get_tree().create_timer(1).timeout;
+	splat_scene.visible = false;
+	
 	get_parent().add_child(shattered_egg_scene);
-	shattered_egg_scene.visible = false;
 	for body: RigidBody3D in shattered_egg_scene.get_children():
 		body.freeze = true;
+	shattered_egg_scene.visible = false;
