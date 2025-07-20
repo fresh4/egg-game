@@ -19,6 +19,12 @@ config/features=PackedStringArray("4.4", "Forward Plus")
 Globals="*res://scripts/autoloads/globals.gd"
 AudioManager="*res://scripts/autoloads/audio_manager.gd"
 
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=720
+window/stretch/mode="canvas_items"
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/decal_compatibility/plugin.cfg")
@@ -73,6 +79,11 @@ pause={
 
 3d_physics/layer_1="Player"
 3d_physics/layer_2="Environment"
+
+[physics]
+
+3d/physics_engine="Jolt Physics"
+common/physics_interpolation=true
 
 [rendering]
 

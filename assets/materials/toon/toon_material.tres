@@ -1,11 +1,11 @@
 [gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://bmfe3iwqrvp8h"]
 
-[ext_resource type="Shader" uid="uid://dsdlohv2uyit0" path="res://assets/materials/toon/toon_shader.gdshader" id="1_vmbtc"]
+[ext_resource type="Shader" uid="uid://dsdlohv2uyit0" path="res://assets/materials/toon/toon_shader.gdshader" id="1_20xks"]
 
 [resource]
 render_priority = 0
-shader = ExtResource("1_vmbtc")
-shader_parameter/color = Color(1, 1, 1, 1)
+shader = ExtResource("1_20xks")
+shader_parameter/color = Color(0.902344, 0.760031, 0.63446, 1)
 shader_parameter/shadow = 0.5
 shader_parameter/shadow_width = 0.0
 shader_parameter/shadow_color = Color(0.705, 0.705, 0.705, 0.705)

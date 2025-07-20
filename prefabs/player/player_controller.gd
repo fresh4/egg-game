@@ -2,6 +2,7 @@ class_name Player extends Node3D
 
 const SPLAT = preload("res://prefabs/splat.tscn");
 
+@export var SHATTERED_EGG: PackedScene;
 @export var MAX_SPEED: int = 25; ## Maximum allowed speed (linear or angular).
 @export var ACC_RATE: float = 0.001; ## The rate at which ball will speed up.
 @export var STRAFE_MULTIPLIER: float = 1; ## Speed multiplier for left/right movement.
@@ -19,8 +20,12 @@ var forward: Vector3 = Vector3.ZERO; ## The calculated forward direction, based 
 var default_camera_orientation: Vector3;
 var last_frames_velocity: Vector3 = Vector3.ZERO;
 var splat_scene: DecalCompatibility;
+var shattered_egg_scene: Node3D;
 
 func _ready() -> void:
+	shattered_egg_scene = SHATTERED_EGG.instantiate();
+	call_deferred("spawn_fragmented_egg");
+	
 	health = MAX_HEALTH;
 	camera.fov = BASE_FOV;
 	default_camera_orientation = camera_pivot.rotation;
@@ -31,6 +36,7 @@ func _process(_delta: float) -> void:
 	camera_pivot.global_position = ball.global_position;
 
 func _physics_process(_delta: float) -> void:
+	if not Globals.is_game_started: return;
 	# Store the previous frame's velocity for calulating velocity on impacts.
 	last_frames_velocity = ball.linear_velocity;
 	
@@ -97,10 +103,29 @@ func _on_hit_ground(_body: Node3D) -> void:
 	#print(ball.linear_velocity.length(), " ", last_frames_velocity.length())
 	if abs(last_frames_velocity.length()) - abs(ball.linear_velocity.length()) > 1:
 		health = clamp(health - 1, 0, MAX_HEALTH);
-		splat_scene = SPLAT.instantiate();
-		get_parent().add_child(splat_scene);
-		splat_scene.enable_fade = false;
-		splat_scene.global_position = ball.global_position;
-		splat_scene.rotation_degrees = Vector3(-24, 0, 24);
 		
-		print("splat")
+		draw_splat();
+		shatter_egg();
+
+		visible = false;
+		ball.freeze = true;
+
+func shatter_egg() -> void:
+	shattered_egg_scene.global_position = ball.global_position;
+	shattered_egg_scene.visible = true;
+	for piece: RigidBody3D in shattered_egg_scene.get_children():
+		piece.freeze = false;
+		piece.apply_impulse(piece.position * 2);
+
+func draw_splat() -> void:
+	splat_scene = SPLAT.instantiate();
+	get_parent().add_child(splat_scene);
+	splat_scene.enable_fade = false;
+	splat_scene.global_position = ball.global_position;
+	splat_scene.rotation_degrees = Vector3(-24, 0, 24);
+
+func spawn_fragmented_egg() -> void:
+	get_parent().add_child(shattered_egg_scene);
+	shattered_egg_scene.visible = false;
+	for body: RigidBody3D in shattered_egg_scene.get_children():
+		body.freeze = true;
