@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://4qsc0hl2loma"]
+[gd_scene load_steps=19 format=3 uid="uid://4qsc0hl2loma"]
 
 [ext_resource type="Script" uid="uid://b0w2yf7v8tn01" path="res://scripts/game_manager.gd" id="1_3eeut"]
 [ext_resource type="Material" uid="uid://b0ucncha25vky" path="res://assets/materials/proto_material.tres" id="1_r6nt2"]
@@ -9,6 +9,8 @@
 [ext_resource type="Texture2D" uid="uid://dnr6xxlsry8kg" path="res://assets/proto_textures/Light/texture_04.png" id="4_0pacg"]
 [ext_resource type="PackedScene" uid="uid://diuoumeppaqyk" path="res://prefabs/player/player.tscn" id="6_0pacg"]
 [ext_resource type="Script" uid="uid://c7y3tqd43oaps" path="res://scripts/ui.gd" id="6_3eeut"]
+[ext_resource type="PackedScene" uid="uid://b7edk7l3nb6n0" path="res://prefabs/interactables/jump_pad/jump_pad.tscn" id="7_ch3uh"]
+[ext_resource type="PackedScene" uid="uid://cof32rfvq23y3" path="res://prefabs/interactables/cushion/cushion.tscn" id="8_xtttx"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_or7ky"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -62,105 +64,90 @@ directional_shadow_mode = 0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 material_override = SubResource("StandardMaterial3D_12s1l")
 use_collision = true
-collision_layer = 2
 size = Vector3(30, 1, 30)
 
 [node name="Ceiling" type="CSGBox3D" parent="Whitebox"]
 transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 14, 0)
 material_override = SubResource("StandardMaterial3D_12s1l")
 use_collision = true
-collision_layer = 2
 size = Vector3(30, 1, 30)
 
 [node name="Wall1" type="CSGBox3D" parent="Whitebox"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.5, -15)
 material_override = SubResource("StandardMaterial3D_or7ky")
 use_collision = true
-collision_layer = 2
 size = Vector3(30, 15, 1)
 
 [node name="Wall2" type="CSGBox3D" parent="Whitebox"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.5, 15)
 material_override = SubResource("StandardMaterial3D_or7ky")
 use_collision = true
-collision_layer = 2
 size = Vector3(30, 15, 1)
 
 [node name="Wall3" type="CSGBox3D" parent="Whitebox"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 15, 7.5, 0)
 material_override = SubResource("StandardMaterial3D_or7ky")
 use_collision = true
-collision_layer = 2
 size = Vector3(30, 15, 1)
 
 [node name="Wall4" type="CSGBox3D" parent="Whitebox"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -15, 7.5, 0)
 material_override = SubResource("StandardMaterial3D_or7ky")
 use_collision = true
-collision_layer = 2
 size = Vector3(30, 15, 1)
 
 [node name="Island" type="CSGBox3D" parent="Whitebox"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0)
 material_override = SubResource("StandardMaterial3D_ch3uh")
 use_collision = true
-collision_layer = 2
 size = Vector3(5, 2.5, 3)
 
 [node name="Counter" type="CSGBox3D" parent="Whitebox"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.267, 1.25, -9.5)
 material_override = SubResource("StandardMaterial3D_ch3uh")
 use_collision = true
-collision_layer = 2
 size = Vector3(2.5, 2.5, 10)
 
 [node name="Counter2" type="CSGBox3D" parent="Whitebox"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -7.05717, 1.25, -13.5)
 material_override = SubResource("StandardMaterial3D_ch3uh")
 use_collision = true
-collision_layer = 2
 size = Vector3(2.5, 2.5, 10)
 
 [node name="Counter3" type="CSGBox3D" parent="Whitebox"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 8.09797, 1.25, -13.5)
 material_override = SubResource("StandardMaterial3D_ch3uh")
 use_collision = true
-collision_layer = 2
 size = Vector3(2.5, 2.5, 12.9103)
 
 [node name="Fridge" type="CSGBox3D" parent="Whitebox"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.257169, 3.21002, -13.1206)
 material_override = SubResource("StandardMaterial3D_ch3uh")
 use_collision = true
-collision_layer = 2
 size = Vector3(3.25879, 6.42004, 3.83398)
 
 [node name="Seat" type="CSGCylinder3D" parent="Whitebox"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.7146, -3)
 material_override = SubResource("StandardMaterial3D_xtttx")
 use_collision = true
-collision_layer = 2
 height = 1.5
 
 [node name="Seat2" type="CSGCylinder3D" parent="Whitebox"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0.7146, 3)
 material_override = SubResource("StandardMaterial3D_xtttx")
 use_collision = true
-collision_layer = 2
 height = 1.5
 
 [node name="Seat3" type="CSGCylinder3D" parent="Whitebox"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0.7146, -3)
 material_override = SubResource("StandardMaterial3D_xtttx")
 use_collision = true
-collision_layer = 2
 height = 1.5
 
 [node name="Seat4" type="CSGCylinder3D" parent="Whitebox"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.7146, 3)
 material_override = SubResource("StandardMaterial3D_xtttx")
 use_collision = true
-collision_layer = 2
 height = 1.5
 
 [node name="Ramp" type="CSGPolygon3D" parent="Whitebox"]
@@ -168,6 +155,12 @@ transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, -0.00584
 material_override = ExtResource("1_r6nt2")
 use_collision = true
 polygon = PackedVector2Array(0, 0, 0, 0, 1, 0.45, 1, 0)
+
+[node name="JumpPad" parent="Whitebox" instance=ExtResource("7_ch3uh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.172137, 0.15, -2.22933)
+
+[node name="Cushion" parent="Whitebox" instance=ExtResource("8_xtttx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
 
 [node name="Player" parent="." instance=ExtResource("6_0pacg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.6, 0)

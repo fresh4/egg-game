@@ -44,9 +44,9 @@ func _physics_process(_delta: float) -> void:
 	forward = camera.global_transform.basis.z.normalized().cross(Vector3.UP);
 	
 	# Limit ball velocities.
-	ball.linear_velocity.x = clampf(ball.linear_velocity.x, -MAX_SPEED, MAX_SPEED);
-	ball.linear_velocity.y = clampf(ball.linear_velocity.y, -50, 50);
-	ball.linear_velocity.z = clampf(ball.linear_velocity.z, -MAX_SPEED, MAX_SPEED);
+	#ball.linear_velocity.x = clampf(ball.linear_velocity.x, -MAX_SPEED, MAX_SPEED);
+	#ball.linear_velocity.y = clampf(ball.linear_velocity.y, -50, 50);
+	#ball.linear_velocity.z = clampf(ball.linear_velocity.z, -MAX_SPEED, MAX_SPEED);
 	ball.angular_velocity.x = clampf(ball.angular_velocity.x, -MAX_SPEED, MAX_SPEED);
 	ball.angular_velocity.y = clampf(ball.angular_velocity.y, -MAX_SPEED, MAX_SPEED);
 	ball.angular_velocity.z = clampf(ball.angular_velocity.z, -MAX_SPEED, MAX_SPEED);
@@ -99,8 +99,13 @@ func reset_camera() -> void:
 	var tween = get_tree().create_tween();
 	tween.tween_property(camera_pivot, "rotation", default_camera_orientation, 0.15);
 
-func _on_hit_ground(_body: Node3D) -> void:
-	#print(ball.linear_velocity.length(), " ", last_frames_velocity.length())
+func _on_hit_ground(body: Node3D) -> void:
+	# Magic number '1' is for environment objects (floors, walls, tables, etc)
+	# Check to see if we did indeed hit the ground, not some other object.
+	# TODO: Standardize to staticbody once csg whitebox is gone.
+	if body is CSGShape3D and !(body as CSGShape3D).collision_layer == 1: return;
+	if body is StaticBody3D and !(body as StaticBody3D).collision_layer == 1: return;
+	
 	if abs(last_frames_velocity.length()) - abs(ball.linear_velocity.length()) > 1:
 		health = clamp(health - 1, 0, MAX_HEALTH);
 		
