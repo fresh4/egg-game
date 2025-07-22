@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bsl0s0yvaiscr"
-path="res://.godot/imported/doorway.glb-216e585852ca247cbc414e72c110bd2f.scn"
+uid="uid://cxv1gowa32wpe"
+path="res://.godot/imported/kitchenFridge.glb-f22b80c603318a1ddb986bc604a408aa.scn"
 
 [deps]
 
-source_file="res://assets/models/doorway.glb"
-dest_files=["res://.godot/imported/doorway.glb-216e585852ca247cbc414e72c110bd2f.scn"]
+source_file="res://assets/models/kitchen/kitchenFridge.glb"
+dest_files=["res://.godot/imported/kitchenFridge.glb-f22b80c603318a1ddb986bc604a408aa.scn"]
 
 [params]
 

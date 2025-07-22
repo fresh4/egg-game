@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bsl0s0yvaiscr"
-path="res://.godot/imported/doorway.glb-216e585852ca247cbc414e72c110bd2f.scn"
+uid="uid://6tyrxy4dnb7c"
+path="res://.godot/imported/lampSquareCeiling.glb-5f3a4efd4ab11d434b5768de9231687d.scn"
 
 [deps]
 
-source_file="res://assets/models/doorway.glb"
-dest_files=["res://.godot/imported/doorway.glb-216e585852ca247cbc414e72c110bd2f.scn"]
+source_file="res://assets/models/kitchen/lampSquareCeiling.glb"
+dest_files=["res://.godot/imported/lampSquareCeiling.glb-5f3a4efd4ab11d434b5768de9231687d.scn"]
 
 [params]
 
@@ -22,7 +22,7 @@ nodes/use_node_type_suffixes=true
 meshes/ensure_tangents=true
 meshes/generate_lods=true
 meshes/create_shadow_meshes=true
-meshes/light_baking=2
+meshes/light_baking=1
 meshes/lightmap_texel_size=0.2
 meshes/force_disable_compression=false
 skins/use_named_skins=true

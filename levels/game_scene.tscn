@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://4qsc0hl2loma"]
+[gd_scene load_steps=42 format=3 uid="uid://4qsc0hl2loma"]
 
 [ext_resource type="Script" uid="uid://b0w2yf7v8tn01" path="res://scripts/game_manager.gd" id="1_3eeut"]
 [ext_resource type="Material" uid="uid://b0ucncha25vky" path="res://assets/materials/proto_material.tres" id="1_r6nt2"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://diuoumeppaqyk" path="res://prefabs/player/player.tscn" id="6_0pacg"]
 [ext_resource type="Script" uid="uid://c7y3tqd43oaps" path="res://scripts/ui.gd" id="6_3eeut"]
 [ext_resource type="PackedScene" uid="uid://dqqcdq5dlp5f4" path="res://prefabs/furniture/kitchen_bar.tscn" id="6_o8ny7"]
+[ext_resource type="PackedScene" uid="uid://dncjgci2koj42" path="res://prefabs/furniture/lamp_ceiling.tscn" id="6_ujhdv"]
 [ext_resource type="PackedScene" uid="uid://b7edk7l3nb6n0" path="res://prefabs/interactables/jump_pad/jump_pad.tscn" id="7_ch3uh"]
 [ext_resource type="PackedScene" uid="uid://dqdric50c1s42" path="res://prefabs/furniture/stool_bar.tscn" id="7_vfvks"]
 [ext_resource type="PackedScene" uid="uid://b0kc5et76pprn" path="res://prefabs/furniture/hoodModern.tscn" id="9_vfvks"]
@@ -24,43 +25,8 @@
 [ext_resource type="PackedScene" uid="uid://btfd8tbo85ryf" path="res://prefabs/furniture/kitchen_sink.tscn" id="21_4fj31"]
 [ext_resource type="PackedScene" uid="uid://nhimyqetn1k0" path="res://prefabs/furniture/kitchen_stove.tscn" id="22_dn47r"]
 [ext_resource type="Script" uid="uid://dxflmp2hrpqmo" path="res://scripts/flicker.gd" id="24_vfvks"]
-
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_or7ky"]
-
-[sub_resource type="Sky" id="Sky_ch3uh"]
-sky_material = SubResource("ProceduralSkyMaterial_or7ky")
-
-[sub_resource type="Environment" id="Environment_xtttx"]
-background_mode = 1
-sky = SubResource("Sky_ch3uh")
-ambient_light_source = 3
-tonemap_mode = 3
-glow_enabled = true
-adjustment_enabled = true
-adjustment_saturation = 1.3
-
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_vfvks"]
-rough = true
-bounce = 0.35
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_vfvks"]
-lightmap_size_hint = Vector2i(77, 57)
-add_uv2 = true
-size = Vector2(15, 11)
-
-[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_1noci"]
-data = PackedVector3Array(15, 0, 15, -15, 0, 15, 15, 0, -15, -15, 0, 15, -15, 0, -15, 15, 0, -15)
-
-[sub_resource type="BoxMesh" id="BoxMesh_o8ny7"]
-lightmap_size_hint = Vector2i(134, 83)
-add_uv2 = true
-size = Vector3(15, 0.25, 11)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_or7ky"]
-albedo_texture = ExtResource("2_5xaeu")
-uv1_scale = Vector3(0.25, 0.25, 0.25)
-uv1_triplanar = true
-uv1_world_triplanar = true
+[ext_resource type="PackedScene" uid="uid://bvoio064gcr5a" path="res://prefabs/interactables/frying_pan/frying_pan.tscn" id="25_1noci"]
+[ext_resource type="PackedScene" uid="uid://bsl0s0yvaiscr" path="res://assets/models/doorway.glb" id="27_34dld"]
 
 [sub_resource type="Animation" id="Animation_ujhdv"]
 length = 0.001
@@ -341,8 +307,80 @@ height = 0.05
 _data = [Vector2(0.0391061, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.515882), 0.0, 0.0, 0, 0]
 point_count = 2
 
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_or7ky"]
+
+[sub_resource type="Sky" id="Sky_ch3uh"]
+sky_material = SubResource("ProceduralSkyMaterial_or7ky")
+
+[sub_resource type="Environment" id="Environment_xtttx"]
+background_mode = 1
+sky = SubResource("Sky_ch3uh")
+ambient_light_source = 3
+tonemap_mode = 3
+glow_enabled = true
+adjustment_enabled = true
+adjustment_saturation = 1.3
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_vfvks"]
+rough = true
+bounce = 0.35
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_vfvks"]
+lightmap_size_hint = Vector2i(77, 57)
+add_uv2 = true
+size = Vector2(15, 11)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_1noci"]
+data = PackedVector3Array(15, 0, 15, -15, 0, 15, 15, 0, -15, -15, 0, 15, -15, 0, -15, 15, 0, -15)
+
+[sub_resource type="BoxMesh" id="BoxMesh_o8ny7"]
+lightmap_size_hint = Vector2i(134, 83)
+add_uv2 = true
+size = Vector3(15, 0.25, 11)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_or7ky"]
+albedo_texture = ExtResource("2_5xaeu")
+uv1_scale = Vector3(0.25, 0.25, 0.25)
+uv1_triplanar = true
+uv1_world_triplanar = true
+
 [node name="Level" type="Node3D" groups=["GameManager"]]
 script = ExtResource("1_3eeut")
+
+[node name="IntroCutscene" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_34dld")
+}
+autoplay = "RESET"
+
+[node name="Camera3D" type="Camera3D" parent="IntroCutscene"]
+transform = Transform3D(-3.40777e-06, -0.34202, 0.939693, -1.23811e-06, 0.939693, 0.34202, -1, 2.08502e-09, -3.62572e-06, 7.2, 4.1, 0)
+
+[node name="BurnerParticles" type="CPUParticles3D" parent="IntroCutscene"]
+transform = Transform3D(0.26, 0, 0, 0, -1.1365e-08, 0.26, 0, -0.26, -1.1365e-08, -6.18, 2.15, 0.385)
+emitting = false
+amount = 128
+lifetime = 0.25
+mesh = SubResource("SphereMesh_can20")
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 0.4
+emission_ring_radius = 0.65
+emission_ring_inner_radius = 0.5
+emission_ring_cone_angle = 83.89
+gravity = Vector3(0, 1, 0)
+angle_max = 492.6
+scale_amount_min = 0.5
+scale_amount_max = 1.2
+scale_amount_curve = SubResource("Curve_vfvks")
+
+[node name="BurnerLight" type="OmniLight3D" parent="IntroCutscene"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.15, 2.25, 0.4)
+light_color = Color(0.124756, 0.37886, 0.4375, 1)
+light_energy = 0.0
+omni_range = 0.5
+script = ExtResource("24_vfvks")
 
 [node name="UI" type="CanvasLayer" parent="."]
 process_mode = 3
@@ -375,7 +413,7 @@ environment = SubResource("Environment_xtttx")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.986592, -0.148136, -0.0684956, 0.14134, 0.565679, 0.812422, -0.0816027, -0.811211, 0.579032, 0, 3.71547, 0)
-light_energy = 0.4
+light_energy = 0.0
 light_bake_mode = 1
 shadow_enabled = true
 
@@ -384,17 +422,43 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 6.2654
 
 [node name="Lights" type="Node3D" parent="."]
 
-[node name="SpotLight3D" type="SpotLight3D" parent="Lights"]
-transform = Transform3D(-2.80971e-08, -0.766044, 0.642788, -3.34849e-08, 0.642788, 0.766044, -1, 0, -4.37114e-08, 7.25, 4.45, 0)
-visible = false
-light_color = Color(0.882813, 0.953308, 1, 1)
-light_energy = 0.184
-light_size = 0.464
+[node name="lampSquareCeiling" parent="Lights" instance=ExtResource("6_ujhdv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 4.6, 0.25)
+
+[node name="lampSquareCeiling2" parent="Lights" instance=ExtResource("6_ujhdv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.7, 4.6, 0.25)
+
+[node name="Oven" type="Node3D" parent="Lights"]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Lights/Oven"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 1.4, 0)
+light_color = Color(0.746094, 0.48548, 0.180695, 1)
+light_energy = 1.408
+omni_range = 1.038
+
+[node name="Spotlight" type="SpotLight3D" parent="Lights/Oven"]
+transform = Transform3D(-4.2222e-08, 0.258819, -0.965926, 1.13133e-08, 0.965926, 0.258819, 1, 0, -4.37114e-08, -8, 1.4, 0)
+light_color = Color(0.929688, 0.558074, 0.123474, 1)
+light_energy = 2.387
 light_bake_mode = 1
-spot_range = 3.0
-spot_angle = 89.99
+spot_range = 7.0
+spot_angle = 28.99
+
+[node name="Fridge" type="Node3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5, 2, 0)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Lights/Fridge"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0500002, 2.2, 0)
+light_color = Color(0.90625, 1, 0.995605, 1)
+light_energy = 0.15
+light_bake_mode = 1
+omni_range = 2.0
+omni_attenuation = 0.0
 
 [node name="Level" type="Node3D" parent="."]
+
+[node name="frying-pan2" parent="Level" instance=ExtResource("25_1noci")]
+transform = Transform3D(0.422618, 0, -0.906308, 0, 1, 0, 0.906308, 0, 0.422618, -6.2, 2.20524, 0.35)
 
 [node name="carton-lowpoly" parent="Level" instance=ExtResource("5_o8ny7")]
 transform = Transform3D(-1.04, 0, 1.57036e-07, 0, 1.04, 0, -1.57036e-07, 0, -1.04, 6.63041, 3.7, 0.37)
@@ -402,46 +466,20 @@ collision_layer = 4
 collision_mask = 2
 physics_material_override = SubResource("PhysicsMaterial_vfvks")
 
+[node name="carton-lowpoly-top" parent="Level/carton-lowpoly" index="2"]
+visible = false
+
 [node name="kitchenFridgeLarge" parent="Level" instance=ExtResource("5_h317v")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 5.78994, 0, -1.35)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 5.8, 0, -1.2)
 
 [node name="doorLeft" parent="Level/kitchenFridgeLarge/kitchenFridgeLarge(Clone)" index="0"]
-transform = Transform3D(-0.515307, 0, -0.857005, 0, 1, 0, 0.857005, 0, -0.515307, 0.134221, 2.44995, 0.1)
-
-[node name="CollisionShape3D" parent="Level/kitchenFridgeLarge/kitchenFridgeLarge(Clone)/doorLeft/StaticBody3D" index="0"]
-visible = false
+transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, 0.134221, 2.44995, 0.0999999)
 
 [node name="doorRight" parent="Level/kitchenFridgeLarge/kitchenFridgeLarge(Clone)" index="1"]
-transform = Transform3D(-0.427784, 0, 0.903881, 0, 1, 0, -0.903881, 0, -0.427784, 2.46578, 2.44995, 0.1)
+transform = Transform3D(-0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, -0.866025, 2.46578, 2.44995, 0.0999999)
 
-[node name="CollisionShape3D" parent="Level/kitchenFridgeLarge/kitchenFridgeLarge(Clone)/doorRight/StaticBody3D" index="0"]
-visible = false
-
-[node name="JumpPad" parent="Level/kitchenFridgeLarge/kitchenFridgeLarge(Clone)" index="2" instance=ExtResource("7_ch3uh")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.35, 0, 1.28994)
-
-[node name="CollisionShape3D" parent="Level/kitchenFridgeLarge" index="1"]
-visible = false
-
-[node name="CollisionShape3D2" parent="Level/kitchenFridgeLarge" index="2"]
-visible = false
-
-[node name="CollisionShape3D3" parent="Level/kitchenFridgeLarge" index="3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.234, 3.535, -0.873)
-visible = false
-
-[node name="CollisionShape3D4" parent="Level/kitchenFridgeLarge" index="4"]
-visible = false
-
-[node name="CollisionShape3D5" parent="Level/kitchenFridgeLarge" index="5"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0502876, 2.5, -0.8)
-visible = false
-
-[node name="CollisionShape3D6" parent="Level/kitchenFridgeLarge" index="6"]
-visible = false
-
-[node name="CollisionShape3D7" parent="Level/kitchenFridgeLarge" index="7"]
-visible = false
+[node name="JumpPad" parent="Level" instance=ExtResource("7_ch3uh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 0, 0)
 
 [node name="Island" type="Node3D" parent="Level"]
 
@@ -523,6 +561,9 @@ mesh = SubResource("BoxMesh_o8ny7")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Level/Ceiling/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_1noci")
 
+[node name="doorway" parent="Level" instance=ExtResource("27_34dld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8, 0, -5.25)
+
 [node name="Whitebox" type="Node3D" parent="."]
 
 [node name="Wall1" type="CSGBox3D" parent="Whitebox"]
@@ -552,10 +593,10 @@ size = Vector3(11, 7, 1)
 [node name="LevelComponentsTEMP" type="Node3D" parent="."]
 
 [node name="kitchenBar" parent="LevelComponentsTEMP" instance=ExtResource("6_o8ny7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.85606, 4.76837e-07, 4.3976)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3.45606, 4.76837e-07, 3.3476)
 
 [node name="kitchenBarEnd" parent="LevelComponentsTEMP" instance=ExtResource("13_ujhdv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.43372, 0, 3.36142)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3.456, 0, 2.841)
 
 [node name="kitchenCabinetUpper" parent="LevelComponentsTEMP" instance=ExtResource("17_yw8fj")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -6.44166, 3.85, -1.15505)
@@ -573,48 +614,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9, 3.85, -4.45)
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -3.165, 3.85, 4.571)
 
 [node name="LightmapGI" type="LightmapGI" parent="."]
-quality = 2
 supersampling = true
+supersampling_factor = 4.0
 interior = true
-denoiser_range = 4
-environment_mode = 3
+denoiser_strength = 0.15
+denoiser_range = 5
 environment_custom_energy = 0.5
+generate_probes_subdiv = 3
 light_data = ExtResource("4_o8ny7")
-
-[node name="IntroCutscene" type="AnimationPlayer" parent="."]
-unique_name_in_owner = true
-libraries = {
-&"": SubResource("AnimationLibrary_34dld")
-}
-autoplay = "RESET"
-
-[node name="Camera3D" type="Camera3D" parent="IntroCutscene"]
-transform = Transform3D(-3.40777e-06, -0.34202, 0.939693, -1.23811e-06, 0.939693, 0.34202, -1, 2.08502e-09, -3.62572e-06, 7.2, 4.1, 0)
-
-[node name="BurnerParticles" type="CPUParticles3D" parent="IntroCutscene"]
-transform = Transform3D(0.26, 0, 0, 0, -1.1365e-08, 0.26, 0, -0.26, -1.1365e-08, -6.18, 2.2, 0.385)
-emitting = false
-amount = 128
-lifetime = 0.25
-mesh = SubResource("SphereMesh_can20")
-emission_shape = 6
-emission_ring_axis = Vector3(0, 0, 1)
-emission_ring_height = 0.4
-emission_ring_radius = 0.45
-emission_ring_inner_radius = 0.35
-emission_ring_cone_angle = 83.89
-gravity = Vector3(0, 1, 0)
-angle_max = 492.6
-scale_amount_min = 0.5
-scale_amount_max = 1.2
-scale_amount_curve = SubResource("Curve_vfvks")
-
-[node name="BurnerLight" type="OmniLight3D" parent="IntroCutscene"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.15, 2.25, 0.4)
-light_color = Color(0.124756, 0.37886, 0.4375, 1)
-light_energy = 0.0
-omni_range = 0.5
-script = ExtResource("24_vfvks")
 
 [editable path="Level/carton-lowpoly"]
 [editable path="Level/kitchenFridgeLarge"]

@@ -1,19 +1,6 @@
-[gd_scene load_steps=71 format=4 uid="uid://bx7pclwpy1x25"]
+[gd_scene load_steps=70 format=4 uid="uid://bx7pclwpy1x25"]
 
-[ext_resource type="Shader" uid="uid://dsdlohv2uyit0" path="res://assets/materials/toon/toon_shader.gdshader" id="1_gqn72"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_5m0gc"]
-render_priority = 0
-shader = ExtResource("1_gqn72")
-shader_parameter/color = Color(0.902344, 0.760031, 0.63446, 1)
-shader_parameter/shadow = 0.5
-shader_parameter/shadow_width = 0.0
-shader_parameter/shadow_color = Color(0.705, 0.705, 0.705, 0.705)
-shader_parameter/_specular_smoothness = 0.01
-shader_parameter/_specular_strength = 0.075
-shader_parameter/_glossiness = 0.1
-shader_parameter/_rim_size = 0.389
-shader_parameter/_rim_smoothness = 0.01
+[ext_resource type="Material" uid="uid://bebvy6ovmvi2" path="res://assets/materials/toon/cel_shader.tres" id="1_gqn72"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gro5o"]
 
@@ -636,7 +623,7 @@ mass = 0.1
 continuous_cd = true
 
 [node name="Sphere_cell" type="MeshInstance3D" parent="RigidBody3D"]
-material_override = SubResource("ShaderMaterial_5m0gc")
+material_override = ExtResource("1_gqn72")
 cast_shadow = 0
 mesh = SubResource("ArrayMesh_mqxdh")
 skeleton = NodePath("")
@@ -652,7 +639,7 @@ mass = 0.1
 continuous_cd = true
 
 [node name="Sphere_cell_001" type="MeshInstance3D" parent="RigidBody3D2"]
-material_override = SubResource("ShaderMaterial_5m0gc")
+material_override = ExtResource("1_gqn72")
 cast_shadow = 0
 mesh = SubResource("ArrayMesh_wy00p")
 skeleton = NodePath("")
@@ -668,7 +655,7 @@ mass = 0.1
 continuous_cd = true
 
 [node name="Sphere_cell_002" type="MeshInstance3D" parent="RigidBody3D3"]
-material_override = SubResource("ShaderMaterial_5m0gc")
+material_override = ExtResource("1_gqn72")
 cast_shadow = 0
 mesh = SubResource("ArrayMesh_75v3c")
 skeleton = NodePath("")
@@ -684,7 +671,7 @@ mass = 0.1
 continuous_cd = true
 
 [node name="Sphere_cell_003" type="MeshInstance3D" parent="RigidBody3D4"]
-material_override = SubResource("ShaderMaterial_5m0gc")
+material_override = ExtResource("1_gqn72")
 cast_shadow = 0
 mesh = SubResource("ArrayMesh_vgrhl")
 skeleton = NodePath("")
@@ -700,7 +687,7 @@ mass = 0.1
 continuous_cd = true
 
 [node name="Sphere_cell_004" type="MeshInstance3D" parent="RigidBody3D5"]
-material_override = SubResource("ShaderMaterial_5m0gc")
+material_override = ExtResource("1_gqn72")
 cast_shadow = 0
 mesh = SubResource("ArrayMesh_j8074")
 skeleton = NodePath("")
@@ -716,7 +703,7 @@ mass = 0.1
 continuous_cd = true
 
 [node name="Sphere_cell_005" type="MeshInstance3D" parent="RigidBody3D6"]
-material_override = SubResource("ShaderMaterial_5m0gc")
+material_override = ExtResource("1_gqn72")
 cast_shadow = 0
 mesh = SubResource("ArrayMesh_xnmdr")
 skeleton = NodePath("")
@@ -733,7 +720,7 @@ continuous_cd = true
 
 [node name="Sphere_cell_006" type="MeshInstance3D" parent="RigidBody3D7"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -7.45058e-09, 1.86265e-09)
-material_override = SubResource("ShaderMaterial_5m0gc")
+material_override = ExtResource("1_gqn72")
 cast_shadow = 0
 mesh = SubResource("ArrayMesh_yxe6a")
 skeleton = NodePath("")
@@ -750,7 +737,7 @@ mass = 0.1
 continuous_cd = true
 
 [node name="Sphere_cell_007" type="MeshInstance3D" parent="RigidBody3D8"]
-material_override = SubResource("ShaderMaterial_5m0gc")
+material_override = ExtResource("1_gqn72")
 cast_shadow = 0
 mesh = SubResource("ArrayMesh_85su0")
 skeleton = NodePath("")
@@ -766,7 +753,7 @@ mass = 0.1
 continuous_cd = true
 
 [node name="Sphere_cell_008" type="MeshInstance3D" parent="RigidBody3D9"]
-material_override = SubResource("ShaderMaterial_5m0gc")
+material_override = ExtResource("1_gqn72")
 cast_shadow = 0
 mesh = SubResource("ArrayMesh_nsjoq")
 skeleton = NodePath("")
@@ -782,7 +769,7 @@ mass = 0.1
 continuous_cd = true
 
 [node name="Sphere_cell_009" type="MeshInstance3D" parent="RigidBody3D10"]
-material_override = SubResource("ShaderMaterial_5m0gc")
+material_override = ExtResource("1_gqn72")
 cast_shadow = 0
 mesh = SubResource("ArrayMesh_e3gf1")
 skeleton = NodePath("")
@@ -798,7 +785,7 @@ mass = 0.1
 continuous_cd = true
 
 [node name="Sphere_cell_010" type="MeshInstance3D" parent="RigidBody3D11"]
-material_override = SubResource("ShaderMaterial_5m0gc")
+material_override = ExtResource("1_gqn72")
 cast_shadow = 0
 mesh = SubResource("ArrayMesh_gxta5")
 skeleton = NodePath("")
@@ -814,7 +801,7 @@ mass = 0.1
 continuous_cd = true
 
 [node name="Sphere_cell_012" type="MeshInstance3D" parent="RigidBody3D12"]
-material_override = SubResource("ShaderMaterial_5m0gc")
+material_override = ExtResource("1_gqn72")
 cast_shadow = 0
 mesh = SubResource("ArrayMesh_vaik4")
 skeleton = NodePath("")
@@ -830,7 +817,7 @@ mass = 0.1
 continuous_cd = true
 
 [node name="Sphere_cell_013" type="MeshInstance3D" parent="RigidBody3D13"]
-material_override = SubResource("ShaderMaterial_5m0gc")
+material_override = ExtResource("1_gqn72")
 cast_shadow = 0
 mesh = SubResource("ArrayMesh_6ltgk")
 skeleton = NodePath("")
@@ -846,7 +833,7 @@ mass = 0.1
 continuous_cd = true
 
 [node name="Sphere_cell_014" type="MeshInstance3D" parent="RigidBody3D14"]
-material_override = SubResource("ShaderMaterial_5m0gc")
+material_override = ExtResource("1_gqn72")
 cast_shadow = 0
 mesh = SubResource("ArrayMesh_bk5ru")
 skeleton = NodePath("")
@@ -862,7 +849,7 @@ mass = 0.1
 continuous_cd = true
 
 [node name="Sphere_cell_015" type="MeshInstance3D" parent="RigidBody3D15"]
-material_override = SubResource("ShaderMaterial_5m0gc")
+material_override = ExtResource("1_gqn72")
 cast_shadow = 0
 mesh = SubResource("ArrayMesh_awib7")
 skeleton = NodePath("")
@@ -878,7 +865,7 @@ mass = 0.1
 continuous_cd = true
 
 [node name="Sphere_cell_016" type="MeshInstance3D" parent="RigidBody3D16"]
-material_override = SubResource("ShaderMaterial_5m0gc")
+material_override = ExtResource("1_gqn72")
 cast_shadow = 0
 mesh = SubResource("ArrayMesh_248io")
 skeleton = NodePath("")
@@ -894,7 +881,7 @@ mass = 0.1
 continuous_cd = true
 
 [node name="Sphere_cell_017" type="MeshInstance3D" parent="RigidBody3D17"]
-material_override = SubResource("ShaderMaterial_5m0gc")
+material_override = ExtResource("1_gqn72")
 cast_shadow = 0
 mesh = SubResource("ArrayMesh_qc4pw")
 skeleton = NodePath("")

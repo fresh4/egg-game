@@ -4,8 +4,8 @@ const SPLAT = preload("res://prefabs/splat.tscn");
 
 @export var SHATTERED_EGG: PackedScene;
 @export var MAX_SPEED: int = 25; ## Maximum allowed speed (linear or angular).
-@export var ACC_RATE: float = 0.001; ## The rate at which ball will speed up.
-@export var STRAFE_MULTIPLIER: float = 1; ## Speed multiplier for left/right movement.
+@export var ACC_RATE: float = 1.5; ## The rate at which ball will speed up.
+@export var STRAFE_MULTIPLIER: float = 1.25; ## Speed multiplier for left/right movement.
 @export var BASE_FOV: float = 75.0; ## Default camera FOV.
 @export var MAX_FOV: float = 110.0; ## Maximum allowed camera FOV.
 @export var SHATTER_THRESHOLD: float = 6.0; ## How hard of an impact to trigger a crack.
@@ -62,13 +62,13 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		var invert = 1 if Globals.is_look_inverted else -1;
 		camera_pivot.rotation.x += invert * event.relative.y * 0.01 * Globals.camera_sensitivity_setting; 
-		camera_pivot.rotation.x = clampf(camera_pivot.rotation.x, -deg_to_rad(75), deg_to_rad(0));
+		camera_pivot.rotation.x = clampf(camera_pivot.rotation.x, -deg_to_rad(75), deg_to_rad(25));
 		camera_pivot.rotation.y += invert * event.relative.x * 0.01 * Globals.camera_sensitivity_setting;
 		camera_pivot.rotation.z = 0;
 
 func move(dir) -> void:
 	# Push the ball by applying torque along a direction at a passed in rate.
-	ball.apply_torque_impulse(dir * ACC_RATE);
+	ball.apply_torque_impulse(dir * ACC_RATE / 1000);
 	
 	# Change the FOV of the camera based on the speed of the ball.
 	var new_fov = clampf(calculate_fov(), BASE_FOV, MAX_FOV);
@@ -105,21 +105,19 @@ func _on_hit_ground(body: Node3D) -> void:
 	if body is StaticBody3D and !(body as StaticBody3D).collision_layer == 1: return;
 	
 	if abs(last_frames_velocity.length()) - abs(ball.linear_velocity.length()) > 1:
-		health = clamp(health - 1, 0, MAX_HEALTH);
-		
-		draw_splat();
+		health = clamp(health - 1, 0, MAX_HEALTH); # TODO: Not doing anything yet.
 		shatter_egg();
 
-		visible = false;
-		ball.freeze = true;
-
 func shatter_egg() -> void:
+	visible = false;
+	ball.freeze = true;
 	shattered_egg_scene.global_position = ball.global_position;
 	shattered_egg_scene.visible = true;
 	for piece: RigidBody3D in shattered_egg_scene.get_children():
 		piece.freeze = false;
 		piece.apply_impulse(piece.position * 2);
 	SignalBus.egg_shattered.emit();
+	draw_splat();
 
 func draw_splat() -> void:
 	splat_scene.visible = true;
