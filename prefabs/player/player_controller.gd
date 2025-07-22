@@ -8,22 +8,22 @@ const SPLAT = preload("res://prefabs/splat.tscn");
 @export var STRAFE_MULTIPLIER: float = 1; ## Speed multiplier for left/right movement.
 @export var BASE_FOV: float = 75.0; ## Default camera FOV.
 @export var MAX_FOV: float = 110.0; ## Maximum allowed camera FOV.
-@export var SHATTER_THRESHOLD: float = 6.0;
-@export var MAX_HEALTH: int = 3;
+@export var SHATTER_THRESHOLD: float = 6.0; ## How hard of an impact to trigger a crack.
+@export var MAX_HEALTH: int = 3; ## Max number of times you can get hit before dying.
 
 @onready var camera_pivot: Node3D = %CameraPivot;
 @onready var camera: Camera3D = %Camera;
 @onready var ball: RigidBody3D = %Ball;
 
-var health: int 
+var health: int;
 var forward: Vector3 = Vector3.ZERO; ## The calculated forward direction, based on direction of camera.
+var is_jumping: bool = false;
 var default_camera_orientation: Vector3;
 var last_frames_velocity: Vector3 = Vector3.ZERO;
-var splat_scene: DecalCompatibility;
-var shattered_egg_scene: Node3D;
+var splat_scene: DecalCompatibility; # WARNING: Compatibility mode limitation; replace with Decal if changing renderers.
+var shattered_egg_scene: Node3D; ## Scene object containing the pre-fragmented version of the egg.
 
 func _ready() -> void:
-	shattered_egg_scene = SHATTERED_EGG.instantiate();
 	call_deferred("spawn_fragmented_egg");
 	
 	health = MAX_HEALTH;
@@ -37,21 +37,15 @@ func _process(_delta: float) -> void:
 
 func _physics_process(_delta: float) -> void:
 	if not Globals.is_game_started: return;
-	# Store the previous frame's velocity for calulating velocity on impacts.
+	# Store the previous frame's velocity for calulating velocity deltas on impacts.
 	last_frames_velocity = ball.linear_velocity;
 	
 	# Set "forward" to be direction camera is facing.
 	forward = camera.global_transform.basis.z.normalized().cross(Vector3.UP);
 	
-	# Limit ball velocities.
-	#ball.linear_velocity.x = clampf(ball.linear_velocity.x, -MAX_SPEED, MAX_SPEED);
-	#ball.linear_velocity.y = clampf(ball.linear_velocity.y, -50, 50);
-	#ball.linear_velocity.z = clampf(ball.linear_velocity.z, -MAX_SPEED, MAX_SPEED);
-	ball.angular_velocity.x = clampf(ball.angular_velocity.x, -MAX_SPEED, MAX_SPEED);
-	ball.angular_velocity.y = clampf(ball.angular_velocity.y, -MAX_SPEED, MAX_SPEED);
-	ball.angular_velocity.z = clampf(ball.angular_velocity.z, -MAX_SPEED, MAX_SPEED);
 	handle_input();
 	
+	# Reset position if you fall outside the level bounds
 	if ball.global_position.y < -40: ball.global_position = Vector3(0, 10, 0);
 
 func _input(event: InputEvent) -> void:
@@ -63,7 +57,7 @@ func _input(event: InputEvent) -> void:
 		if not Input.is_action_pressed("rotate_camera"):
 			reset_camera();
 	
-	# Rotate the camera if key is held and mouse is in motion.
+	# Rotate the camera if mouse is in motion.
 	if event is InputEventMouseMotion:
 		var invert = 1 if Globals.is_look_inverted else -1;
 		camera_pivot.rotation.x += invert * event.relative.y * 0.01 * Globals.camera_sensitivity_setting; 
@@ -93,6 +87,11 @@ func handle_input() -> void:
 		move(-forward.cross(Vector3.UP) * STRAFE_MULTIPLIER);
 	if Input.is_action_pressed("right"):
 		move(forward.cross(Vector3.UP) * STRAFE_MULTIPLIER);
+	if Input.is_action_pressed("jump") and !is_jumping:
+		is_jumping = true;
+		ball.apply_central_impulse(Vector3(0,1,0) * 0.2);
+		await get_tree().create_timer(.75).timeout;
+		is_jumping = false;
 
 ## Helper function to reset camera orientation.
 func reset_camera() -> void:
@@ -137,6 +136,7 @@ func spawn_fragmented_egg() -> void:
 	await get_tree().create_timer(1).timeout;
 	splat_scene.visible = false;
 	
+	shattered_egg_scene = SHATTERED_EGG.instantiate();
 	get_parent().add_child(shattered_egg_scene);
 	for body: RigidBody3D in shattered_egg_scene.get_children():
 		body.freeze = true;

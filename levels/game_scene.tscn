@@ -1,34 +1,54 @@
-[gd_scene load_steps=19 format=3 uid="uid://4qsc0hl2loma"]
+[gd_scene load_steps=31 format=3 uid="uid://4qsc0hl2loma"]
 
 [ext_resource type="Script" uid="uid://b0w2yf7v8tn01" path="res://scripts/game_manager.gd" id="1_3eeut"]
 [ext_resource type="Material" uid="uid://b0ucncha25vky" path="res://assets/materials/proto_material.tres" id="1_r6nt2"]
-[ext_resource type="Texture2D" uid="uid://dmh10d00diwhx" path="res://assets/proto_textures/Light/texture_07.png" id="2_4yu2r"]
 [ext_resource type="Texture2D" uid="uid://cnqcp6wojb58u" path="res://assets/proto_textures/Light/texture_12.png" id="2_5xaeu"]
-[ext_resource type="Texture2D" uid="uid://blv6fovovukc3" path="res://assets/proto_textures/Light/texture_08.png" id="3_3eeut"]
 [ext_resource type="Script" uid="uid://b3myxn58r8tfe" path="res://scripts/fps_counter.gd" id="3_4yu2r"]
-[ext_resource type="Texture2D" uid="uid://dnr6xxlsry8kg" path="res://assets/proto_textures/Light/texture_04.png" id="4_0pacg"]
+[ext_resource type="LightmapGIData" uid="uid://c4f14atffvsvo" path="res://game_scene.lmbake" id="4_o8ny7"]
+[ext_resource type="PackedScene" uid="uid://bre8nhi4yj0vc" path="res://prefabs/furniture/kitchen_fridge_large.tscn" id="5_h317v"]
+[ext_resource type="PackedScene" uid="uid://dc2pxbejq67ef" path="res://prefabs/interactables/egg_carton.tscn" id="5_o8ny7"]
 [ext_resource type="PackedScene" uid="uid://diuoumeppaqyk" path="res://prefabs/player/player.tscn" id="6_0pacg"]
 [ext_resource type="Script" uid="uid://c7y3tqd43oaps" path="res://scripts/ui.gd" id="6_3eeut"]
+[ext_resource type="PackedScene" uid="uid://dqqcdq5dlp5f4" path="res://prefabs/furniture/kitchen_bar.tscn" id="6_o8ny7"]
 [ext_resource type="PackedScene" uid="uid://b7edk7l3nb6n0" path="res://prefabs/interactables/jump_pad/jump_pad.tscn" id="7_ch3uh"]
-[ext_resource type="PackedScene" uid="uid://cof32rfvq23y3" path="res://prefabs/interactables/cushion/cushion.tscn" id="8_xtttx"]
+[ext_resource type="PackedScene" uid="uid://dqdric50c1s42" path="res://prefabs/furniture/stool_bar.tscn" id="7_vfvks"]
+[ext_resource type="PackedScene" uid="uid://b0kc5et76pprn" path="res://prefabs/furniture/hoodModern.tscn" id="9_vfvks"]
+[ext_resource type="PackedScene" uid="uid://dfpw4h5ktrfd7" path="res://prefabs/furniture/kitchen_bar_end.tscn" id="13_ujhdv"]
+[ext_resource type="PackedScene" uid="uid://crvayyd3od51f" path="res://prefabs/furniture/kitchen_cabinet.tscn" id="14_34dld"]
+[ext_resource type="PackedScene" uid="uid://cyrhj2j18icn1" path="res://prefabs/furniture/kitchen_cabinet_corner_inner.tscn" id="15_o41rl"]
+[ext_resource type="PackedScene" uid="uid://g817xmk6f1hy" path="res://prefabs/furniture/kitchen_cabinet_drawer.tscn" id="16_can20"]
+[ext_resource type="PackedScene" uid="uid://de6oo2af2wres" path="res://prefabs/furniture/kitchen_cabinet_upper.tscn" id="17_yw8fj"]
+[ext_resource type="PackedScene" uid="uid://cdm7soksv0dub" path="res://prefabs/furniture/kitchen_cabinet_upper_corner.tscn" id="18_ku2vh"]
+[ext_resource type="PackedScene" uid="uid://cc5fmrfsqaayx" path="res://prefabs/furniture/kitchen_cabinet_upper_double.tscn" id="19_10lnh"]
+[ext_resource type="PackedScene" uid="uid://bl7s73ttcm131" path="res://prefabs/furniture/kitchen_cabinet_upper_low.tscn" id="20_o5gya"]
+[ext_resource type="PackedScene" uid="uid://btfd8tbo85ryf" path="res://prefabs/furniture/kitchen_sink.tscn" id="21_4fj31"]
+[ext_resource type="PackedScene" uid="uid://nhimyqetn1k0" path="res://prefabs/furniture/kitchen_stove.tscn" id="22_dn47r"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_or7ky"]
-sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
-ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
 
 [sub_resource type="Sky" id="Sky_ch3uh"]
 sky_material = SubResource("ProceduralSkyMaterial_or7ky")
 
 [sub_resource type="Environment" id="Environment_xtttx"]
-background_mode = 2
+background_mode = 1
 sky = SubResource("Sky_ch3uh")
+ambient_light_source = 3
 tonemap_mode = 3
 glow_enabled = true
+adjustment_enabled = true
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_12s1l"]
-albedo_texture = ExtResource("2_4yu2r")
-uv1_scale = Vector3(0.25, 0.25, 0.25)
-uv1_triplanar = true
+[sub_resource type="PlaneMesh" id="PlaneMesh_vfvks"]
+lightmap_size_hint = Vector2i(77, 57)
+add_uv2 = true
+size = Vector2(15, 11)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_1noci"]
+data = PackedVector3Array(15, 0, 15, -15, 0, 15, 15, 0, -15, -15, 0, 15, -15, 0, -15, 15, 0, -15)
+
+[sub_resource type="BoxMesh" id="BoxMesh_o8ny7"]
+lightmap_size_hint = Vector2i(134, 83)
+add_uv2 = true
+size = Vector3(15, 0.25, 11)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_or7ky"]
 albedo_texture = ExtResource("2_5xaeu")
@@ -36,134 +56,8 @@ uv1_scale = Vector3(0.25, 0.25, 0.25)
 uv1_triplanar = true
 uv1_world_triplanar = true
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ch3uh"]
-albedo_texture = ExtResource("3_3eeut")
-uv1_scale = Vector3(0.5, 0.5, 0.5)
-uv1_triplanar = true
-uv1_world_triplanar = true
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xtttx"]
-albedo_texture = ExtResource("4_0pacg")
-uv1_scale = Vector3(0.25, 0.25, 0.25)
-uv1_triplanar = true
-
 [node name="Level" type="Node3D" groups=["GameManager"]]
 script = ExtResource("1_3eeut")
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_xtttx")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-light_bake_mode = 0
-shadow_enabled = true
-directional_shadow_mode = 0
-
-[node name="Whitebox" type="Node3D" parent="."]
-
-[node name="Floor" type="CSGBox3D" parent="Whitebox"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
-material_override = SubResource("StandardMaterial3D_12s1l")
-use_collision = true
-size = Vector3(30, 1, 30)
-
-[node name="Ceiling" type="CSGBox3D" parent="Whitebox"]
-transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 14, 0)
-material_override = SubResource("StandardMaterial3D_12s1l")
-use_collision = true
-size = Vector3(30, 1, 30)
-
-[node name="Wall1" type="CSGBox3D" parent="Whitebox"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.5, -15)
-material_override = SubResource("StandardMaterial3D_or7ky")
-use_collision = true
-size = Vector3(30, 15, 1)
-
-[node name="Wall2" type="CSGBox3D" parent="Whitebox"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.5, 15)
-material_override = SubResource("StandardMaterial3D_or7ky")
-use_collision = true
-size = Vector3(30, 15, 1)
-
-[node name="Wall3" type="CSGBox3D" parent="Whitebox"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 15, 7.5, 0)
-material_override = SubResource("StandardMaterial3D_or7ky")
-use_collision = true
-size = Vector3(30, 15, 1)
-
-[node name="Wall4" type="CSGBox3D" parent="Whitebox"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -15, 7.5, 0)
-material_override = SubResource("StandardMaterial3D_or7ky")
-use_collision = true
-size = Vector3(30, 15, 1)
-
-[node name="Island" type="CSGBox3D" parent="Whitebox"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0)
-material_override = SubResource("StandardMaterial3D_ch3uh")
-use_collision = true
-size = Vector3(5, 2.5, 3)
-
-[node name="Counter" type="CSGBox3D" parent="Whitebox"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.267, 1.25, -9.5)
-material_override = SubResource("StandardMaterial3D_ch3uh")
-use_collision = true
-size = Vector3(2.5, 2.5, 10)
-
-[node name="Counter2" type="CSGBox3D" parent="Whitebox"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -7.05717, 1.25, -13.5)
-material_override = SubResource("StandardMaterial3D_ch3uh")
-use_collision = true
-size = Vector3(2.5, 2.5, 10)
-
-[node name="Counter3" type="CSGBox3D" parent="Whitebox"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 8.09797, 1.25, -13.5)
-material_override = SubResource("StandardMaterial3D_ch3uh")
-use_collision = true
-size = Vector3(2.5, 2.5, 12.9103)
-
-[node name="Fridge" type="CSGBox3D" parent="Whitebox"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.257169, 3.21002, -13.1206)
-material_override = SubResource("StandardMaterial3D_ch3uh")
-use_collision = true
-size = Vector3(3.25879, 6.42004, 3.83398)
-
-[node name="Seat" type="CSGCylinder3D" parent="Whitebox"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.7146, -3)
-material_override = SubResource("StandardMaterial3D_xtttx")
-use_collision = true
-height = 1.5
-
-[node name="Seat2" type="CSGCylinder3D" parent="Whitebox"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0.7146, 3)
-material_override = SubResource("StandardMaterial3D_xtttx")
-use_collision = true
-height = 1.5
-
-[node name="Seat3" type="CSGCylinder3D" parent="Whitebox"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0.7146, -3)
-material_override = SubResource("StandardMaterial3D_xtttx")
-use_collision = true
-height = 1.5
-
-[node name="Seat4" type="CSGCylinder3D" parent="Whitebox"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.7146, 3)
-material_override = SubResource("StandardMaterial3D_xtttx")
-use_collision = true
-height = 1.5
-
-[node name="Ramp" type="CSGPolygon3D" parent="Whitebox"]
-transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, -0.00584036, 0, -4)
-material_override = ExtResource("1_r6nt2")
-use_collision = true
-polygon = PackedVector2Array(0, 0, 0, 0, 1, 0.45, 1, 0)
-
-[node name="JumpPad" parent="Whitebox" instance=ExtResource("7_ch3uh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.172137, 0.15, -2.22933)
-
-[node name="Cushion" parent="Whitebox" instance=ExtResource("8_xtttx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
-
-[node name="Player" parent="." instance=ExtResource("6_0pacg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.6, 0)
 
 [node name="UI" type="CanvasLayer" parent="."]
 process_mode = 3
@@ -175,3 +69,212 @@ offset_bottom = 23.0
 text = "60fps"
 script = ExtResource("3_4yu2r")
 enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_xtttx")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.986592, -0.148136, -0.0684956, 0, -0.41969, 0.907668, -0.163205, -0.895498, -0.414062, 0, 5.71547, 0)
+light_energy = 0.4
+light_bake_mode = 1
+shadow_enabled = true
+
+[node name="Player" parent="." instance=ExtResource("6_0pacg")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 6.26541, 3.75, 0.005)
+
+[node name="Level" type="Node3D" parent="."]
+
+[node name="carton-lowpoly" parent="Level" instance=ExtResource("5_o8ny7")]
+transform = Transform3D(-1.04, 0, 1.57036e-07, 0, 1.04, 0, -1.57036e-07, 0, -1.04, 6.63041, 3.7, 0.37)
+collision_layer = 4
+collision_mask = 0
+
+[node name="kitchenFridgeLarge" parent="Level" instance=ExtResource("5_h317v")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 5.78994, 0, -1.35)
+
+[node name="doorLeft" parent="Level/kitchenFridgeLarge/kitchenFridgeLarge(Clone)" index="0"]
+transform = Transform3D(-0.515307, 0, -0.857005, 0, 1, 0, 0.857005, 0, -0.515307, 0.134221, 2.44995, 0.1)
+
+[node name="CollisionShape3D" parent="Level/kitchenFridgeLarge/kitchenFridgeLarge(Clone)/doorLeft/StaticBody3D" index="0"]
+visible = false
+
+[node name="doorRight" parent="Level/kitchenFridgeLarge/kitchenFridgeLarge(Clone)" index="1"]
+transform = Transform3D(-0.427784, 0, 0.903881, 0, 1, 0, -0.903881, 0, -0.427784, 2.46578, 2.44995, 0.1)
+
+[node name="CollisionShape3D" parent="Level/kitchenFridgeLarge/kitchenFridgeLarge(Clone)/doorRight/StaticBody3D" index="0"]
+visible = false
+
+[node name="JumpPad" parent="Level/kitchenFridgeLarge/kitchenFridgeLarge(Clone)" index="2" instance=ExtResource("7_ch3uh")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.35, 0, 1.28994)
+
+[node name="CollisionShape3D" parent="Level/kitchenFridgeLarge" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3, 0.15, -0.85)
+visible = false
+
+[node name="CollisionShape3D2" parent="Level/kitchenFridgeLarge" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3, 0.367639, -0.8)
+visible = false
+
+[node name="CollisionShape3D3" parent="Level/kitchenFridgeLarge" index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.234, 3.535, -0.873)
+visible = false
+
+[node name="CollisionShape3D4" parent="Level/kitchenFridgeLarge" index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.30254, 4.55, -0.8)
+visible = false
+
+[node name="CollisionShape3D5" parent="Level/kitchenFridgeLarge" index="5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0502876, 2.5, -0.8)
+visible = false
+
+[node name="CollisionShape3D6" parent="Level/kitchenFridgeLarge" index="6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.55029, 2.5, -0.8)
+visible = false
+
+[node name="CollisionShape3D7" parent="Level/kitchenFridgeLarge" index="7"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 1.29814, 2.5, -1.63275)
+visible = false
+
+[node name="Island" type="Node3D" parent="Level"]
+
+[node name="kitchenBar" parent="Level/Island" instance=ExtResource("6_o8ny7")]
+transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 2, -2.2, 0, 1)
+
+[node name="stoolBar" parent="Level/Island" instance=ExtResource("7_vfvks")]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, -1.46194, 0, 2.1246)
+collision_layer = 4
+collision_mask = 2
+
+[node name="stoolBar2" parent="Level/Island" instance=ExtResource("7_vfvks")]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0.438057, 0, 2.1246)
+collision_layer = 4
+collision_mask = 2
+
+[node name="stoolBar3" parent="Level/Island" instance=ExtResource("7_vfvks")]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, -1.46194, 0, -1.2754)
+collision_layer = 4
+collision_mask = 2
+
+[node name="stoolBar4" parent="Level/Island" instance=ExtResource("7_vfvks")]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0.438057, 0, -1.2754)
+collision_layer = 4
+collision_mask = 2
+
+[node name="hoodModern" parent="Level" instance=ExtResource("9_vfvks")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -6, 4, 1)
+
+[node name="kitchenStove" parent="Level" instance=ExtResource("22_dn47r")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.25, 0, 1.05)
+
+[node name="kitchenCabinetDrawer" parent="Level" instance=ExtResource("16_can20")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.25, 0, -1.1)
+
+[node name="kitchenCabinetDrawer2" parent="Level" instance=ExtResource("16_can20")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.25, 0, 3.2)
+
+[node name="kitchenCabinetDrawer3" parent="Level" instance=ExtResource("16_can20")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.25, 0, 5.35)
+visible = false
+
+[node name="kitchenCabinetCornerInner" parent="Level" instance=ExtResource("15_o41rl")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -5.2, 0, 3.195)
+
+[node name="kitchenCabinetCornerInner2" parent="Level" instance=ExtResource("15_o41rl")]
+transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, -5.2, 0, -3.2)
+
+[node name="kitchenSink" parent="Level" instance=ExtResource("21_4fj31")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -3.09166, 0, 3.24495)
+
+[node name="kitchenCabinet" parent="Level" instance=ExtResource("14_34dld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.2, 0, -3.25)
+
+[node name="kitchenCabinet2" parent="Level" instance=ExtResource("14_34dld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.05, 0, -3.25)
+
+[node name="kitchenCabinet3" parent="Level" instance=ExtResource("14_34dld")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.95, 0, 3.245)
+
+[node name="kitchenCabinet4" parent="Level" instance=ExtResource("14_34dld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9, 0, -3.25)
+
+[node name="kitchenCabinet5" parent="Level" instance=ExtResource("14_34dld")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.2, 0, 3.245)
+
+[node name="Floor" type="MeshInstance3D" parent="Level"]
+material_override = ExtResource("1_r6nt2")
+mesh = SubResource("PlaneMesh_vfvks")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Level/Floor"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/Floor/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_1noci")
+
+[node name="Ceiling" type="MeshInstance3D" parent="Level"]
+transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 5.85, 0)
+material_override = ExtResource("1_r6nt2")
+mesh = SubResource("BoxMesh_o8ny7")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Level/Ceiling"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/Ceiling/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_1noci")
+
+[node name="Whitebox" type="Node3D" parent="."]
+
+[node name="Wall1" type="CSGBox3D" parent="Whitebox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -6)
+material_override = SubResource("StandardMaterial3D_or7ky")
+use_collision = true
+size = Vector3(15, 7, 1)
+
+[node name="Wall2" type="CSGBox3D" parent="Whitebox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 6)
+material_override = SubResource("StandardMaterial3D_or7ky")
+use_collision = true
+size = Vector3(15, 7, 1)
+
+[node name="Wall3" type="CSGBox3D" parent="Whitebox"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 8, 2.5, 0)
+material_override = SubResource("StandardMaterial3D_or7ky")
+use_collision = true
+size = Vector3(11, 7, 1)
+
+[node name="Wall4" type="CSGBox3D" parent="Whitebox"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -8, 2.5, 0)
+material_override = SubResource("StandardMaterial3D_or7ky")
+use_collision = true
+size = Vector3(11, 7, 1)
+
+[node name="LevelComponentsTEMP" type="Node3D" parent="."]
+
+[node name="kitchenBar" parent="LevelComponentsTEMP" instance=ExtResource("6_o8ny7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.85606, 4.76837e-07, 4.3976)
+
+[node name="kitchenBarEnd" parent="LevelComponentsTEMP" instance=ExtResource("13_ujhdv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.43372, 0, 3.36142)
+
+[node name="kitchenCabinetUpper" parent="LevelComponentsTEMP" instance=ExtResource("17_yw8fj")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -6.44166, 3.85, -1.15505)
+
+[node name="kitchenCabinetUpper2" parent="LevelComponentsTEMP" instance=ExtResource("17_yw8fj")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -6.44166, 3.85, -3.30505)
+
+[node name="kitchenCabinetUpper3" parent="LevelComponentsTEMP" instance=ExtResource("17_yw8fj")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -6.44166, 3.85, -3.30505)
+
+[node name="kitchenCabinetUpperCorner" parent="LevelComponentsTEMP" instance=ExtResource("18_ku2vh")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2.3, 3.85, -4.45)
+
+[node name="kitchenCabinetUpperDouble" parent="LevelComponentsTEMP" instance=ExtResource("19_10lnh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9, 3.85, -4.45)
+
+[node name="kitchenCabinetUpperLow" parent="LevelComponentsTEMP" instance=ExtResource("20_o5gya")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -3.165, 3.85, 4.571)
+
+[node name="LightmapGI" type="LightmapGI" parent="."]
+supersampling = true
+interior = true
+light_data = ExtResource("4_o8ny7")
+
+[editable path="Level/carton-lowpoly"]
+[editable path="Level/kitchenFridgeLarge"]

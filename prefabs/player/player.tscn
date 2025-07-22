@@ -1,16 +1,17 @@
-[gd_scene load_steps=7 format=3 uid="uid://diuoumeppaqyk"]
+[gd_scene load_steps=8 format=3 uid="uid://diuoumeppaqyk"]
 
 [ext_resource type="Script" uid="uid://cn8yj20245k2s" path="res://prefabs/player/player_controller.gd" id="1_72ieh"]
 [ext_resource type="PackedScene" uid="uid://bx7pclwpy1x25" path="res://prefabs/player/egg_shattered.tscn" id="2_binfn"]
 [ext_resource type="Shader" uid="uid://dsdlohv2uyit0" path="res://assets/materials/toon/toon_shader.gdshader" id="2_rdx4y"]
+[ext_resource type="Script" uid="uid://cs2nm3ugkvtk7" path="res://prefabs/player/ball.gd" id="3_klv5p"]
 [ext_resource type="ArrayMesh" uid="uid://cth4kik6q5qhu" path="res://assets/models/egg/egg.obj" id="3_wv1mm"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_binfn"]
 render_priority = 0
 shader = ExtResource("2_rdx4y")
 shader_parameter/color = Color(0.902344, 0.760031, 0.63446, 1)
-shader_parameter/shadow = 0.5
-shader_parameter/shadow_width = 0.0
+shader_parameter/shadow = 1.0
+shader_parameter/shadow_width = 0.306
 shader_parameter/shadow_color = Color(0.705, 0.705, 0.705, 0.705)
 shader_parameter/_specular_smoothness = 0.01
 shader_parameter/_specular_strength = 0.075
@@ -30,12 +31,15 @@ unique_name_in_owner = true
 collision_layer = 2
 collision_mask = 5
 mass = 0.1
+can_sleep = false
 continuous_cd = true
 contact_monitor = true
 max_contacts_reported = 1
+script = ExtResource("3_klv5p")
 
 [node name="Egg" type="MeshInstance3D" parent="Ball"]
 material_override = SubResource("ShaderMaterial_binfn")
+gi_mode = 2
 mesh = ExtResource("3_wv1mm")
 skeleton = NodePath("../..")
 
@@ -46,6 +50,7 @@ shape = SubResource("ConvexPolygonShape3D_klv5p")
 unique_name_in_owner = true
 
 [node name="SpringArm3D" type="SpringArm3D" parent="CameraPivot"]
+transform = Transform3D(1, 0, 0, 0, 0.939693, 0.34202, 0, -0.34202, 0.939693, 0, 0, 0)
 
 [node name="Camera" type="Camera3D" parent="CameraPivot/SpringArm3D"]
 unique_name_in_owner = true

@@ -633,6 +633,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.054263, -0.0248074, -0.0563
 collision_layer = 2
 collision_mask = 5
 mass = 0.1
+continuous_cd = true
 
 [node name="Sphere_cell" type="MeshInstance3D" parent="RigidBody3D"]
 material_override = SubResource("ShaderMaterial_5m0gc")
@@ -648,6 +649,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0693213, 0.0578749, -0.027
 collision_layer = 2
 collision_mask = 5
 mass = 0.1
+continuous_cd = true
 
 [node name="Sphere_cell_001" type="MeshInstance3D" parent="RigidBody3D2"]
 material_override = SubResource("ShaderMaterial_5m0gc")
@@ -663,6 +665,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00125067, 0.151838, 0.0008
 collision_layer = 2
 collision_mask = 5
 mass = 0.1
+continuous_cd = true
 
 [node name="Sphere_cell_002" type="MeshInstance3D" parent="RigidBody3D3"]
 material_override = SubResource("ShaderMaterial_5m0gc")
@@ -678,6 +681,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00609358, 0.120145, 0.0456
 collision_layer = 2
 collision_mask = 5
 mass = 0.1
+continuous_cd = true
 
 [node name="Sphere_cell_003" type="MeshInstance3D" parent="RigidBody3D4"]
 material_override = SubResource("ShaderMaterial_5m0gc")
@@ -693,6 +697,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0149332, 0.0590668, 0.06933
 collision_layer = 2
 collision_mask = 5
 mass = 0.1
+continuous_cd = true
 
 [node name="Sphere_cell_004" type="MeshInstance3D" parent="RigidBody3D5"]
 material_override = SubResource("ShaderMaterial_5m0gc")
@@ -708,6 +713,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.038597, -0.0497542, -0.047
 collision_layer = 2
 collision_mask = 5
 mass = 0.1
+continuous_cd = true
 
 [node name="Sphere_cell_005" type="MeshInstance3D" parent="RigidBody3D6"]
 material_override = SubResource("ShaderMaterial_5m0gc")
@@ -723,6 +729,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0532604, 0.1117, 0.0185448
 collision_layer = 2
 collision_mask = 5
 mass = 0.1
+continuous_cd = true
 
 [node name="Sphere_cell_006" type="MeshInstance3D" parent="RigidBody3D7"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -7.45058e-09, 1.86265e-09)
@@ -740,6 +747,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0402731, -0.0331674, 0.0533
 collision_layer = 2
 collision_mask = 5
 mass = 0.1
+continuous_cd = true
 
 [node name="Sphere_cell_007" type="MeshInstance3D" parent="RigidBody3D8"]
 material_override = SubResource("ShaderMaterial_5m0gc")
@@ -755,6 +763,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0349887, 0.0246701, -0.070
 collision_layer = 2
 collision_mask = 5
 mass = 0.1
+continuous_cd = true
 
 [node name="Sphere_cell_008" type="MeshInstance3D" parent="RigidBody3D9"]
 material_override = SubResource("ShaderMaterial_5m0gc")
@@ -770,6 +779,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0719971, 0.0302414, -0.0198
 collision_layer = 2
 collision_mask = 5
 mass = 0.1
+continuous_cd = true
 
 [node name="Sphere_cell_009" type="MeshInstance3D" parent="RigidBody3D10"]
 material_override = SubResource("ShaderMaterial_5m0gc")
@@ -785,6 +795,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0415806, 0.113633, -0.03471
 collision_layer = 2
 collision_mask = 5
 mass = 0.1
+continuous_cd = true
 
 [node name="Sphere_cell_010" type="MeshInstance3D" parent="RigidBody3D11"]
 material_override = SubResource("ShaderMaterial_5m0gc")
@@ -800,6 +811,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0576581, 0.00512372, 0.050
 collision_layer = 2
 collision_mask = 5
 mass = 0.1
+continuous_cd = true
 
 [node name="Sphere_cell_012" type="MeshInstance3D" parent="RigidBody3D12"]
 material_override = SubResource("ShaderMaterial_5m0gc")
@@ -815,6 +827,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00457354, 0.110756, -0.0543
 collision_layer = 2
 collision_mask = 5
 mass = 0.1
+continuous_cd = true
 
 [node name="Sphere_cell_013" type="MeshInstance3D" parent="RigidBody3D13"]
 material_override = SubResource("ShaderMaterial_5m0gc")
@@ -830,6 +843,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0202516, -0.0823744, 0.002
 collision_layer = 2
 collision_mask = 5
 mass = 0.1
+continuous_cd = true
 
 [node name="Sphere_cell_014" type="MeshInstance3D" parent="RigidBody3D14"]
 material_override = SubResource("ShaderMaterial_5m0gc")
@@ -845,6 +859,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0246498, -0.0837833, 0.0078
 collision_layer = 2
 collision_mask = 5
 mass = 0.1
+continuous_cd = true
 
 [node name="Sphere_cell_015" type="MeshInstance3D" parent="RigidBody3D15"]
 material_override = SubResource("ShaderMaterial_5m0gc")
@@ -860,6 +875,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0564264, 0.103192, 0.012429
 collision_layer = 2
 collision_mask = 5
 mass = 0.1
+continuous_cd = true
 
 [node name="Sphere_cell_016" type="MeshInstance3D" parent="RigidBody3D16"]
 material_override = SubResource("ShaderMaterial_5m0gc")
@@ -875,6 +891,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0353546, 0.124502, -0.0302
 collision_layer = 2
 collision_mask = 5
 mass = 0.1
+continuous_cd = true
 
 [node name="Sphere_cell_017" type="MeshInstance3D" parent="RigidBody3D17"]
 material_override = SubResource("ShaderMaterial_5m0gc")
