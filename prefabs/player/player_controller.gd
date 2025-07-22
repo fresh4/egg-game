@@ -10,6 +10,7 @@ const SPLAT = preload("res://prefabs/splat.tscn");
 @export var MAX_FOV: float = 110.0; ## Maximum allowed camera FOV.
 @export var SHATTER_THRESHOLD: float = 6.0; ## How hard of an impact to trigger a crack.
 @export var MAX_HEALTH: int = 3; ## Max number of times you can get hit before dying.
+@export var JUMP_POWER: float = 0.2;
 
 @onready var camera_pivot: Node3D = %CameraPivot;
 @onready var camera: Camera3D = %Camera;
@@ -89,7 +90,7 @@ func handle_input() -> void:
 		move(forward.cross(Vector3.UP) * STRAFE_MULTIPLIER);
 	if Input.is_action_pressed("jump") and !is_jumping:
 		is_jumping = true;
-		ball.apply_central_impulse(Vector3(0,1,0) * 0.2);
+		ball.apply_central_impulse(Vector3(0,1,0) * JUMP_POWER);
 		await get_tree().create_timer(.75).timeout;
 		is_jumping = false;
 
@@ -101,8 +102,6 @@ func reset_camera() -> void:
 func _on_hit_ground(body: Node3D) -> void:
 	# Magic number '1' is for environment objects (floors, walls, tables, etc)
 	# Check to see if we did indeed hit the ground, not some other object.
-	# TODO: Standardize to staticbody once csg whitebox is gone.
-	if body is CSGShape3D and !(body as CSGShape3D).collision_layer == 1: return;
 	if body is StaticBody3D and !(body as StaticBody3D).collision_layer == 1: return;
 	
 	if abs(last_frames_velocity.length()) - abs(ball.linear_velocity.length()) > 1:

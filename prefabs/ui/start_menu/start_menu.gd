@@ -18,6 +18,7 @@ func on_play_button_pressed() -> void:
 	await tween.finished;
 	Globals.is_game_started = true;
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED;
+	queue_free();
 
 func on_settings_button_pressed() -> void:
 	# Spawn settings page and hide main menu

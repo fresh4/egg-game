@@ -21,6 +21,8 @@ func on_restart_button_pressed() -> void:
 	SceneTransition.change_scene();
 
 func on_game_ended(is_won: bool, points: int) -> void:
+	Globals.is_game_started = false;
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE;
 	message_label.text = victory_message if is_won else defeat_message;
 	
 	await get_tree().create_timer(1).timeout;
