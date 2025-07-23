@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://bjb05nj1pdf8c" path="res://assets/models/egg/textures/egg-tex-cracked.png" id="2_ev8v4"]
 [ext_resource type="Script" uid="uid://cs2nm3ugkvtk7" path="res://prefabs/player/ball.gd" id="3_klv5p"]
 [ext_resource type="Texture2D" uid="uid://bbnc7b5pb2s6e" path="res://assets/models/egg/textures/egg-tex-cracked-heavy.png" id="3_vhck3"]
-[ext_resource type="Material" uid="uid://bebvy6ovmvi2" path="res://assets/materials/toon/cel_shader.tres" id="4_klv5p"]
+[ext_resource type="Material" uid="uid://bebvy6ovmvi2" path="res://resources/shaders/toon/cel_shader.tres" id="4_klv5p"]
 [ext_resource type="ArrayMesh" uid="uid://t8ghqw5ge0bk" path="res://assets/models/egg/egg-solid-lowerpoly.obj" id="6_iylwk"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_klv5p"]

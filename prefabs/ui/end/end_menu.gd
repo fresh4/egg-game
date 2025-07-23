@@ -28,9 +28,11 @@ func on_game_ended(is_won: bool, points: int) -> void:
 	
 	await get_tree().create_timer(0.25).timeout;
 	message_label.visible = true;
+	AudioManager.play_audio(AudioManager.SCORING_NOTE_YELLOW);
 	
 	await get_tree().create_timer(0.25).timeout;
 	points_label.visible = true;
+	AudioManager.play_audio(AudioManager.SCORING_NOTE_BLUE);
 	if points > 0:
 		var tween = get_tree().create_tween();
 		tween.tween_method(update_score, 0, points, 1.5).set_ease(Tween.EASE_IN_OUT);
@@ -38,6 +40,7 @@ func on_game_ended(is_won: bool, points: int) -> void:
 	
 	await get_tree().create_timer(0.25).timeout;
 	restart_button.visible = true;
+	AudioManager.play_audio(AudioManager.SCORING_NOTE_RED);
 
 func update_score(value: int) -> void:
 	points_label.text = str(value) + " Points";

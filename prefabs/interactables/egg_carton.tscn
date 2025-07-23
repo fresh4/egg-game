@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=4 uid="uid://dc2pxbejq67ef"]
 
-[ext_resource type="Shader" uid="uid://f01hgcgbbgbi" path="res://assets/materials/toon/outline.gdshader" id="1_sa3bi"]
-[ext_resource type="Shader" uid="uid://kkf2lq3t4dyd" path="res://assets/materials/toon/cel-shader-base.gdshader" id="2_g4fu2"]
+[ext_resource type="Shader" uid="uid://f01hgcgbbgbi" path="res://resources/shaders/toon/outline.gdshader" id="1_sa3bi"]
+[ext_resource type="Shader" uid="uid://kkf2lq3t4dyd" path="res://resources/shaders/toon/cel-shader-base.gdshader" id="2_g4fu2"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ievm7"]
 render_priority = 0

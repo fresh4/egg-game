@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://c3dvm4wsuqsm6"]
 
 [ext_resource type="Shader" uid="uid://foqf6idimvb0" path="res://addons/decal_compatibility/decal.gdshader" id="1_trwlx"]
-[ext_resource type="Texture2D" uid="uid://b2xoo4t7nngyd" path="res://assets/splat.png" id="2_o8c3a"]
+[ext_resource type="Texture2D" uid="uid://b2xoo4t7nngyd" path="res://assets/images/splat.png" id="2_o8c3a"]
 [ext_resource type="Script" uid="uid://feckn7f3pmud" path="res://addons/decal_compatibility/decal_compatibility.gd" id="3_k5te4"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_trwlx"]

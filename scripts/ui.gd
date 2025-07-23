@@ -1,6 +1,6 @@
 class_name UI extends CanvasLayer
 
-const START_MENU = preload("res://prefabs/ui/start_menu/start_menu.tscn")
+const START_MENU = preload("res://prefabs/ui/start_menu/start_menu.tscn");
 const SETTINGS = preload("res://prefabs/ui/settings/settings_menu.tscn");
 const END = preload("res://prefabs/ui/end/end_menu.tscn");
 

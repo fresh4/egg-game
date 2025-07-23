@@ -131,6 +131,7 @@ func shatter_egg() -> void:
 		piece.apply_impulse(piece.position * 2);
 	SignalBus.egg_shattered.emit();
 	draw_splat();
+	AudioManager.play_audio(AudioManager.SLIME_IMPACT_SLAP);
 
 func draw_splat() -> void:
 	splat_scene.visible = true;

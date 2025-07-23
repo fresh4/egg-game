@@ -2,27 +2,26 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://chg4lnnd51iwf"
-path.s3tc="res://.godot/imported/texture_09.png-f908107444e89a8c1573af52fbaa80c3.s3tc.ctex"
+uid="uid://b1dyfpauay4b7"
+path="res://.godot/imported/texture_13.png-4a9bfab3eb9b8f71936e3b94c22412ec.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/proto_textures/Light/texture_09.png"
-dest_files=["res://.godot/imported/texture_09.png-f908107444e89a8c1573af52fbaa80c3.s3tc.ctex"]
+source_file="res://assets/textures/prototyping/texture_13.png"
+dest_files=["res://.godot/imported/texture_13.png-4a9bfab3eb9b8f71936e3b94c22412ec.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=true
+mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
@@ -32,4 +31,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=0
+detect_3d/compress_to=1

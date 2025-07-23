@@ -3,6 +3,19 @@ extends Node
 const MUSIC_PLAYER = preload("res://prefabs/game_music_player.tscn");
 
 #region Audio Imports
+const BUTTON_A = preload("res://assets/audio/sfx/button/button_A.ogg")
+const BUTTON_CLICK_A = preload("res://assets/audio/sfx/button/button_click_A.ogg")
+
+const IGNITE = preload("res://assets/audio/sfx/stovetop/ignite.ogg");
+const SIZZLE = preload("res://assets/audio/sfx/stovetop/sizzle.ogg");
+const BUBBLING_CAULDRON = preload("res://assets/audio/sfx/stovetop/bubbling_cauldron.ogg");
+
+const SLIME_IMPACT_SLAP = preload("res://assets/audio/sfx/impacts/Slime_impact_slap.ogg");
+const FLICK_A_WET = preload("res://assets/audio/sfx/impacts/flick_A_WET.ogg");
+
+const SCORING_NOTE_BLUE = preload("res://assets/audio/sfx/scoring/SCORING_NOTE_BLUE.ogg");
+const SCORING_NOTE_RED = preload("res://assets/audio/sfx/scoring/SCORING_NOTE_RED.ogg");
+const SCORING_NOTE_YELLOW = preload("res://assets/audio/sfx/scoring/SCORING_NOTE_YELLOW.ogg");
 
 #endregion
 
@@ -14,6 +27,9 @@ var game_music_player: AudioStreamPlayer3D;
 
 var current_player: AudioStreamPlayer = null;
 var tween: Tween;
+
+func _enter_tree() -> void:
+	get_tree().node_added.connect(on_node_added);
 
 func _ready() -> void:
 	game_music_player = MUSIC_PLAYER.instantiate() as AudioStreamPlayer3D;
@@ -93,3 +109,15 @@ func fade_track(idx, vol, t) -> void:
 	var callback = func(value): game_music_player.stream.set_sync_stream_volume(idx, value);
 	var tween_2 = get_tree().create_tween();
 	tween_2.tween_method(callback, cur_vol, vol, t);
+
+# Set up button SFX for clicks and hovers automatically.
+func on_node_added(node: Node) -> void:
+	if node is Button:
+		node.mouse_entered.connect(on_button_hover);
+		node.pressed.connect(on_button_pressed);
+
+func on_button_hover() -> void:
+	AudioManager.play_audio(AudioManager.BUTTON_A);
+
+func on_button_pressed() -> void:
+	AudioManager.play_audio(AudioManager.BUTTON_CLICK_A);

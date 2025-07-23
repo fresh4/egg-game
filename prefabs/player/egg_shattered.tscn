@@ -1,6 +1,6 @@
 [gd_scene load_steps=70 format=4 uid="uid://bx7pclwpy1x25"]
 
-[ext_resource type="Material" uid="uid://bebvy6ovmvi2" path="res://assets/materials/toon/cel_shader.tres" id="1_gqn72"]
+[ext_resource type="Material" uid="uid://bebvy6ovmvi2" path="res://resources/shaders/toon/cel_shader.tres" id="1_gqn72"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gro5o"]
 

@@ -19,6 +19,8 @@ func on_egg_shattered() -> void:
 	SignalBus.game_ended.emit(has_won, points);
 
 func _input(event: InputEvent) -> void:
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and Input.mouse_mode != Input.MOUSE_MODE_CAPTURED and Globals.is_game_started:
+		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED;
 	if event.is_action_pressed("jump") and intro_cutscene.is_playing():
 		intro_cutscene.advance(intro_cutscene.current_animation_length - intro_cutscene.current_animation_position);
 

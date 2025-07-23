@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://2ruyo1dp14rb"]
 
-[ext_resource type="Theme" uid="uid://cshd85xo1vlb2" path="res://assets/themes/ui_theme.tres" id="1_gcic6"]
+[ext_resource type="Theme" uid="uid://cshd85xo1vlb2" path="res://resources/themes/ui_theme.tres" id="1_gcic6"]
 [ext_resource type="Script" uid="uid://b1ii7p5qb1bwd" path="res://prefabs/ui/end/end_menu.gd" id="2_jg23x"]
 
 [node name="End" type="Control"]

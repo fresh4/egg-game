@@ -1,10 +1,12 @@
-[gd_scene load_steps=43 format=3 uid="uid://4qsc0hl2loma"]
+[gd_scene load_steps=48 format=3 uid="uid://4qsc0hl2loma"]
 
 [ext_resource type="Script" uid="uid://b0w2yf7v8tn01" path="res://scripts/game_manager.gd" id="1_3eeut"]
-[ext_resource type="Material" uid="uid://b0ucncha25vky" path="res://assets/materials/proto_material.tres" id="1_r6nt2"]
-[ext_resource type="Texture2D" uid="uid://cnqcp6wojb58u" path="res://assets/proto_textures/Light/texture_12.png" id="2_5xaeu"]
+[ext_resource type="Material" uid="uid://b0ucncha25vky" path="res://resources/shaders/proto_material.tres" id="1_r6nt2"]
+[ext_resource type="Texture2D" uid="uid://cnqcp6wojb58u" path="res://assets/textures/prototyping/texture_12.png" id="2_5xaeu"]
 [ext_resource type="Script" uid="uid://b3myxn58r8tfe" path="res://scripts/fps_counter.gd" id="3_4yu2r"]
+[ext_resource type="AudioStream" uid="uid://dbtbgnhkdk7ro" path="res://assets/audio/sfx/stovetop/ignite.ogg" id="3_can20"]
 [ext_resource type="LightmapGIData" uid="uid://c4f14atffvsvo" path="res://game_scene.lmbake" id="4_o8ny7"]
+[ext_resource type="AudioStream" uid="uid://bfvif1foq0pbi" path="res://assets/audio/sfx/stovetop/bubbling_cauldron.ogg" id="4_yw8fj"]
 [ext_resource type="PackedScene" uid="uid://bre8nhi4yj0vc" path="res://prefabs/furniture/kitchen_fridge_large.tscn" id="5_h317v"]
 [ext_resource type="PackedScene" uid="uid://dc2pxbejq67ef" path="res://prefabs/interactables/egg_carton.tscn" id="5_o8ny7"]
 [ext_resource type="PackedScene" uid="uid://diuoumeppaqyk" path="res://prefabs/player/player.tscn" id="6_0pacg"]
@@ -156,6 +158,30 @@ tracks/10/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("IntroCutscene/IgniteSFX:playing")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("IntroCutscene/FireSFX:playing")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_1noci"]
 resource_name = "pan_to_stove"
@@ -286,6 +312,30 @@ tracks/10/keys = {
 "update": 1,
 "values": [false, true]
 }
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("IntroCutscene/IgniteSFX:playing")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(1.9, 1.96667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("IntroCutscene/FireSFX:playing")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(2.38752, 2.43333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_34dld"]
 _data = {
@@ -320,6 +370,42 @@ tonemap_mode = 3
 glow_enabled = true
 adjustment_enabled = true
 adjustment_saturation = 1.3
+
+[sub_resource type="Animation" id="Animation_o41rl"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.05, 2.2, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_34dld"]
+resource_name = "pan_light"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.0500002, 2.2, 1.36819), Vector3(0.05, 2.2, -1.368)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_can20"]
+_data = {
+&"RESET": SubResource("Animation_o41rl"),
+&"pan_light": SubResource("Animation_34dld")
+}
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_vfvks"]
 rough = true
@@ -358,7 +444,7 @@ libraries = {
 autoplay = "RESET"
 
 [node name="Camera3D" type="Camera3D" parent="IntroCutscene"]
-transform = Transform3D(-3.40777e-06, -0.34202, 0.939693, -1.23811e-06, 0.939693, 0.34202, -1, 2.08502e-09, -3.62572e-06, 7.2, 4.1, 0)
+transform = Transform3D(-3.16935e-06, -0.34202, 0.939693, -1.23811e-06, 0.939693, 0.34202, -1, -7.946e-08, -3.40168e-06, 7.2, 4.1, 0)
 
 [node name="BurnerParticles" type="CPUParticles3D" parent="IntroCutscene"]
 transform = Transform3D(0.26, 0, 0, 0, -1.1365e-08, 0.26, 0, -0.26, -1.1365e-08, -6.18, 2.15, 0.385)
@@ -385,6 +471,19 @@ light_energy = 0.0
 omni_range = 0.5
 script = ExtResource("24_vfvks")
 
+[node name="IgniteSFX" type="AudioStreamPlayer3D" parent="IntroCutscene"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.12772, 2.3021, 0.427345)
+stream = ExtResource("3_can20")
+bus = &"SFX"
+
+[node name="FireSFX" type="AudioStreamPlayer3D" parent="IntroCutscene"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.12772, 2.3021, 0.427345)
+stream = ExtResource("4_yw8fj")
+volume_db = -6.0
+max_db = -3.0
+max_polyphony = 2
+bus = &"SFX"
+
 [node name="UI" type="CanvasLayer" parent="."]
 process_mode = 3
 script = ExtResource("6_3eeut")
@@ -409,7 +508,6 @@ offset_right = 42.0
 offset_bottom = 23.0
 text = "60fps"
 script = ExtResource("3_4yu2r")
-enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_xtttx")
@@ -441,16 +539,33 @@ light_energy = 1.408
 light_bake_mode = 1
 omni_range = 1.038
 
+[node name="SpotLight3D" type="SpotLight3D" parent="Lights/Oven"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -7.82293, 1.29519, -0.184293)
+light_color = Color(1, 0.607239, 0.226563, 1)
+light_energy = 2.333
+light_bake_mode = 0
+spot_range = 6.1828
+spot_attenuation = 0.05
+spot_angle = 38.4782
+spot_angle_attenuation = 3.36359
+
 [node name="Fridge" type="Node3D" parent="Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5, 2, 0)
 
-[node name="OmniLight3D" type="OmniLight3D" parent="Lights/Fridge"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0500002, 2.2, 0)
+[node name="LightShaderCacher" type="OmniLight3D" parent="Lights/Fridge"]
+editor_description = "This node passes over the egg at the start to cache lighting information."
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.05, 2.2, 0)
 light_color = Color(0.90625, 1, 0.995605, 1)
-light_energy = 0.15
+light_energy = 0.55
 light_bake_mode = 1
-omni_range = 2.0
+omni_range = 1.01007
 omni_attenuation = 0.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Lights/Fridge/LightShaderCacher"]
+libraries = {
+&"": SubResource("AnimationLibrary_can20")
+}
+autoplay = "pan_light"
 
 [node name="Level" type="Node3D" parent="."]
 
@@ -466,6 +581,9 @@ physics_material_override = SubResource("PhysicsMaterial_vfvks")
 [node name="carton-lowpoly-top" parent="Level/carton-lowpoly" index="2"]
 visible = false
 
+[node name="JumpPad" parent="Level" instance=ExtResource("7_ch3uh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 0, 0)
+
 [node name="kitchenFridgeLarge" parent="Level" instance=ExtResource("5_h317v")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 5.8, 0, -1.2)
 
@@ -474,9 +592,6 @@ transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107
 
 [node name="doorRight" parent="Level/kitchenFridgeLarge/kitchenFridgeLarge(Clone)" index="1"]
 transform = Transform3D(-0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, -0.866025, 2.46578, 2.44995, 0.0999999)
-
-[node name="JumpPad" parent="Level" instance=ExtResource("7_ch3uh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 0, 0)
 
 [node name="Island" type="Node3D" parent="Level"]
 
@@ -503,41 +618,63 @@ transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0.438057, 0, -1.2754
 collision_layer = 4
 collision_mask = 2
 
+[node name="KitchenU" type="Node3D" parent="Level"]
+
+[node name="kitchenStove" parent="Level/KitchenU" instance=ExtResource("22_dn47r")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.25, 0, 1.05)
+
+[node name="kitchenCabinetDrawer" parent="Level/KitchenU" instance=ExtResource("16_can20")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.25, 0, -1.1)
+
+[node name="kitchenCabinetDrawer3" parent="Level/KitchenU" instance=ExtResource("16_can20")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9, 0, -3.295)
+
+[node name="kitchenCabinetDrawer2" parent="Level/KitchenU" instance=ExtResource("16_can20")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.25, 0, 3.2)
+
+[node name="kitchenCabinetCornerInner" parent="Level/KitchenU" instance=ExtResource("15_o41rl")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -5.2, 0, 3.195)
+
+[node name="kitchenCabinetCornerInner2" parent="Level/KitchenU" instance=ExtResource("15_o41rl")]
+transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, -5.2, 0, -3.245)
+
+[node name="kitchenSink" parent="Level/KitchenU" instance=ExtResource("21_4fj31")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -3.052, 0, 3.245)
+
+[node name="kitchenCabinet" parent="Level/KitchenU" instance=ExtResource("14_34dld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.2, 0, -3.295)
+
+[node name="kitchenCabinet2" parent="Level/KitchenU" instance=ExtResource("14_34dld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.05, 0, -3.295)
+
+[node name="kitchenCabinet3" parent="Level/KitchenU" instance=ExtResource("14_34dld")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.905, 0, 3.245)
+
+[node name="kitchenCabinet5" parent="Level/KitchenU" instance=ExtResource("14_34dld")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.245, 0, 3.245)
+
 [node name="hoodModern" parent="Level" instance=ExtResource("9_vfvks")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -6, 4, 1)
 
-[node name="kitchenStove" parent="Level" instance=ExtResource("22_dn47r")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.25, 0, 1.05)
+[node name="Cabinets" type="Node3D" parent="Level"]
 
-[node name="kitchenCabinetDrawer" parent="Level" instance=ExtResource("16_can20")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.25, 0, -1.1)
+[node name="kitchenCabinetUpper" parent="Level/Cabinets" instance=ExtResource("17_yw8fj")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -6.44166, 3.85, -1.15505)
 
-[node name="kitchenCabinetDrawer2" parent="Level" instance=ExtResource("16_can20")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.25, 0, 3.2)
+[node name="kitchenCabinetUpper2" parent="Level/Cabinets" instance=ExtResource("17_yw8fj")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -6.44166, 3.85, -3.30505)
 
-[node name="kitchenCabinetCornerInner" parent="Level" instance=ExtResource("15_o41rl")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -5.2, 0, 3.195)
+[node name="kitchenCabinetUpperCorner" parent="Level/Cabinets" instance=ExtResource("18_ku2vh")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2.3, 3.85, -4.45)
 
-[node name="kitchenCabinetCornerInner2" parent="Level" instance=ExtResource("15_o41rl")]
-transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, -5.2, 0, -3.245)
+[node name="kitchenCabinetUpperDouble" parent="Level/Cabinets" instance=ExtResource("19_10lnh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9, 3.85, -4.45)
 
-[node name="kitchenSink" parent="Level" instance=ExtResource("21_4fj31")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -3.052, 0, 3.245)
+[node name="kitchenCabinetUpperLow" parent="Level/Cabinets" instance=ExtResource("20_o5gya")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -3.165, 3.85, 4.571)
 
-[node name="kitchenCabinet" parent="Level" instance=ExtResource("14_34dld")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.2, 0, -3.295)
-
-[node name="kitchenCabinet2" parent="Level" instance=ExtResource("14_34dld")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.05, 0, -3.295)
-
-[node name="kitchenCabinet4" parent="Level" instance=ExtResource("14_34dld")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9, 0, -3.295)
-
-[node name="kitchenCabinet3" parent="Level" instance=ExtResource("14_34dld")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.905, 0, 3.245)
-
-[node name="kitchenCabinet5" parent="Level" instance=ExtResource("14_34dld")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.245, 0, 3.245)
+[node name="doorway" parent="Level" instance=ExtResource("27_34dld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8, 0, -5.25)
 
 [node name="Floor" type="MeshInstance3D" parent="Level"]
 material_override = ExtResource("1_r6nt2")
@@ -558,9 +695,6 @@ mesh = SubResource("BoxMesh_o8ny7")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Level/Ceiling/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_1noci")
-
-[node name="doorway" parent="Level" instance=ExtResource("27_34dld")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8, 0, -5.25)
 
 [node name="Whitebox" type="Node3D" parent="."]
 
@@ -595,21 +729,6 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3.4560
 
 [node name="kitchenBarEnd" parent="LevelComponentsTEMP" instance=ExtResource("13_ujhdv")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3.456, 0, 2.841)
-
-[node name="kitchenCabinetUpper" parent="LevelComponentsTEMP" instance=ExtResource("17_yw8fj")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -6.44166, 3.85, -1.15505)
-
-[node name="kitchenCabinetUpper2" parent="LevelComponentsTEMP" instance=ExtResource("17_yw8fj")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -6.44166, 3.85, -3.30505)
-
-[node name="kitchenCabinetUpperCorner" parent="LevelComponentsTEMP" instance=ExtResource("18_ku2vh")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2.3, 3.85, -4.45)
-
-[node name="kitchenCabinetUpperDouble" parent="LevelComponentsTEMP" instance=ExtResource("19_10lnh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9, 3.85, -4.45)
-
-[node name="kitchenCabinetUpperLow" parent="LevelComponentsTEMP" instance=ExtResource("20_o5gya")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -3.165, 3.85, 4.571)
 
 [node name="LightmapGI" type="LightmapGI" parent="."]
 supersampling = true
