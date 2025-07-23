@@ -2,6 +2,7 @@ class_name Player extends Node3D
 
 const SPLAT = preload("res://prefabs/splat.tscn");
 
+@export var CRACK_TEXTURES: Array[CompressedTexture2D];
 @export var SHATTERED_EGG: PackedScene;
 @export var MAX_SPEED: int = 25; ## Maximum allowed speed (linear or angular).
 @export var ACC_RATE: float = 1.5; ## The rate at which ball will speed up.
@@ -15,6 +16,8 @@ const SPLAT = preload("res://prefabs/splat.tscn");
 @onready var camera_pivot: Node3D = %CameraPivot;
 @onready var camera: Camera3D = %Camera;
 @onready var ball: RigidBody3D = %Ball;
+@onready var animation_player: AnimationPlayer = %AnimationPlayer;
+@onready var egg_mesh: MeshInstance3D = %Egg;
 
 var health: int;
 var forward: Vector3 = Vector3.ZERO; ## The calculated forward direction, based on direction of camera.
@@ -26,6 +29,7 @@ var shattered_egg_scene: Node3D; ## Scene object containing the pre-fragmented v
 
 func _ready() -> void:
 	call_deferred("spawn_fragmented_egg");
+	egg_mesh.material_override.set_shader_parameter("base_texture", null);
 	
 	health = MAX_HEALTH;
 	camera.fov = BASE_FOV;
@@ -103,9 +107,18 @@ func _on_hit_ground(body: Node3D) -> void:
 	# Magic number '1' is for environment objects (floors, walls, tables, etc)
 	# Check to see if we did indeed hit the ground, not some other object.
 	if body is StaticBody3D and !(body as StaticBody3D).collision_layer == 1: return;
+	var delta_v = abs(last_frames_velocity.length()) - abs(ball.linear_velocity.length());
 	
-	if abs(last_frames_velocity.length()) - abs(ball.linear_velocity.length()) > 1:
-		health = clamp(health - 1, 0, MAX_HEALTH); # TODO: Not doing anything yet.
+	if delta_v >= 2:
+		shatter_egg();
+	elif delta_v > 1:
+		animation_player.play("impact");
+		health = clamp(health - 1, 0, MAX_HEALTH);
+		if len(CRACK_TEXTURES):
+			var idx = clamp(MAX_HEALTH - health - 1, 0, len(CRACK_TEXTURES) - 1)
+			var texture = CRACK_TEXTURES[idx];
+			egg_mesh.material_override.set_shader_parameter("base_texture", texture);
+	if health <= 0:
 		shatter_egg();
 
 func shatter_egg() -> void:
