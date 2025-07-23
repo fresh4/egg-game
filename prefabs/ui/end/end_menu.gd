@@ -17,7 +17,6 @@ func _ready() -> void:
 	SignalBus.game_ended.connect(on_game_ended);
 
 func on_restart_button_pressed() -> void:
-	#get_tree().reload_current_scene();
 	SceneTransition.change_scene();
 
 func on_game_ended(is_won: bool, points: int) -> void:

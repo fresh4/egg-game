@@ -13,6 +13,8 @@ var camera_sensitivity_setting: float = 1;
 
 var has_played_cutscene = false;
 
+var is_cutscene_playing: bool = false;
+
 #func end_game() -> void:
 	#is_game_started = false;
 	#Input.mouse_mode = Input.MOUSE_MODE_VISIBLE;

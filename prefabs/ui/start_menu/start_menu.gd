@@ -16,11 +16,14 @@ func on_play_button_pressed() -> void:
 	var tween = get_tree().create_tween();
 	tween.tween_property(self, "modulate", Color(1,1,1,0), 1);
 	await tween.finished;
-	Globals.is_game_started = true;
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED;
-	queue_free();
+	start_game();
 
 func on_settings_button_pressed() -> void:
 	# Spawn settings page and hide main menu
 	visible = false;
 	ui.pause();
+
+func start_game() -> void:
+	Globals.is_game_started = true;
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED;
+	queue_free();

@@ -42,6 +42,8 @@ func _process(_delta: float) -> void:
 
 func _physics_process(_delta: float) -> void:
 	if not Globals.is_game_started: return;
+	if Globals.is_cutscene_playing: return;
+	
 	# Store the previous frame's velocity for calulating velocity deltas on impacts.
 	last_frames_velocity = ball.linear_velocity;
 	
@@ -55,6 +57,7 @@ func _physics_process(_delta: float) -> void:
 
 func _input(event: InputEvent) -> void:
 	if not Globals.is_game_started: return;
+	if Globals.is_cutscene_playing: return;
 	
 	# If key is tapped, not held, reset camera rotation.
 	if Input.is_action_just_pressed("rotate_camera"):

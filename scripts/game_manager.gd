@@ -27,8 +27,11 @@ func _input(event: InputEvent) -> void:
 # Play the intro cutscene on first time playing.
 func on_game_started() -> void:
 	if !Globals.has_played_cutscene:
-		Globals.is_game_started = false;
+		Globals.is_cutscene_playing = true;
 		intro_cutscene.play("pan_to_stove");
 		await intro_cutscene.animation_finished;
 		Globals.has_played_cutscene = true;
-		Globals.is_game_started = true;
+		Globals.is_cutscene_playing = false;
+	else:
+		intro_cutscene.play("pan_to_stove");
+		intro_cutscene.advance(intro_cutscene.current_animation_length);
