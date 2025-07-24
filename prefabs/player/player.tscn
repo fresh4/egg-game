@@ -52,7 +52,7 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id="Animation_klv5p"]
 resource_name = "impact"
-length = 0.5
+length = 0.75
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -60,7 +60,7 @@ tracks/0/path = NodePath("CameraPivot/SpringArm3D/Camera/OeufLabel:outline_modul
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.366667, 0.499091),
+"times": PackedFloat32Array(0, 0.2, 0.6, 0.732424),
 "transitions": PackedFloat32Array(0.329877, 0.329877, 0.329877, 0.329877),
 "update": 0,
 "values": [Color(0.715, 0.441, 0.12, 0), Color(0.715, 0.441, 0.12, 1), Color(0.715, 0.441, 0.12, 1), Color(0.715, 0.441, 0.12, 0)]
@@ -72,7 +72,7 @@ tracks/1/path = NodePath("CameraPivot/SpringArm3D/Camera/OeufLabel:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.366667, 0.499091),
+"times": PackedFloat32Array(0, 0.2, 0.6, 0.732424),
 "transitions": PackedFloat32Array(0.329877, 0.329877, 0.329877, 0.329877),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
@@ -84,10 +84,10 @@ tracks/2/path = NodePath("CameraPivot/SpringArm3D/Camera/OeufLabel:offset")
 tracks/2/interp = 2
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.499091),
+"times": PackedFloat32Array(0, 0.732424),
 "transitions": PackedFloat32Array(0.329877, 0.329877),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(16, 16)]
+"values": [Vector2(0, 0), Vector2(24, 24)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ev8v4"]
@@ -134,12 +134,12 @@ rotation_order = 0
 
 [node name="OeufLabel" type="Label3D" parent="CameraPivot/SpringArm3D/Camera"]
 transform = Transform3D(1, 0, 0, 0, 1, 1.49012e-07, 0, -5.96046e-08, 1, 0, 0.150582, -0.945193)
-pixel_size = 0.002
+pixel_size = 0.001
 billboard = 1
 modulate = Color(1, 1, 1, 0)
 outline_modulate = Color(0.715, 0.441, 0.12, 0)
 text = "Oeuf!"
-font_size = 14
+font_size = 36
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true

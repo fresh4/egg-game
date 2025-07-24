@@ -2,8 +2,8 @@ class_name Player extends Node3D
 
 const SPLAT = preload("res://prefabs/splat.tscn");
 
-@export var CRACK_TEXTURES: Array[CompressedTexture2D];
-@export var SHATTERED_EGG: PackedScene;
+@export var CRACK_TEXTURES: Array[CompressedTexture2D]; ## List of textures to use for the cracked egg.
+@export var SHATTERED_EGG: PackedScene; ## Scene containing the fragmented egg.
 @export var MAX_SPEED: int = 25; ## Maximum allowed speed (linear or angular).
 @export var ACC_RATE: float = 1.5; ## The rate at which ball will speed up.
 @export var STRAFE_MULTIPLIER: float = 1.25; ## Speed multiplier for left/right movement.
@@ -11,7 +11,7 @@ const SPLAT = preload("res://prefabs/splat.tscn");
 @export var MAX_FOV: float = 110.0; ## Maximum allowed camera FOV.
 @export var SHATTER_THRESHOLD: float = 6.0; ## How hard of an impact to trigger a crack.
 @export var MAX_HEALTH: int = 3; ## Max number of times you can get hit before dying.
-@export var JUMP_POWER: float = 0.2;
+@export_range(0, 1) var JUMP_POWER: float = 0.2; ## How high the player can jump.
 
 @onready var camera_pivot: Node3D = %CameraPivot;
 @onready var camera: Camera3D = %Camera;
@@ -19,7 +19,7 @@ const SPLAT = preload("res://prefabs/splat.tscn");
 @onready var animation_player: AnimationPlayer = %AnimationPlayer;
 @onready var egg_mesh: MeshInstance3D = %Egg;
 
-var health: int;
+var health: int; ## The current health of the egg.
 var forward: Vector3 = Vector3.ZERO; ## The calculated forward direction, based on direction of camera.
 var is_jumping: bool = false;
 var default_camera_orientation: Vector3;
@@ -73,7 +73,12 @@ func _input(event: InputEvent) -> void:
 		camera_pivot.rotation.y += invert * event.relative.x * 0.01 * Globals.camera_sensitivity_setting;
 		camera_pivot.rotation.z = 0;
 
-func move(dir) -> void:
+func midair_move(dir: Vector3) -> void:
+	ball.apply_central_force(dir.cross(Vector3.UP) * ACC_RATE / 20 );
+
+func move(dir: Vector3) -> void:
+	if abs(ball.linear_velocity.y) > 1:
+		midair_move(dir);
 	# Push the ball by applying torque along a direction at a passed in rate.
 	ball.apply_torque_impulse(dir * ACC_RATE / 1000);
 	
@@ -107,6 +112,7 @@ func reset_camera() -> void:
 	tween.tween_property(camera_pivot, "rotation", default_camera_orientation, 0.15);
 
 func _on_hit_ground(body: Node3D) -> void:
+	is_jumping = false;
 	# Magic number '1' is for environment objects (floors, walls, tables, etc)
 	# Check to see if we did indeed hit the ground, not some other object.
 	if body is StaticBody3D and !(body as StaticBody3D).collision_layer == 1: return;
