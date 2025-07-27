@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=4 uid="uid://bvoio064gcr5a"]
+[gd_scene load_steps=10 format=4 uid="uid://bvoio064gcr5a"]
 
 [ext_resource type="Script" uid="uid://biak8j14t6s34" path="res://prefabs/interactables/frying_pan/frying_pan.gd" id="1_c2l1m"]
 [ext_resource type="Texture2D" uid="uid://ddhbvp7umgkdp" path="res://assets/models/interactables/Textures/colormap.png" id="1_mwpaa"]
+[ext_resource type="ArrayMesh" uid="uid://bx66mov3wwgec" path="res://assets/models/food/egg-cooked.obj" id="3_2y3ir"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0m24s"]
 resource_name = "colormap"
@@ -81,3 +82,9 @@ shape = SubResource("BoxShape3D_c2l1m")
 [node name="CollisionShape3D3" type="CollisionShape3D" parent="VictoryDetectionArea"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.235246, 0.0754998, 0)
 shape = SubResource("BoxShape3D_c2l1m")
+
+[node name="egg" type="MeshInstance3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0114554, 0.0565, 0.00428209)
+visible = false
+mesh = ExtResource("3_2y3ir")

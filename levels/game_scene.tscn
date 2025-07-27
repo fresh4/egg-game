@@ -1,23 +1,24 @@
-[gd_scene load_steps=57 format=3 uid="uid://4qsc0hl2loma"]
+[gd_scene load_steps=68 format=3 uid="uid://4qsc0hl2loma"]
 
 [ext_resource type="Script" uid="uid://b0w2yf7v8tn01" path="res://scripts/game_manager.gd" id="1_3eeut"]
-[ext_resource type="Material" uid="uid://b0ucncha25vky" path="res://resources/shaders/proto_material.tres" id="1_r6nt2"]
 [ext_resource type="SphereMesh" uid="uid://bw0exp1fk3o15" path="res://resources/particles/burner_particles.tres" id="2_10lnh"]
 [ext_resource type="Script" uid="uid://b3myxn58r8tfe" path="res://scripts/fps_counter.gd" id="3_4yu2r"]
 [ext_resource type="AudioStream" uid="uid://dbtbgnhkdk7ro" path="res://assets/audio/sfx/stovetop/ignite.ogg" id="3_can20"]
 [ext_resource type="LightmapGIData" uid="uid://c4f14atffvsvo" path="res://game_scene.lmbake" id="4_o8ny7"]
 [ext_resource type="AudioStream" uid="uid://bfvif1foq0pbi" path="res://assets/audio/sfx/stovetop/bubbling_cauldron.ogg" id="4_yw8fj"]
-[ext_resource type="PackedScene" uid="uid://bre8nhi4yj0vc" path="res://prefabs/furniture/kitchen_fridge_large.tscn" id="5_h317v"]
 [ext_resource type="PackedScene" uid="uid://dc2pxbejq67ef" path="res://prefabs/interactables/egg_carton.tscn" id="5_o8ny7"]
 [ext_resource type="PackedScene" uid="uid://diuoumeppaqyk" path="res://prefabs/player/player.tscn" id="6_0pacg"]
 [ext_resource type="Script" uid="uid://c7y3tqd43oaps" path="res://scripts/ui.gd" id="6_3eeut"]
 [ext_resource type="PackedScene" uid="uid://dqqcdq5dlp5f4" path="res://prefabs/furniture/kitchen_bar.tscn" id="6_o8ny7"]
 [ext_resource type="PackedScene" uid="uid://dncjgci2koj42" path="res://prefabs/furniture/lamp_ceiling.tscn" id="6_ujhdv"]
-[ext_resource type="PackedScene" uid="uid://b7edk7l3nb6n0" path="res://prefabs/interactables/jump_pad/jump_pad.tscn" id="7_ch3uh"]
 [ext_resource type="PackedScene" uid="uid://dqdric50c1s42" path="res://prefabs/furniture/stool_bar.tscn" id="7_vfvks"]
 [ext_resource type="PackedScene" uid="uid://b0kc5et76pprn" path="res://prefabs/furniture/hood_modern.tscn" id="9_vfvks"]
+[ext_resource type="PackedScene" uid="uid://d6ej6gmo4itm" path="res://prefabs/interactables/points/pickup.tscn" id="10_q38cf"]
+[ext_resource type="PackedScene" uid="uid://co0q6wwynnrxj" path="res://prefabs/interactables/cushion/mitt.tscn" id="11_4fj31"]
+[ext_resource type="PackedScene" uid="uid://cof32rfvq23y3" path="res://prefabs/interactables/cushion/towel.tscn" id="12_dn47r"]
 [ext_resource type="PackedScene" uid="uid://dfpw4h5ktrfd7" path="res://prefabs/furniture/kitchen_bar_end.tscn" id="13_ujhdv"]
 [ext_resource type="PackedScene" uid="uid://crvayyd3od51f" path="res://prefabs/furniture/kitchen_cabinet.tscn" id="14_34dld"]
+[ext_resource type="PackedScene" uid="uid://bdsg0fve6j2mv" path="res://prefabs/furniture/fridge-noshelf.tscn" id="15_dn47r"]
 [ext_resource type="PackedScene" uid="uid://cyrhj2j18icn1" path="res://prefabs/furniture/kitchen_cabinet_corner_inner.tscn" id="15_o41rl"]
 [ext_resource type="PackedScene" uid="uid://g817xmk6f1hy" path="res://prefabs/furniture/kitchen_cabinet_drawer.tscn" id="16_can20"]
 [ext_resource type="PackedScene" uid="uid://de6oo2af2wres" path="res://prefabs/furniture/kitchen_cabinet_upper.tscn" id="17_yw8fj"]
@@ -32,6 +33,13 @@
 [ext_resource type="PackedScene" uid="uid://cu8ksvl2tsm3k" path="res://prefabs/furniture/corner_plane.tscn" id="25_10lnh"]
 [ext_resource type="PackedScene" uid="uid://c8ciu48o7fru2" path="res://prefabs/furniture/half_plane.tscn" id="26_o5gya"]
 [ext_resource type="PackedScene" uid="uid://bsl0s0yvaiscr" path="res://assets/models/doorway.glb" id="27_34dld"]
+[ext_resource type="Texture2D" uid="uid://ic5umy6iuehn" path="res://assets/textures/wood.jpg" id="30_10lnh"]
+[ext_resource type="PackedScene" uid="uid://bkyhwxnjj22ud" path="res://prefabs/interactables/jump_pad/lowpoly-jello.tscn" id="32_10lnh"]
+[ext_resource type="PackedScene" uid="uid://bgerhs7aeu4po" path="res://prefabs/furniture/chopping_board.tscn" id="32_dn47r"]
+[ext_resource type="PackedScene" uid="uid://chw1a4w3s3y83" path="res://prefabs/furniture/box.tscn" id="33_ods8k"]
+[ext_resource type="PackedScene" uid="uid://vrhxvm4np8yf" path="res://prefabs/interactables/cushion/waffle.tscn" id="35_vph0g"]
+[ext_resource type="PackedScene" uid="uid://cea8uad0ik21d" path="res://prefabs/interactables/cushion/bread.tscn" id="36_p441p"]
+[ext_resource type="PackedScene" uid="uid://bmna3q5uyqk2f" path="res://prefabs/interactables/cushion/pie.tscn" id="36_pl12n"]
 
 [sub_resource type="Animation" id="Animation_ujhdv"]
 length = 0.001
@@ -184,6 +192,66 @@ tracks/12/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("Lights/HoodLight:light_energy")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("WorldEnvironment:environment:adjustment_brightness")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("Level/fridge-noshelf/kitchenFridgeLarge(Clone)/doorLeft:rotation")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -2.0944, 0)]
+}
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("Level/fridge-noshelf/kitchenFridgeLarge(Clone)/doorRight:rotation")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 2.35619, 0)]
+}
+tracks/17/type = "value"
+tracks/17/imported = false
+tracks/17/enabled = false
+tracks/17/path = NodePath("Player:position")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(6.26, 3.76, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_1noci"]
@@ -339,10 +407,62 @@ tracks/12/keys = {
 "update": 1,
 "values": [false, true]
 }
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("Lights/HoodLight:light_energy")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0, 2.16734, 2.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, 1.332]
+}
+
+[sub_resource type="Animation" id="Animation_10lnh"]
+resource_name = "open_fridge"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WorldEnvironment:environment:adjustment_brightness")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.1, 1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Level/fridge-noshelf/kitchenFridgeLarge(Clone)/doorLeft:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, -2.0944, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Level/fridge-noshelf/kitchenFridgeLarge(Clone)/doorRight:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 2.35619, 0)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_34dld"]
 _data = {
 &"RESET": SubResource("Animation_ujhdv"),
+&"open_fridge": SubResource("Animation_10lnh"),
 &"pan_to_stove": SubResource("Animation_1noci")
 }
 
@@ -542,6 +662,10 @@ ambient_light_source = 3
 ambient_light_color = Color(0.895464, 0.90625, 0.800049, 1)
 tonemap_mode = 3
 glow_enabled = true
+fog_mode = 1
+fog_light_energy = 11.47
+fog_depth_begin = 0.0
+fog_depth_end = 14.0
 adjustment_enabled = true
 adjustment_saturation = 1.3
 
@@ -568,17 +692,6 @@ size = Vector3(2.5, 2.5, 0.1)
 rough = true
 bounce = 0.35
 
-[sub_resource type="BoxMesh" id="BoxMesh_o8ny7"]
-lightmap_size_hint = Vector2i(149, 96)
-add_uv2 = true
-size = Vector3(16, 1, 13)
-
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ku2vh"]
-points = PackedVector3Array(-8, -0.5, -6.5, -8, 0.5, -6.5, 8, -0.5, -6.5, -8, -0.5, 6.5, -8, 0.5, 6.5, 8, 0.5, -6.5, 8, -0.5, 6.5, 8, 0.5, 6.5)
-
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_10lnh"]
-points = PackedVector3Array(-8, -0.5, -6.5, -8, 0.5, -6.5, 8, -0.5, -6.5, -8, -0.5, 6.5, -8, 0.5, 6.5, 8, 0.5, -6.5, 8, -0.5, 6.5, 8, 0.5, 6.5)
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o5gya"]
 albedo_color = Color(0.820313, 0.779257, 0.692139, 1)
 
@@ -598,6 +711,25 @@ points = PackedVector3Array(7.5, 3.5, 0.5, 7.5, 3.5, -0.5, -7.5, 3.5, 0.5, 7.5, 
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_vph0g"]
 points = PackedVector3Array(7.5, 3.5, 0.5, 7.5, 3.5, -0.5, -7.5, 3.5, 0.5, 7.5, -3.5, 0.5, 7.5, -3.5, -0.5, -7.5, 3.5, -0.5, -7.5, -3.5, 0.5, -7.5, -3.5, -0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4fj31"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_o8ny7"]
+lightmap_size_hint = Vector2i(149, 96)
+add_uv2 = true
+size = Vector3(16, 1, 13)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ku2vh"]
+points = PackedVector3Array(-8, -0.5, -6.5, -8, 0.5, -6.5, 8, -0.5, -6.5, -8, -0.5, 6.5, -8, 0.5, 6.5, 8, 0.5, -6.5, 8, -0.5, 6.5, 8, 0.5, 6.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dn47r"]
+shading_mode = 2
+albedo_texture = ExtResource("30_10lnh")
+uv1_scale = Vector3(0.5, 0.5, 0.5)
+uv1_triplanar = true
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_10lnh"]
+points = PackedVector3Array(-8, -0.5, -6.5, -8, 0.5, -6.5, 8, -0.5, -6.5, -8, -0.5, 6.5, -8, 0.5, 6.5, 8, 0.5, -6.5, 8, -0.5, 6.5, 8, 0.5, 6.5)
 
 [node name="Level" type="Node3D" groups=["GameManager"]]
 script = ExtResource("1_3eeut")
@@ -695,7 +827,7 @@ shadow_opacity = 0.97
 directional_shadow_mode = 0
 
 [node name="Player" parent="." instance=ExtResource("6_0pacg")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 6.26541, 3.75, 0.005)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 6.26, 3.76, 0)
 
 [node name="Lights" type="Node3D" parent="."]
 
@@ -818,12 +950,51 @@ omni_attenuation = 1.714
 [node name="HoodLight" type="SpotLight3D" parent="Lights"]
 transform = Transform3D(0.984808, 7.5904e-09, -0.173648, 0.173648, -4.30473e-08, 0.984808, 0, -1, -4.37114e-08, -6.9, 4.6, 0)
 light_color = Color(0.949219, 1, 0.995239, 1)
-light_energy = 1.332
+light_energy = 0.0
 spot_range = 3.5
 spot_attenuation = 0.59
 spot_angle = 35.2879
 
 [node name="Level" type="Node3D" parent="."]
+
+[node name="Points" type="Node3D" parent="Level"]
+
+[node name="Pickup" parent="Level/Points" instance=ExtResource("10_q38cf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1, 4.2, -3.9)
+
+[node name="Pickup10" parent="Level/Points" instance=ExtResource("10_q38cf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, 4.2, -5)
+
+[node name="Pickup2" parent="Level/Points" instance=ExtResource("10_q38cf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8, 4.2, -3.9)
+
+[node name="Pickup11" parent="Level/Points" instance=ExtResource("10_q38cf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9, 1.73125, -1.7)
+
+[node name="Pickup12" parent="Level/Points" instance=ExtResource("10_q38cf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7, 2.03418, -3)
+
+[node name="Pickup3" parent="Level/Points" instance=ExtResource("10_q38cf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.7, 4.2, -3.9)
+
+[node name="Pickup4" parent="Level/Points" instance=ExtResource("10_q38cf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.6, 4.2, -3.9)
+
+[node name="Pickup5" parent="Level/Points" instance=ExtResource("10_q38cf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.4, 4.2, -3.9)
+
+[node name="Pickup7" parent="Level/Points" instance=ExtResource("10_q38cf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.3, 1.91578, 2.3)
+
+[node name="Pickup8" parent="Level/Points" instance=ExtResource("10_q38cf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.7, 1.91578, 2.9)
+
+[node name="Pickup9" parent="Level/Points" instance=ExtResource("10_q38cf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.7, 1.91582, 1.6)
+
+[node name="Pickup6" parent="Level/Points" instance=ExtResource("10_q38cf")]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -2.3, 4.2, -4.8)
+points_value = 500
 
 [node name="frying-pan2" parent="Level" instance=ExtResource("25_1noci")]
 transform = Transform3D(0.422618, 0, -0.906308, 0, 1, 0, 0.906308, 0, 0.422618, -6.2, 2.20524, 0.35)
@@ -837,17 +1008,70 @@ physics_material_override = SubResource("PhysicsMaterial_vfvks")
 [node name="carton-lowpoly-top" parent="Level/carton-lowpoly" index="2"]
 visible = false
 
-[node name="JumpPad" parent="Level" instance=ExtResource("7_ch3uh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 0, 0)
+[node name="fridge-noshelf" parent="Level" instance=ExtResource("15_dn47r")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 5.9, 0, -1.3)
 
-[node name="kitchenFridgeLarge" parent="Level" instance=ExtResource("5_h317v")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 5.8, 0, -1.2)
+[node name="doorLeft" parent="Level/fridge-noshelf/kitchenFridgeLarge(Clone)" index="0"]
+transform = Transform3D(-0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, -0.5, 0.134221, 2.44995, 0.1)
 
-[node name="doorLeft" parent="Level/kitchenFridgeLarge/kitchenFridgeLarge(Clone)" index="0"]
-transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, 0.134221, 2.44995, 0.0999999)
+[node name="doorRight" parent="Level/fridge-noshelf/kitchenFridgeLarge(Clone)" index="1"]
+transform = Transform3D(-0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, 2.46578, 2.44995, 0.1)
 
-[node name="doorRight" parent="Level/kitchenFridgeLarge/kitchenFridgeLarge(Clone)" index="1"]
-transform = Transform3D(-0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, -0.866025, 2.46578, 2.44995, 0.0999999)
+[node name="Jump Pads" type="Node3D" parent="Level"]
+
+[node name="lowpoly-jello" parent="Level/Jump Pads" instance=ExtResource("32_10lnh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 0, -0.8)
+
+[node name="lowpoly-jello2" parent="Level/Jump Pads" instance=ExtResource("32_10lnh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.4, 0, 0)
+BOUNCE_POWER = 0.75
+
+[node name="lowpoly-plate" parent="Level/Jump Pads/lowpoly-jello2" index="0"]
+transform = Transform3D(0.0188792, -0.0033289, 0, 0.0033289, 0.0188792, 0, 0, 0, 0.0191704, 0.6, 0, 0)
+
+[node name="lowpoly-jello" parent="Level/Jump Pads/lowpoly-jello2" index="1"]
+transform = Transform3D(0.0188791, -0.0033289, 0, 0.0033289, 0.0188791, 0, 0, 0, 0.0191704, 0, 0.0651228, 0)
+
+[node name="CollisionShape3D" parent="Level/Jump Pads/lowpoly-jello2" index="2"]
+transform = Transform3D(0.0188792, -0.0033289, 0, 0.0033289, 0.0188792, 0, 0, 0, 0.0191704, 0, 0.0651228, 0)
+
+[node name="Cushions" type="Node3D" parent="Level"]
+
+[node name="Mitt" parent="Level/Cushions" instance=ExtResource("11_4fj31")]
+transform = Transform3D(0.482091, 0, 0.574533, 0, 0.75, 0, -0.574533, 0, 0.482091, -6, 2.09874, -1.7)
+
+[node name="Mitt2" parent="Level/Cushions" instance=ExtResource("11_4fj31")]
+transform = Transform3D(0.482091, 0, 0.574533, 0, 0.75, 0, -0.574533, 0, 0.482091, 0, 1.39874, -2.7)
+
+[node name="Towel" parent="Level/Cushions" instance=ExtResource("12_dn47r")]
+transform = Transform3D(0.574533, 0, -0.482091, 0, 0.75, 0, 0.482091, 0, 0.574533, 1.4, 2.09691, -0.2)
+
+[node name="Towel2" parent="Level/Cushions" instance=ExtResource("12_dn47r")]
+transform = Transform3D(-0.289254, 0, -0.34472, 0, 0.45, 0, 0.34472, 0, -0.289254, 0.7, 4.057, -4.9)
+
+[node name="Waffle" parent="Level/Cushions" instance=ExtResource("35_vph0g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.4, 1.3, 0.5)
+
+[node name="Waffle3" parent="Level/Cushions" instance=ExtResource("35_vph0g")]
+transform = Transform3D(0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 0, 0, 1, 6.7, 1.3, 0.5)
+
+[node name="Waffle2" parent="Level/Cushions" instance=ExtResource("35_vph0g")]
+transform = Transform3D(1, 0, 0, 0, 0.965926, -0.258819, 0, 0.258819, 0.965926, 6.4, 1.34005, 0.7)
+
+[node name="Bread4" parent="Level/Cushions" instance=ExtResource("36_pl12n")]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 6.7, 2.1, -0.6)
+
+[node name="Bread5" parent="Level/Cushions" instance=ExtResource("36_pl12n")]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 6.5, 0.434001, -0.6)
+
+[node name="Bread" parent="Level/Cushions" instance=ExtResource("36_p441p")]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 6.6, 2.825, 0.6)
+
+[node name="Bread2" parent="Level/Cushions" instance=ExtResource("36_p441p")]
+transform = Transform3D(0.173648, 0, -0.984808, 0, 1, 0, 0.984808, 0, 0.173648, 6.8, 2.86474, 0.6)
+
+[node name="Bread3" parent="Level/Cushions" instance=ExtResource("36_p441p")]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 6.9, 2.825, 0.6)
 
 [node name="Island" type="Node3D" parent="Level"]
 
@@ -874,11 +1098,6 @@ transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0.438057, 0, -1.2754
 collision_layer = 4
 collision_mask = 2
 
-[node name="stoolBar5" parent="Level/Island" instance=ExtResource("7_vfvks")]
-transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 1.74371, 0, -0.875574)
-collision_layer = 4
-collision_mask = 2
-
 [node name="KitchenU" type="Node3D" parent="Level"]
 
 [node name="kitchenStove" parent="Level/KitchenU" instance=ExtResource("22_dn47r")]
@@ -893,8 +1112,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9, 0, -3.295)
 [node name="drawer" parent="Level/KitchenU/kitchenCabinetDrawer3/kitchenCabinetDrawer(Clone)" index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.134221, 1.38772, 1.11513)
 
+[node name="CollisionShape3D" parent="Level/KitchenU/kitchenCabinetDrawer3" index="1"]
+visible = false
+
 [node name="kitchenCabinetDrawer2" parent="Level/KitchenU" instance=ExtResource("16_can20")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.25, 0, 3.2)
+
+[node name="drawer" parent="Level/KitchenU/kitchenCabinetDrawer2/kitchenCabinetDrawer(Clone)" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.134221, 1.38772, 0.6)
 
 [node name="kitchenCabinetCornerInner" parent="Level/KitchenU" instance=ExtResource("15_o41rl")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -5.2, 0, 3.195)
@@ -904,6 +1129,9 @@ transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, -5.2, 0,
 
 [node name="kitchenSink" parent="Level/KitchenU" instance=ExtResource("21_4fj31")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -3.052, 0, 3.245)
+
+[node name="door" parent="Level/KitchenU/kitchenSink/kitchenSink(Clone)" index="0"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0.134221, 0.42543, -0.15)
 
 [node name="kitchenCabinet" parent="Level/KitchenU" instance=ExtResource("14_34dld")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.2, 0, -3.295)
@@ -917,9 +1145,6 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.905
 [node name="kitchenCabinet5" parent="Level/KitchenU" instance=ExtResource("14_34dld")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.245, 0, 3.245)
 
-[node name="hoodModern" parent="Level" instance=ExtResource("9_vfvks")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -6, 4, 1)
-
 [node name="kitchenMicrowave" parent="Level" instance=ExtResource("21_10lnh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.9, 3.9, -4.5)
 
@@ -931,14 +1156,23 @@ transform = Transform3D(0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, 
 [node name="kitchenCabinetUpper" parent="Level/Cabinets" instance=ExtResource("17_yw8fj")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -6.44166, 3.85, -1.15505)
 
+[node name="kitchenCabinetUpper3" parent="Level/Cabinets" instance=ExtResource("17_yw8fj")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -6.44166, 3.85, 3.14495)
+
 [node name="kitchenCabinetUpper2" parent="Level/Cabinets" instance=ExtResource("17_yw8fj")]
 transform = Transform3D(1, 0, 1.06581e-14, 0, 1, 0, -1.06581e-14, 0, 1, -5.377, 3.85, -4.45)
+
+[node name="door" parent="Level/Cabinets/kitchenCabinetUpper2/kitchenCabinetUpper(Clone)" index="0"]
+transform = Transform3D(0.258819, 0, -0.965926, 0, 1, 0, 0.965926, 0, 0.258819, 0.134221, 0.134221, -0.0500002)
 
 [node name="kitchenCabinetUpperCorner" parent="Level/Cabinets" instance=ExtResource("18_ku2vh")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2.3, 3.85, -4.45)
 
 [node name="kitchenCabinetUpperDouble" parent="Level/Cabinets" instance=ExtResource("19_10lnh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9, 3.85, -4.45)
+
+[node name="doorRight" parent="Level/Cabinets/kitchenCabinetUpperDouble/kitchenCabinetUpperDouble(Clone)" index="1"]
+transform = Transform3D(-0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, 2.01578, 0.134221, -0.0500002)
 
 [node name="kitchenCabinetUpperLow" parent="Level/Cabinets" instance=ExtResource("20_o5gya")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -3.165, 3.85, 4.571)
@@ -955,31 +1189,52 @@ transform = Transform3D(-9.17939e-08, 0, -2.328, 0, 2, 0, 2.1, 0, -1.0176e-07, -
 [node name="floorHalf2" parent="Level/Cabinets" instance=ExtResource("26_o5gya")]
 transform = Transform3D(-9.17939e-08, 0, -2.328, 0, 2, 0, 2.1, 0, -1.0176e-07, -3.227, 4.85, -5.5)
 
+[node name="hoodModern" parent="Level/Cabinets" instance=ExtResource("9_vfvks")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -6, 4, 1)
+
 [node name="doorway" parent="Level" instance=ExtResource("27_34dld")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8, 0, -5.25)
 
-[node name="Ceiling" type="MeshInstance3D" parent="Level"]
-transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 6.25, 0)
-material_override = ExtResource("1_r6nt2")
-mesh = SubResource("BoxMesh_o8ny7")
+[node name="CabinetBridge" type="Node3D" parent="Level"]
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Level/Ceiling"]
+[node name="lowpoly-jello" parent="Level/CabinetBridge" instance=ExtResource("32_10lnh")]
+transform = Transform3D(0.7, 0, 0, 0, 0.405, 0, 0, 0, 0.7, 1, 2.1, -3.8)
+BOUNCE_POWER = 0.67
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/Ceiling/StaticBody3D"]
-shape = SubResource("ConvexPolygonShape3D_ku2vh")
+[node name="floorHalf" parent="Level/CabinetBridge" instance=ExtResource("26_o5gya")]
+transform = Transform3D(0.866025, -1.49012e-08, -0.5, 7.45058e-08, 1, -1.49012e-07, 0.5, 0, 0.866025, 0.1, 4, -4.1)
 
-[node name="Floor" type="MeshInstance3D" parent="Level"]
-transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, -0.5, 0)
-material_override = ExtResource("1_r6nt2")
-mesh = SubResource("BoxMesh_o8ny7")
+[node name="floorHalf2" parent="Level/CabinetBridge" instance=ExtResource("26_o5gya")]
+transform = Transform3D(0.906308, -8.54696e-09, 0.422618, 7.45058e-08, 1, -1.49012e-07, -0.422618, 1.22063e-08, 0.906308, -3.7, 4, -3.8)
 
-[node name="StaticBody3D2" type="StaticBody3D" parent="Level/Floor"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/Floor/StaticBody3D2"]
-shape = SubResource("ConvexPolygonShape3D_10lnh")
+[node name="floorHalf3" parent="Level/CabinetBridge" instance=ExtResource("26_o5gya")]
+transform = Transform3D(3.72529e-08, -7.45058e-09, -3.9, 7.45058e-08, 1, -5.81145e-07, 1, -1.29048e-08, -7.55489e-07, -3.5, 4.05, -4.2)
 
 [node name="drawerPanel" parent="Level" instance=ExtResource("26_o5gya")]
 transform = Transform3D(1.05, 0, 0, 0, 0.845138, -0.62309, 0, 0.62309, 0.845138, 0.446, 1.46394, -2.45065)
+
+[node name="ChoppingBoard" parent="Level" instance=ExtResource("32_dn47r")]
+transform = Transform3D(-3.71757e-08, -0.375, -0.649519, 1.63918e-08, 0.649519, -0.375, 0.75, -3.27835e-08, -2.39992e-08, -3.4, 2.09192, 4.3)
+
+[node name="Boxes" type="Node3D" parent="Level"]
+
+[node name="Bread" parent="Level/Boxes" instance=ExtResource("36_p441p")]
+transform = Transform3D(1, 0, 2.98023e-08, 0, 1, 0, -2.98023e-08, 0, 1, -4.8, 2.1, -3.9)
+
+[node name="Box" parent="Level/Boxes" instance=ExtResource("33_ods8k")]
+transform = Transform3D(0.819152, 0, -0.573576, 0, 1, 0, 0.573576, 0, 0.819152, -4.9, 2.1, 3.1)
+
+[node name="Box2" parent="Level/Boxes" instance=ExtResource("33_ods8k")]
+transform = Transform3D(0.5675, 0, 0.982939, 0, 1.135, 0, -0.982939, 0, 0.5675, -6.7, 2.1, 3.4)
+
+[node name="Box3" parent="Level/Boxes" instance=ExtResource("33_ods8k")]
+transform = Transform3D(0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, -1.5, 2.1, -5.4)
+
+[node name="Box4" parent="Level/Boxes" instance=ExtResource("33_ods8k")]
+transform = Transform3D(0.724444, 0, -0.194114, 0, 0.75, 0, 0.194114, 0, 0.724444, -1.9, 2.1, -4.8)
+
+[node name="Box5" parent="Level/Boxes" instance=ExtResource("33_ods8k")]
+transform = Transform3D(0.724444, 0, 0.194114, 0, 0.75, 0, -0.194114, 0, 0.724444, -1.5, 2.1, -4.1)
 
 [node name="Room" type="Node3D" parent="."]
 
@@ -1023,6 +1278,28 @@ mesh = SubResource("BoxMesh_4fj31")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Room/WallFront/StaticBody3D"]
 shape = SubResource("ConvexPolygonShape3D_vph0g")
 
+[node name="Ceiling" type="MeshInstance3D" parent="Room"]
+transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 6.25, 0)
+material_override = SubResource("StandardMaterial3D_4fj31")
+mesh = SubResource("BoxMesh_o8ny7")
+skeleton = NodePath("../../Level")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Room/Ceiling"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Room/Ceiling/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_ku2vh")
+
+[node name="Floor" type="MeshInstance3D" parent="Room"]
+transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, -0.5, 0)
+material_override = SubResource("StandardMaterial3D_dn47r")
+mesh = SubResource("BoxMesh_o8ny7")
+skeleton = NodePath("../../Level")
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="Room/Floor"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Room/Floor/StaticBody3D2"]
+shape = SubResource("ConvexPolygonShape3D_10lnh")
+
 [node name="LevelComponentsTEMP" type="Node3D" parent="."]
 
 [node name="kitchenBar" parent="LevelComponentsTEMP" instance=ExtResource("6_o8ny7")]
@@ -1040,6 +1317,11 @@ generate_probes_subdiv = 3
 light_data = ExtResource("4_o8ny7")
 
 [editable path="Level/carton-lowpoly"]
-[editable path="Level/kitchenFridgeLarge"]
+[editable path="Level/fridge-noshelf"]
+[editable path="Level/Jump Pads/lowpoly-jello2"]
 [editable path="Level/KitchenU/kitchenCabinetDrawer3"]
+[editable path="Level/KitchenU/kitchenCabinetDrawer2"]
+[editable path="Level/KitchenU/kitchenSink"]
 [editable path="Level/kitchenMicrowave"]
+[editable path="Level/Cabinets/kitchenCabinetUpper2"]
+[editable path="Level/Cabinets/kitchenCabinetUpperDouble"]

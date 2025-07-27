@@ -12,6 +12,12 @@ func _ready() -> void:
 	camera = player.camera;
 	SignalBus.egg_shattered.connect(on_egg_shattered);
 	SignalBus.game_started.connect(on_game_started);
+	if !Globals.has_played_cutscene:
+		intro_cutscene.play("open_fridge");
+		intro_cutscene.advance(0.0);
+		intro_cutscene.pause();
+	if Globals.is_game_started:
+		on_game_started();
 
 func on_egg_shattered() -> void:
 	Globals.is_game_started = false;
@@ -28,6 +34,8 @@ func _input(event: InputEvent) -> void:
 func on_game_started() -> void:
 	if !Globals.has_played_cutscene:
 		Globals.is_cutscene_playing = true;
+		intro_cutscene.play("open_fridge");
+		await intro_cutscene.animation_finished;
 		intro_cutscene.play("pan_to_stove");
 		await intro_cutscene.animation_finished;
 		Globals.has_played_cutscene = true;

@@ -1,0 +1,33 @@
+[gd_scene load_steps=7 format=3 uid="uid://co0q6wwynnrxj"]
+
+[ext_resource type="Shader" uid="uid://f01hgcgbbgbi" path="res://resources/shaders/toon/outline.gdshader" id="1_eyn5l"]
+[ext_resource type="ArrayMesh" uid="uid://dt2q3ipv6aqhd" path="res://assets/models/interactables/oven mitt.obj" id="1_mjunk"]
+[ext_resource type="Shader" uid="uid://kkf2lq3t4dyd" path="res://resources/shaders/toon/cel-shader-base.gdshader" id="2_5ehwv"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ev8v4"]
+render_priority = 0
+shader = ExtResource("1_eyn5l")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0kpul"]
+render_priority = 0
+next_pass = SubResource("ShaderMaterial_ev8v4")
+shader = ExtResource("2_5ehwv")
+shader_parameter/color = Color(0.757813, 0.526917, 0.656796, 1)
+shader_parameter/specular = Color(0.3, 0.3, 0.3, 0)
+shader_parameter/fresnel = Color(0.2, 0.2, 0.2, 0)
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/uv_offset = Vector2(0, 0)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_720h6"]
+points = PackedVector3Array(0.477312, 0.179848, -0.298337, 0.462042, 0.031999, -0.27362, 0.47269, 0.125662, -0.462821, 0.372072, 0.193262, -0.487539, 0.385113, 0.218492, -0.383875, 0.325518, 0.225594, 0.551049, 0.333029, 0.00964086, 0.533822, 0.398567, 0.0104738, -0.375935, 0.19403, 0.0293248, -0.742654, 0.102243, 0.168756, -0.91343, 0.0609726, 0.212793, -0.792389, -0.272908, 0.21847, -0.618018, 0.2197, 0.220421, -0.27347, -0.250456, 0.223621, 0.347017, -0.335557, 0.223775, 0.5506, -0.345379, 0.00267039, 0.55045, 0.239262, 0.001684, 0.311064, 0.221516, 0.00755849, -0.28111, -0.241047, 0.00758041, -0.665206, 0.0283687, 0.0422136, -0.938298, -0.0606935, 0.0837296, -0.979344, -0.214221, 0.191027, -0.866542, -0.354789, 0.169326, -0.633148, -0.365932, 0.181798, -0.25789, -0.357678, 0.0353966, -0.505965, -0.26713, 0.0403723, -0.827144)
+
+[node name="OvenMitt" type="StaticBody3D"]
+collision_layer = 4
+collision_mask = 2
+
+[node name="OvenMitt" type="MeshInstance3D" parent="."]
+material_override = SubResource("ShaderMaterial_0kpul")
+mesh = ExtResource("1_mjunk")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("ConvexPolygonShape3D_720h6")

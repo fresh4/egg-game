@@ -1,0 +1,34 @@
+[gd_scene load_steps=7 format=3 uid="uid://cof32rfvq23y3"]
+
+[ext_resource type="Shader" uid="uid://f01hgcgbbgbi" path="res://resources/shaders/toon/outline.gdshader" id="1_2370b"]
+[ext_resource type="ArrayMesh" uid="uid://n74ja0ubod7b" path="res://assets/models/interactables/folded-towel.obj" id="1_a7867"]
+[ext_resource type="Shader" uid="uid://kkf2lq3t4dyd" path="res://resources/shaders/toon/cel-shader-base.gdshader" id="2_5tp25"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ev8v4"]
+render_priority = 0
+shader = ExtResource("1_2370b")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8kfp3"]
+render_priority = 0
+next_pass = SubResource("ShaderMaterial_ev8v4")
+shader = ExtResource("2_5tp25")
+shader_parameter/color = Color(0.38562, 0.528528, 0.632813, 1)
+shader_parameter/specular = Color(0.3, 0.3, 0.3, 0)
+shader_parameter/fresnel = Color(0.2, 0.2, 0.2, 0)
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/uv_offset = Vector2(0, 0)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3t8vj"]
+size = Vector3(0.993408, 0.242645, 1.48267)
+
+[node name="Towel" type="StaticBody3D"]
+collision_layer = 4
+collision_mask = 2
+
+[node name="Folded-towel" type="MeshInstance3D" parent="."]
+material_override = SubResource("ShaderMaterial_8kfp3")
+mesh = ExtResource("1_a7867")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0577393, 0.125443, 0.00695801)
+shape = SubResource("BoxShape3D_3t8vj")

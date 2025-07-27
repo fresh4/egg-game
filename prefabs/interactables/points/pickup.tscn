@@ -1,0 +1,112 @@
+[gd_scene load_steps=11 format=3 uid="uid://d6ej6gmo4itm"]
+
+[ext_resource type="Script" uid="uid://c8mxurnh3knf2" path="res://prefabs/interactables/points/pickup.gd" id="1_4mxr7"]
+[ext_resource type="Shader" uid="uid://f01hgcgbbgbi" path="res://resources/shaders/toon/outline.gdshader" id="2_44xxk"]
+[ext_resource type="Shader" uid="uid://kkf2lq3t4dyd" path="res://resources/shaders/toon/cel-shader-base.gdshader" id="3_twisw"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ev8v4"]
+render_priority = 0
+shader = ExtResource("2_44xxk")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_liiqw"]
+render_priority = 0
+next_pass = SubResource("ShaderMaterial_ev8v4")
+shader = ExtResource("3_twisw")
+shader_parameter/color = Color(0.964844, 0.666775, 0.24498, 1)
+shader_parameter/specular = Color(0.3, 0.3, 0.3, 0.5)
+shader_parameter/fresnel = Color(0.2, 0.2, 0.2, 0.3)
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/uv_offset = Vector2(0, 0)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_31k0l"]
+top_radius = 0.1
+bottom_radius = 0.1
+height = 0.05
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_4mxr7"]
+points = PackedVector3Array(0, -0.025, -0.1, -0.00980815, -0.025, -0.0995302, 0, 0.025, -0.1, 0.00978857, -0.025, -0.0995302, -0.00980815, 0.025, -0.0995302, -0.0195184, -0.025, -0.0980814, 0.00978857, 0.025, -0.0995302, 0.0194988, -0.025, -0.0980814, -0.0195184, 0.025, -0.0980814, -0.0290329, -0.025, -0.0957126, 0.0194988, 0.025, -0.0980814, 0.0290133, -0.025, -0.0957126, -0.0290329, 0.025, -0.0957126, -0.0382733, -0.025, -0.0924041, 0.0290133, 0.025, -0.0957126, 0.0382537, -0.025, -0.0924041, -0.0382733, 0.025, -0.0924041, -0.0471417, -0.025, -0.088195, 0.0382537, 0.025, -0.0924041, 0.0471222, -0.025, -0.088195, -0.0471417, 0.025, -0.088195, -0.0555599, -0.025, -0.0831637, 0.0471222, 0.025, -0.088195, 0.0555403, -0.025, -0.0831637, -0.0555599, 0.025, -0.0831637, -0.0634495, -0.025, -0.0773101, 0.0555403, 0.025, -0.0831637, 0.0634299, -0.025, -0.0773101, -0.0634495, 0.025, -0.0773101, -0.0707126, -0.025, -0.0707126, 0.0634299, 0.025, -0.0773101, 0.070693, -0.025, -0.0707126, -0.0707126, 0.025, -0.0707126, -0.0773101, -0.025, -0.0634495, 0.070693, 0.025, -0.0707126, 0.0772905, -0.025, -0.0634495, -0.0773101, 0.025, -0.0634495, -0.0831637, -0.025, -0.0555599, 0.0772905, 0.025, -0.0634495, 0.0831441, -0.025, -0.0555599, -0.0831637, 0.025, -0.0555599, -0.088195, -0.025, -0.0471417, 0.0831441, 0.025, -0.0555599, 0.0881754, -0.025, -0.0471417, -0.088195, 0.025, -0.0471417, -0.0924041, -0.025, -0.0382733, 0.0881754, 0.025, -0.0471417, 0.0923845, -0.025, -0.0382733, -0.0924041, 0.025, -0.0382733, -0.0957126, -0.025, -0.0290329, 0.0923845, 0.025, -0.0382733, 0.095693, -0.025, -0.0290329, -0.0957126, 0.025, -0.0290329, -0.0980814, -0.025, -0.0195184, 0.095693, 0.025, -0.0290329, 0.0980619, -0.025, -0.0195184, -0.0980814, 0.025, -0.0195184, -0.0995302, -0.025, -0.00980815, 0.0980619, 0.025, -0.0195184, 0.0995106, -0.025, -0.00980815, -0.0995302, 0.025, -0.00980815, -0.1, -0.025, 0, 0.0995106, 0.025, -0.00980815, 0.1, -0.025, 0, -0.1, 0.025, 0, -0.0995302, -0.025, 0.00978857, 0.1, 0.025, 0, 0.0995106, -0.025, 0.00978857, -0.0995302, 0.025, 0.00978857, -0.0980814, -0.025, 0.0194988, 0.0995106, 0.025, 0.00978857, 0.0980619, -0.025, 0.0194988, -0.0980814, 0.025, 0.0194988, -0.0957126, -0.025, 0.0290133, 0.0980619, 0.025, 0.0194988, 0.095693, -0.025, 0.0290133, -0.0957126, 0.025, 0.0290133, -0.0924041, -0.025, 0.0382537, 0.095693, 0.025, 0.0290133, 0.0923845, -0.025, 0.0382537, -0.0924041, 0.025, 0.0382537, -0.088195, -0.025, 0.0471222, 0.0923845, 0.025, 0.0382537, 0.0881754, -0.025, 0.0471222, -0.088195, 0.025, 0.0471222, -0.0831637, -0.025, 0.0555403, 0.0881754, 0.025, 0.0471222, 0.0831441, -0.025, 0.0555403, -0.0831637, 0.025, 0.0555403, -0.0773101, -0.025, 0.0634299, 0.0831441, 0.025, 0.0555403, 0.0772905, -0.025, 0.0634299, -0.0773101, 0.025, 0.0634299, -0.0707126, -0.025, 0.070693, 0.0772905, 0.025, 0.0634299, 0.070693, -0.025, 0.070693, -0.0707126, 0.025, 0.070693, -0.0634495, -0.025, 0.0772905, 0.070693, 0.025, 0.070693, 0.0634299, -0.025, 0.0772905, -0.0634495, 0.025, 0.0772905, -0.0555599, -0.025, 0.0831441, 0.0634299, 0.025, 0.0772905, 0.0555403, -0.025, 0.0831441, -0.0555599, 0.025, 0.0831441, -0.0471417, -0.025, 0.0881754, 0.0555403, 0.025, 0.0831441, 0.0471222, -0.025, 0.0881754, -0.0471417, 0.025, 0.0881754, -0.0382733, -0.025, 0.0923845, 0.0471222, 0.025, 0.0881754, 0.0382537, -0.025, 0.0923845, -0.0382733, 0.025, 0.0923845, -0.0290329, -0.025, 0.095693, 0.0382537, 0.025, 0.0923845, 0.0290133, -0.025, 0.095693, -0.0290329, 0.025, 0.095693, -0.0195184, -0.025, 0.0980619, 0.0290133, 0.025, 0.095693, 0.0194988, -0.025, 0.0980619, -0.0195184, 0.025, 0.0980619, -0.00980815, -0.025, 0.0995106, 0.0194988, 0.025, 0.0980619, 0.00978857, -0.025, 0.0995106, -0.00980815, 0.025, 0.0995106, 0, -0.025, 0.1, 0.00978857, 0.025, 0.0995106, 0, 0.025, 0.1)
+
+[sub_resource type="Animation" id="Animation_twisw"]
+resource_name = "spin"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(1.5708, 0, 0), Vector3(1.5708, 6.28319, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance3D:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.1, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_liiqw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1.5708, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance3D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gq4kc"]
+_data = {
+&"RESET": SubResource("Animation_liiqw"),
+&"spin": SubResource("Animation_twisw")
+}
+
+[node name="Pickup" type="Node3D"]
+script = ExtResource("1_4mxr7")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+material_override = SubResource("ShaderMaterial_liiqw")
+mesh = SubResource("CylinderMesh_31k0l")
+
+[node name="PickupDetectionArea" type="Area3D" parent="MeshInstance3D"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/PickupDetectionArea"]
+transform = Transform3D(1, 0, -4.44089e-16, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_4mxr7")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_gq4kc")
+}
+autoplay = "spin"

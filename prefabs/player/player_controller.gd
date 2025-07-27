@@ -14,16 +14,16 @@ const SPLAT = preload("res://prefabs/splat.tscn");
 @export_range(0, 1) var JUMP_POWER: float = 0.2; ## How high the player can jump.
 
 @onready var camera_pivot: Node3D = %CameraPivot;
-@onready var camera: Camera3D = %Camera;
+@onready var camera: CustomCamera = %Camera;
 @onready var ball: RigidBody3D = %Ball;
 @onready var animation_player: AnimationPlayer = %AnimationPlayer;
 @onready var egg_mesh: MeshInstance3D = %Egg;
 
 var health: int; ## The current health of the egg.
 var forward: Vector3 = Vector3.ZERO; ## The calculated forward direction, based on direction of camera.
-var is_jumping: bool = false;
-var default_camera_orientation: Vector3;
-var last_frames_velocity: Vector3 = Vector3.ZERO;
+var is_jumping: bool = false; ##...
+var default_camera_orientation: Vector3; ## The default camera rotation, used for resetting to this if needed.
+var last_frames_velocity: Vector3 = Vector3.ZERO; ## Velocity of the last frame, used for calculating velocity deltas.
 var splat_scene: DecalCompatibility; # WARNING: Compatibility mode limitation; replace with Decal if changing renderers.
 var shattered_egg_scene: Node3D; ## Scene object containing the pre-fragmented version of the egg.
 
@@ -48,7 +48,10 @@ func _physics_process(_delta: float) -> void:
 	last_frames_velocity = ball.linear_velocity;
 	
 	# Set "forward" to be direction camera is facing.
-	forward = camera.global_transform.basis.z.normalized().cross(Vector3.UP);
+	#forward = camera.global_transform.basis.z.normalized().cross(Vector3.UP);
+	forward = camera.global_transform.basis.z;
+	forward.y = 0;
+	forward = forward.normalized().cross(Vector3.UP);
 	
 	handle_input();
 	
@@ -69,7 +72,7 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		var invert = 1 if Globals.is_look_inverted else -1;
 		camera_pivot.rotation.x += invert * event.relative.y * 0.01 * Globals.camera_sensitivity_setting; 
-		camera_pivot.rotation.x = clampf(camera_pivot.rotation.x, -deg_to_rad(75), deg_to_rad(25));
+		camera_pivot.rotation.x = clampf(camera_pivot.rotation.x, -deg_to_rad(70), deg_to_rad(25));
 		camera_pivot.rotation.y += invert * event.relative.x * 0.01 * Globals.camera_sensitivity_setting;
 		camera_pivot.rotation.z = 0;
 
@@ -79,8 +82,14 @@ func midair_move(dir: Vector3) -> void:
 func move(dir: Vector3) -> void:
 	if abs(ball.linear_velocity.y) > 1:
 		midair_move(dir);
+	
+	var horizontal_dir = dir;
+	horizontal_dir.y = 0;
+	horizontal_dir = horizontal_dir.normalized(); # Important to re-normalize after setting y to 0
+
 	# Push the ball by applying torque along a direction at a passed in rate.
-	ball.apply_torque_impulse(dir * ACC_RATE / 1000);
+	ball.apply_torque(horizontal_dir * ACC_RATE / 20);
+	# ball.apply_torque_impulse(dir * ACC_RATE / 1000);
 	
 	# Change the FOV of the camera based on the speed of the ball.
 	var new_fov = clampf(calculate_fov(), BASE_FOV, MAX_FOV);
@@ -103,8 +112,6 @@ func handle_input() -> void:
 	if Input.is_action_pressed("jump") and !is_jumping:
 		is_jumping = true;
 		ball.apply_central_impulse(Vector3(0,1,0) * JUMP_POWER);
-		await get_tree().create_timer(.75).timeout;
-		is_jumping = false;
 
 ## Helper function to reset camera orientation.
 func reset_camera() -> void:
@@ -112,15 +119,18 @@ func reset_camera() -> void:
 	tween.tween_property(camera_pivot, "rotation", default_camera_orientation, 0.15);
 
 func _on_hit_ground(body: Node3D) -> void:
+	print("hit ground")
 	is_jumping = false;
 	# Magic number '1' is for environment objects (floors, walls, tables, etc)
 	# Check to see if we did indeed hit the ground, not some other object.
 	if body is StaticBody3D and !(body as StaticBody3D).collision_layer == 1: return;
 	var delta_v = abs(last_frames_velocity.length()) - abs(ball.linear_velocity.length());
-	
-	if delta_v >= 2:
+	if delta_v >= 4:
+		camera._camera_shake(0.2, 0.05);
 		shatter_egg();
-	elif delta_v > 1:
+	elif delta_v > 2:
+		Globals.freeze_frame(0.05, 0.25);
+		camera._camera_shake(0.1, 0.025)
 		animation_player.play("impact");
 		health = clamp(health - 1, 0, MAX_HEALTH);
 		if len(CRACK_TEXTURES):

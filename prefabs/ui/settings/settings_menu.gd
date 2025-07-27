@@ -1,6 +1,6 @@
 extends Control
 
-@onready var invert_camera_checkbox: CheckBox = %InvertCameraCheckbox
+@onready var invert_camera_checkbox: CheckButton = %InvertCameraCheckbox
 @onready var sensitivity_slider: HSlider = %SensitivitySlider
 @onready var music_slider: HSlider = %MusicSlider
 @onready var sfx_slider: HSlider = %SFXSlider

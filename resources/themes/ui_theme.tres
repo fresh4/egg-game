@@ -1,6 +1,10 @@
-[gd_resource type="Theme" load_steps=6 format=3 uid="uid://cshd85xo1vlb2"]
+[gd_resource type="Theme" load_steps=13 format=3 uid="uid://cshd85xo1vlb2"]
 
-[ext_resource type="FontFile" uid="uid://cqqew4olthptn" path="res://assets/fonts/SuperShape-PV9qE.ttf" id="1_ndjfm"]
+[ext_resource type="FontFile" uid="uid://dyecrjuyrmj86" path="res://assets/fonts/The Fruit Star.ttf" id="1_uc1im"]
+[ext_resource type="Texture2D" uid="uid://dyk2yv5po0stl" path="res://assets/images/checked.png" id="2_3jxlk"]
+[ext_resource type="Texture2D" uid="uid://k5vrnjr86l0r" path="res://assets/images/unchecked.png" id="3_nlrje"]
+[ext_resource type="Texture2D" uid="uid://jvtv4263kgiw" path="res://assets/images/yolk-faded.png" id="4_301rc"]
+[ext_resource type="Texture2D" uid="uid://bm15qslng2x2q" path="res://assets/images/yolk.png" id="5_be67o"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ndjfm"]
 content_margin_left = 4.0
@@ -50,16 +54,59 @@ corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 corner_detail = 5
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_555wp"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(1, 0.257813, 0, 0.4)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+corner_detail = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3jxlk"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.753906, 0.435352, 0.212036, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+corner_detail = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uc1im"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.800781, 0.590371, 0.14389, 0.6)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+corner_detail = 6
+
 [resource]
 default_font_size = 25
 Button/colors/font_outline_color = Color(0.780392, 0.568627, 0.117647, 1)
 Button/constants/outline_size = 12
-Button/fonts/font = ExtResource("1_ndjfm")
+Button/fonts/font = ExtResource("1_uc1im")
 Button/styles/focus = SubResource("StyleBoxFlat_ndjfm")
 Button/styles/hover = SubResource("StyleBoxFlat_ftahe")
 Button/styles/normal = SubResource("StyleBoxFlat_yvafq")
 Button/styles/pressed = SubResource("StyleBoxFlat_6ffjg")
 CheckBox/constants/h_separation = 16
+CheckButton/icons/checked = ExtResource("2_3jxlk")
+CheckButton/icons/unchecked = ExtResource("3_nlrje")
+HSlider/icons/grabber = ExtResource("4_301rc")
+HSlider/icons/grabber_highlight = ExtResource("5_be67o")
+HSlider/styles/grabber_area = SubResource("StyleBoxFlat_555wp")
+HSlider/styles/grabber_area_highlight = SubResource("StyleBoxFlat_3jxlk")
+HSlider/styles/slider = SubResource("StyleBoxFlat_uc1im")
 Label/colors/font_outline_color = Color(0.780392, 0.568627, 0.117647, 1)
 Label/constants/outline_size = 16
-Label/fonts/font = ExtResource("1_ndjfm")
+Label/fonts/font = ExtResource("1_uc1im")
