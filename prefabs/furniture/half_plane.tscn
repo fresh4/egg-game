@@ -1,4 +1,7 @@
-[gd_scene load_steps=5 format=4 uid="uid://c8ciu48o7fru2"]
+[gd_scene load_steps=6 format=4 uid="uid://c8ciu48o7fru2"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_dmw0v"]
+rough = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tpwfe"]
 resource_name = "wood"
@@ -41,6 +44,7 @@ shadow_mesh = SubResource("ArrayMesh_3lrcc")
 points = PackedVector3Array(0.5, 0.05, 0, 0.5, 0, 0, 0.5, 0.05, -1, 0, 0.05, 0, 0, 0, 0, 0.5, 0, -1, 0, 0.05, -1, 0, 0, -1)
 
 [node name="floorHalf" type="StaticBody3D"]
+physics_material_override = SubResource("PhysicsMaterial_dmw0v")
 
 [node name="floorHalf(Clone)" type="MeshInstance3D" parent="."]
 mesh = SubResource("ArrayMesh_dmw0v")

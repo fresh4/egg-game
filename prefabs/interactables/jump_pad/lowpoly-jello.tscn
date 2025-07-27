@@ -97,6 +97,21 @@ shadow_mesh = SubResource("ArrayMesh_b3nn7")
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ipamv"]
 points = PackedVector3Array(-0.00527382, -2.81997e-15, -26.9396, -10.3107, -2.81997e-15, -24.8933, -0.00527382, 18.0218, -21.9187, 10.3054, -2.81997e-15, -24.8933, -8.39093, 18.0218, -20.2522, -19.0497, -2.81997e-15, -19.0497, -15.5003, 18.0218, -15.5003, 8.38566, 18.0218, -20.2522, 15.495, 18.0218, -15.5003, 19.0444, -2.81997e-15, -19.0497, -24.8933, -2.81997e-15, -10.3107, -20.2522, 18.0218, -8.39093, 20.2469, 18.0218, -8.39093, 24.888, -2.81997e-15, -10.3107, -26.9396, -2.81997e-15, -0.00527382, -21.9187, 18.0218, -0.00527382, 21.9135, 18.0218, -0.00527382, 26.9396, -2.81997e-15, -0.00527382, -24.8933, -2.81997e-15, 10.3054, -20.2522, 18.0218, 8.38566, 20.2469, 18.0218, 8.38566, 24.888, -2.81997e-15, 10.3054, -19.0497, -2.81997e-15, 19.0444, -15.5003, 18.0218, 15.495, 15.495, 18.0218, 15.495, 19.0444, -2.81997e-15, 19.0444, -10.3107, -2.81997e-15, 24.888, -8.39093, 18.0218, 20.2469, 8.38566, 18.0218, 20.2469, 10.3054, -2.81997e-15, 24.888, -0.00527382, -2.81997e-15, 26.9396, -0.00527382, 18.0218, 21.9135)
 
+[sub_resource type="Animation" id="Animation_b8eo8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("lowpoly-jello:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.0191704, 0.0191704, 0.0191704)]
+}
+
 [sub_resource type="Animation" id="Animation_8766q"]
 resource_name = "wobble"
 length = 0.6
@@ -111,21 +126,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 0,
 "values": [Vector3(0.0191704, 0.0191704, 0.0191704), Vector3(0.0210421, 0.0161613, 0.0195178), Vector3(0.0180056, 0.0219931, 0.0169521), Vector3(0.0203724, 0.0173823, 0.019707), Vector3(0.0175181, 0.0205737, 0.0152866), Vector3(0.019455, 0.0183853, 0.0196424), Vector3(0.019, 0.019, 0.019)]
-}
-
-[sub_resource type="Animation" id="Animation_b8eo8"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("lowpoly-jello:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0.0191704, 0.0191704, 0.0191704)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_avipr"]

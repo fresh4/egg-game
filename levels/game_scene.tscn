@@ -51,7 +51,7 @@ tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(7.2, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(7.4, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
 }
 tracks/1/type = "bezier"
@@ -73,7 +73,7 @@ tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(-0.085, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
 }
 tracks/3/type = "bezier"
@@ -251,7 +251,7 @@ tracks/17/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(6.26, 3.76, 0)]
+"values": [Vector3(6.46, 3.76, -0.1)]
 }
 
 [sub_resource type="Animation" id="Animation_1noci"]
@@ -265,7 +265,7 @@ tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "handle_modes": PackedInt32Array(0, 0, 0, 0),
-"points": PackedFloat32Array(7.20511, -0.25, 0, 0.733333, -0.0672722, -5.77459, -0.833333, -0.0323491, 0.366667, 0.258793, -5.77459, -0.833333, -0.0323491, 0.366667, 0.258793, 7.20511, -0.25, 0, 0.733333, -0.0672722),
+"points": PackedFloat32Array(7.4, -0.25, 0, 0.733333, -0.0672722, -5.77459, -0.833333, -0.0323491, 0.366667, 0.258793, -5.77459, -0.833333, -0.0323491, 0.366667, 0.258793, 7.4, -0.25, 0, 0.733333, -0.0672722),
 "times": PackedFloat32Array(0, 1.96667, 5.00118, 6)
 }
 tracks/1/type = "bezier"
@@ -276,7 +276,7 @@ tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "handle_modes": PackedInt32Array(0, 0, 0, 0),
-"points": PackedFloat32Array(4.09202, -0.25, 0, 0.25, 0, 2.85, -0.25, 0, 0.25, 0, 2.85, -0.25, 0, 0.25, 0, 4.09202, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(4.1, -0.25, 0, 0.25, 0, 2.85, -0.25, 0, 0.25, 0, 2.85, -0.25, 0, 0.25, 0, 4.1, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0, 1.96667, 5.00118, 6)
 }
 tracks/2/type = "bezier"
@@ -287,7 +287,7 @@ tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "handle_modes": PackedInt32Array(0, 0, 0, 0),
-"points": PackedFloat32Array(0.00499996, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 0.00499996, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(-0.085, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, -0.085, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0, 1.96667, 5.00118, 6)
 }
 tracks/3/type = "bezier"
@@ -742,7 +742,7 @@ libraries = {
 autoplay = "RESET"
 
 [node name="Camera3D" type="Camera3D" parent="IntroCutscene"]
-transform = Transform3D(-3.16935e-06, -0.34202, 0.939693, -1.23811e-06, 0.939693, 0.34202, -1, -7.946e-08, -3.40168e-06, 7.2, 4.1, 0)
+transform = Transform3D(-3.16935e-06, -0.34202, 0.939693, -1.23811e-06, 0.939693, 0.34202, -1, -7.94599e-08, -3.40168e-06, 7.4, 4.1, -0.085)
 
 [node name="BurnerParticles" type="CPUParticles3D" parent="IntroCutscene"]
 transform = Transform3D(0.26, 0, 0, 0, -1.1365e-08, 0.26, 0, -0.26, -1.1365e-08, -6.18, 2.15, 0.385)
@@ -827,7 +827,7 @@ shadow_opacity = 0.97
 directional_shadow_mode = 0
 
 [node name="Player" parent="." instance=ExtResource("6_0pacg")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 6.26, 3.76, 0)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 6.46, 3.76, -0.1)
 
 [node name="Lights" type="Node3D" parent="."]
 
@@ -1000,7 +1000,7 @@ points_value = 500
 transform = Transform3D(0.422618, 0, -0.906308, 0, 1, 0, 0.906308, 0, 0.422618, -6.2, 2.20524, 0.35)
 
 [node name="carton-lowpoly" parent="Level" instance=ExtResource("5_o8ny7")]
-transform = Transform3D(-1.04, 0, 1.57036e-07, 0, 1.04, 0, -1.57036e-07, 0, -1.04, 6.63041, 3.7, 0.37)
+transform = Transform3D(-1.04, 0, 1.57036e-07, 0, 1.04, 0, -1.57036e-07, 0, -1.04, 6.83041, 3.7, 0.27)
 collision_layer = 4
 collision_mask = 2
 physics_material_override = SubResource("PhysicsMaterial_vfvks")
@@ -1030,7 +1030,7 @@ BOUNCE_POWER = 0.75
 transform = Transform3D(0.0188792, -0.0033289, 0, 0.0033289, 0.0188792, 0, 0, 0, 0.0191704, 0.6, 0, 0)
 
 [node name="lowpoly-jello" parent="Level/Jump Pads/lowpoly-jello2" index="1"]
-transform = Transform3D(0.0188791, -0.0033289, 0, 0.0033289, 0.0188791, 0, 0, 0, 0.0191704, 0, 0.0651228, 0)
+transform = Transform3D(0.0188792, -0.00332891, 0, 0.00332891, 0.0188792, 0, 0, 0, 0.0191704, 0, 0.0651228, 0)
 
 [node name="CollisionShape3D" parent="Level/Jump Pads/lowpoly-jello2" index="2"]
 transform = Transform3D(0.0188792, -0.0033289, 0, 0.0033289, 0.0188792, 0, 0, 0, 0.0191704, 0, 0.0651228, 0)
@@ -1111,6 +1111,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9, 0, -3.295)
 
 [node name="drawer" parent="Level/KitchenU/kitchenCabinetDrawer3/kitchenCabinetDrawer(Clone)" index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.134221, 1.38772, 1.11513)
+
+[node name="StaticBody3D" parent="Level/KitchenU/kitchenCabinetDrawer3/kitchenCabinetDrawer(Clone)/drawer" index="0"]
+collision_layer = 8
 
 [node name="CollisionShape3D" parent="Level/KitchenU/kitchenCabinetDrawer3" index="1"]
 visible = false
@@ -1200,6 +1203,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8, 0, -5.25)
 [node name="lowpoly-jello" parent="Level/CabinetBridge" instance=ExtResource("32_10lnh")]
 transform = Transform3D(0.7, 0, 0, 0, 0.405, 0, 0, 0, 0.7, 1, 2.1, -3.8)
 BOUNCE_POWER = 0.67
+predefined_vector = Vector2(0.13, -1.244)
 
 [node name="floorHalf" parent="Level/CabinetBridge" instance=ExtResource("26_o5gya")]
 transform = Transform3D(0.866025, -1.49012e-08, -0.5, 7.45058e-08, 1, -1.49012e-07, 0.5, 0, 0.866025, 0.1, 4, -4.1)

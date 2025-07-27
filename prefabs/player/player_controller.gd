@@ -18,6 +18,7 @@ const SPLAT = preload("res://prefabs/splat.tscn");
 @onready var ball: RigidBody3D = %Ball;
 @onready var animation_player: AnimationPlayer = %AnimationPlayer;
 @onready var egg_mesh: MeshInstance3D = %Egg;
+@onready var spring_arm: SpringArm3D = %SpringArm3D
 
 var health: int; ## The current health of the egg.
 var forward: Vector3 = Vector3.ZERO; ## The calculated forward direction, based on direction of camera.
@@ -36,11 +37,9 @@ func _ready() -> void:
 	default_camera_orientation = camera_pivot.rotation;
 	ball.body_entered.connect(_on_hit_ground);
 
-func _process(_delta: float) -> void:
-	# Reset camera's (parent) position to follow ball.
-	camera_pivot.global_position = ball.global_position;
-
 func _physics_process(_delta: float) -> void:
+	camera_pivot.global_position = ball.global_position;
+	
 	if not Globals.is_game_started: return;
 	if Globals.is_cutscene_playing: return;
 	
@@ -61,6 +60,11 @@ func _physics_process(_delta: float) -> void:
 func _input(event: InputEvent) -> void:
 	if not Globals.is_game_started: return;
 	if Globals.is_cutscene_playing: return;
+	
+	if event.is_action_pressed("zoom_in"):
+		spring_arm.spring_length = clamp(spring_arm.spring_length - 0.1, 0.7, 1.5);
+	if event.is_action_pressed("zoom_out"):
+		spring_arm.spring_length = clamp(spring_arm.spring_length + 0.1, 0.7, 1.5);
 	
 	# If key is tapped, not held, reset camera rotation.
 	if Input.is_action_just_pressed("rotate_camera"):
@@ -111,6 +115,7 @@ func handle_input() -> void:
 		move(forward.cross(Vector3.UP) * STRAFE_MULTIPLIER);
 	if Input.is_action_pressed("jump") and !is_jumping:
 		is_jumping = true;
+		ball.linear_velocity.y = 0;
 		ball.apply_central_impulse(Vector3(0,1,0) * JUMP_POWER);
 
 ## Helper function to reset camera orientation.
@@ -119,11 +124,12 @@ func reset_camera() -> void:
 	tween.tween_property(camera_pivot, "rotation", default_camera_orientation, 0.15);
 
 func _on_hit_ground(body: Node3D) -> void:
-	print("hit ground")
 	is_jumping = false;
-	# Magic number '1' is for environment objects (floors, walls, tables, etc)
+	# Magic number '1' and '3' is for environment objects (floors, walls, tables, etc)
 	# Check to see if we did indeed hit the ground, not some other object.
-	if body is StaticBody3D and !(body as StaticBody3D).collision_layer == 1: return;
+	if body is not StaticBody3D: return;
+	if body.collision_layer not in [1,3]: return;
+	
 	var delta_v = abs(last_frames_velocity.length()) - abs(ball.linear_velocity.length());
 	if delta_v >= 4:
 		camera._camera_shake(0.2, 0.05);
