@@ -16,8 +16,37 @@ const FLICK_A_WET = preload("res://assets/audio/sfx/impacts/flick_A_WET.ogg");
 const SCORING_NOTE_BLUE = preload("res://assets/audio/sfx/scoring/SCORING_NOTE_BLUE.ogg");
 const SCORING_NOTE_RED = preload("res://assets/audio/sfx/scoring/SCORING_NOTE_RED.ogg");
 const SCORING_NOTE_YELLOW = preload("res://assets/audio/sfx/scoring/SCORING_NOTE_YELLOW.ogg");
+const RETRO_8 = preload("res://assets/audio/sfx/scoring/Retro8.mp3");
 
+const FOOTSTEP_WOOD_000 = preload("res://assets/audio/sfx/impacts/footstep_wood_000.ogg");
+const FOOTSTEP_WOOD_001 = preload("res://assets/audio/sfx/impacts/footstep_wood_001.ogg");
+const FOOTSTEP_WOOD_002 = preload("res://assets/audio/sfx/impacts/footstep_wood_002.ogg");
+const FOOTSTEP_WOOD_003 = preload("res://assets/audio/sfx/impacts/footstep_wood_003.ogg");
+const FOOTSTEP_WOOD_004 = preload("res://assets/audio/sfx/impacts/footstep_wood_004.ogg");
+
+const FOOTSTEP_GRASS_001 = preload("res://assets/audio/sfx/impacts/footstep_grass_001.ogg");
+const FOOTSTEP_GRASS_002 = preload("res://assets/audio/sfx/impacts/footstep_grass_002.ogg");
+const FOOTSTEP_GRASS_003 = preload("res://assets/audio/sfx/impacts/footstep_grass_003.ogg");
+const FOOTSTEP_GRASS_004 = preload("res://assets/audio/sfx/impacts/footstep_grass_004.ogg");
 #endregion
+
+#region Bundled Audio
+const FOOTSTEPS_WOOD: Array[AudioStream] = [
+	FOOTSTEP_WOOD_000,
+	FOOTSTEP_WOOD_001,
+	FOOTSTEP_WOOD_002,
+	FOOTSTEP_WOOD_003,
+	FOOTSTEP_WOOD_004,
+]
+
+const FOOSTEPS_GRASS: Array[AudioStream] = [
+	FOOTSTEP_GRASS_001,
+	FOOTSTEP_GRASS_002,
+	FOOTSTEP_GRASS_003,
+	FOOTSTEP_GRASS_004,
+]
+#endregion
+
 
 var music_volume: float = 0.5;
 var sfx_volume: float = 0.5;

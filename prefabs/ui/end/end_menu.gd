@@ -1,15 +1,22 @@
 extends Control
 
+const FINISHED_BONUS: int = 1000;
+const PER_HP_BONUS: int = 250;
+
 @onready var message_label: Label = %MessageLabel;
+@onready var bonuses_label: Label = %BonusesLabel
 @onready var points_label: Label = %PointsLabel;
 @onready var restart_button: Button = %RestartButton;
 
 var victory_message: String = "Eggcelent!";
 var defeat_message: String = "Eggspired";
+var player: Player;
 
-func _ready() -> void:	
+func _ready() -> void:
+	player = get_tree().get_first_node_in_group("Player");
 	visible = false;
 	message_label.visible = false;
+	bonuses_label.visible = false;
 	points_label.visible = false;
 	restart_button.visible = false;
 	
@@ -29,12 +36,30 @@ func on_game_ended(is_won: bool, points: int) -> void:
 	message_label.visible = true;
 	AudioManager.play_audio(AudioManager.SCORING_NOTE_YELLOW);
 	
+	if is_won:
+		bonuses_label.visible = true;
+		await get_tree().create_timer(0.25).timeout;
+		
+		bonuses_label.text = "Lives x" + str(player.health) + ": " + str(player.health * PER_HP_BONUS);
+		AudioManager.play_audio(AudioManager.SLIME_IMPACT_SLAP);
+		await get_tree().create_timer(0.25).timeout;
+		
+		bonuses_label.text += "\nFinished: " + str(FINISHED_BONUS);
+		AudioManager.play_audio(AudioManager.SLIME_IMPACT_SLAP);
+		await get_tree().create_timer(0.25).timeout;
+		
+		bonuses_label.text += "\nCoins: " + str(points);
+		AudioManager.play_audio(AudioManager.SLIME_IMPACT_SLAP);
+		await get_tree().create_timer(0.25).timeout;
+		
+		points += (player.health * PER_HP_BONUS) + FINISHED_BONUS;
+	
 	await get_tree().create_timer(0.25).timeout;
 	points_label.visible = true;
 	AudioManager.play_audio(AudioManager.SCORING_NOTE_BLUE);
 	if points > 0:
 		var tween = get_tree().create_tween();
-		tween.tween_method(update_score, 0, points, 1.5).set_ease(Tween.EASE_IN_OUT);
+		tween.tween_method(update_score, 0, points, 1).set_ease(Tween.EASE_IN_OUT);
 		await tween.finished;
 	
 	await get_tree().create_timer(0.25).timeout;

@@ -7,11 +7,20 @@ const END = preload("res://prefabs/ui/end/end_menu.tscn");
 var settings_scene: Control;
 var start_menu: Control;
 
+@onready var points_label: Label = %PointsLabel;
+
 func _ready() -> void:
 	start_menu = instance_scene(START_MENU);
 	start_menu.visible = true;
 	settings_scene = instance_scene(SETTINGS);
 	instance_scene(END);
+	
+	points_label.text = "0";
+	if !Globals.is_game_started:
+		points_label.visible = false;
+	
+	SignalBus.points_updated.connect(on_points_updated);
+	SignalBus.game_started.connect(func(): points_label.visible = true)
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("pause") and Globals.is_game_started:
@@ -51,3 +60,6 @@ func instance_scene(scene) -> Node:
 	instance.visible = false;
 	
 	return instance;
+
+func on_points_updated(value: int) -> void:
+	points_label.text = str(value);

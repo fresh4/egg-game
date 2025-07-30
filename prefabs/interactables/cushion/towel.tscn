@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cof32rfvq23y3"]
+[gd_scene load_steps=10 format=3 uid="uid://cof32rfvq23y3"]
 
 [ext_resource type="Shader" uid="uid://f01hgcgbbgbi" path="res://resources/shaders/toon/outline.gdshader" id="1_2370b"]
 [ext_resource type="ArrayMesh" uid="uid://n74ja0ubod7b" path="res://assets/models/interactables/folded-towel.obj" id="1_a7867"]
@@ -21,6 +21,16 @@ shader_parameter/uv_offset = Vector2(0, 0)
 [sub_resource type="BoxShape3D" id="BoxShape3D_3t8vj"]
 size = Vector3(0.993408, 0.242645, 1.48267)
 
+[sub_resource type="PrismMesh" id="PrismMesh_2370b"]
+left_to_right = 0.7
+size = Vector3(0.355, 0.2, 0.895)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_5tp25"]
+points = PackedVector3Array(0.1775, -0.1, 0.4475, 0.0709931, 0.1, 0.4475, -0.1775, -0.1, 0.4475, 0.1775, -0.1, -0.4475, 0.0709931, 0.1, -0.4475, -0.1775, -0.1, -0.4475)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_8kfp3"]
+points = PackedVector3Array(0.1775, -0.1, 0.4475, 0.0709931, 0.1, 0.4475, -0.1775, -0.1, 0.4475, 0.1775, -0.1, -0.4475, 0.0709931, 0.1, -0.4475, -0.1775, -0.1, -0.4475)
+
 [node name="Towel" type="StaticBody3D"]
 collision_layer = 4
 collision_mask = 2
@@ -32,3 +42,27 @@ mesh = ExtResource("1_a7867")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0577393, 0.125443, 0.00695801)
 shape = SubResource("BoxShape3D_3t8vj")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.05, 0.15, 0.75)
+visible = false
+mesh = SubResource("PrismMesh_2370b")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_5tp25")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.05, 0.15, -0.7)
+visible = false
+mesh = SubResource("PrismMesh_2370b")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D2"]
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D2/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_8kfp3")

@@ -28,6 +28,10 @@ func add_points(value: int) -> void:
 	var game_manager: GameManager = get_tree().get_first_node_in_group("GameManager");
 	game_manager.points += value;
 
+func get_points() -> int:
+	var game_manager: GameManager = get_tree().get_first_node_in_group("GameManager");
+	return game_manager.points;
+
 #func end_game() -> void:
 	#is_game_started = false;
 	#Input.mouse_mode = Input.MOUSE_MODE_VISIBLE;

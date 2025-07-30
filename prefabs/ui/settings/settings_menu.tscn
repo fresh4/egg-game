@@ -55,7 +55,7 @@ theme_override_constants/separation = 17
 
 [node name="InvertCameraLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-text = "Invert Camera"
+text = "Invert  Camera"
 
 [node name="InvertCameraCheckbox" type="CheckButton" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
@@ -69,7 +69,7 @@ layout_mode = 2
 [node name="SensitivityLabel" type="Label" parent="MarginContainer/VBoxContainer/SensitivityContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Sensitivity"
+text = "Camera  Sensitivity"
 horizontal_alignment = 1
 
 [node name="SensitivitySlider" type="HSlider" parent="MarginContainer/VBoxContainer/SensitivityContainer"]

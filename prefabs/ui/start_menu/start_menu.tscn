@@ -14,17 +14,24 @@ grow_vertical = 2
 theme = ExtResource("1_r257w")
 script = ExtResource("2_iee88")
 
-[node name="Title" type="Label" parent="."]
+[node name="VBoxContainer2" type="VBoxContainer" parent="."]
 layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.133
+anchors_preset = 10
 anchor_right = 1.0
-anchor_bottom = 0.365
-offset_top = 0.239998
-offset_bottom = 0.199982
+offset_top = 24.0
+offset_bottom = 208.0
 grow_horizontal = 2
+
+[node name="The" type="Label" parent="VBoxContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 66
+text = "The"
+horizontal_alignment = 1
+
+[node name="Title" type="Label" parent="VBoxContainer2"]
+layout_mode = 2
 theme_override_font_sizes/font_size = 100
-text = "The Great Eggscape"
+text = "Great Eggscape"
 horizontal_alignment = 1
 vertical_alignment = 1
 

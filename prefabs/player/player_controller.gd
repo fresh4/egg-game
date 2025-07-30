@@ -5,13 +5,13 @@ const SPLAT = preload("res://prefabs/splat.tscn");
 @export var CRACK_TEXTURES: Array[CompressedTexture2D]; ## List of textures to use for the cracked egg.
 @export var SHATTERED_EGG: PackedScene; ## Scene containing the fragmented egg.
 @export var MAX_SPEED: int = 25; ## Maximum allowed speed (linear or angular).
-@export var ACC_RATE: float = 1.5; ## The rate at which ball will speed up.
+@export var ACC_RATE: float = 1.75; ## The rate at which ball will speed up.
 @export var STRAFE_MULTIPLIER: float = 1.25; ## Speed multiplier for left/right movement.
 @export var BASE_FOV: float = 75.0; ## Default camera FOV.
 @export var MAX_FOV: float = 110.0; ## Maximum allowed camera FOV.
 @export var SHATTER_THRESHOLD: float = 6.0; ## How hard of an impact to trigger a crack.
 @export var MAX_HEALTH: int = 3; ## Max number of times you can get hit before dying.
-@export_range(0, 1) var JUMP_POWER: float = 0.2; ## How high the player can jump.
+@export_range(0, 1) var JUMP_POWER: float = 0.25; ## How high the player can jump.
 
 @onready var camera_pivot: Node3D = %CameraPivot;
 @onready var camera: CustomCamera = %Camera;
@@ -27,6 +27,7 @@ var default_camera_orientation: Vector3; ## The default camera rotation, used fo
 var last_frames_velocity: Vector3 = Vector3.ZERO; ## Velocity of the last frame, used for calculating velocity deltas.
 var splat_scene: DecalCompatibility; # WARNING: Compatibility mode limitation; replace with Decal if changing renderers.
 var shattered_egg_scene: Node3D; ## Scene object containing the pre-fragmented version of the egg.
+var self_destruct_timer: float; ## How long the user has held the self destruct button.
 
 func _ready() -> void:
 	call_deferred("spawn_fragmented_egg");
@@ -36,6 +37,15 @@ func _ready() -> void:
 	camera.fov = BASE_FOV;
 	default_camera_orientation = camera_pivot.rotation;
 	ball.body_entered.connect(_on_hit_ground);
+
+func _process(delta: float) -> void:
+	if Input.is_action_pressed("self_destruct"):
+		self_destruct_timer += delta;
+	if Input.is_action_just_released("self_destruct"):
+		self_destruct_timer = 0;
+	if self_destruct_timer >= 2:
+		self_destruct_timer = 0;
+		shatter_egg();
 
 func _physics_process(_delta: float) -> void:
 	camera_pivot.global_position = ball.global_position;
@@ -128,12 +138,17 @@ func _on_hit_ground(body: Node3D) -> void:
 	# Magic number '1' and '3' is for environment objects (floors, walls, tables, etc)
 	# Check to see if we did indeed hit the ground, not some other object.
 	if body is not StaticBody3D: return;
-	if body.collision_layer not in [1,3]: return;
 	
 	var delta_v = abs(last_frames_velocity.length()) - abs(ball.linear_velocity.length());
+	if body.collision_layer not in [1,3]: 
+		if abs(delta_v) > 0.15:
+			AudioManager.play_random(AudioManager.FOOSTEPS_GRASS);
+		return;
+	
+	AudioManager.play_random(AudioManager.FOOTSTEPS_WOOD);
 	if delta_v >= 4:
 		camera._camera_shake(0.2, 0.05);
-		shatter_egg();
+		health = 0;
 	elif delta_v > 2:
 		Globals.freeze_frame(0.05, 0.25);
 		camera._camera_shake(0.1, 0.025)
