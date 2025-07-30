@@ -225,7 +225,7 @@ tracks/14/keys = {
 }
 tracks/15/type = "value"
 tracks/15/imported = false
-tracks/15/enabled = false
+tracks/15/enabled = true
 tracks/15/path = NodePath("Player:position")
 tracks/15/interp = 1
 tracks/15/loop_wrap = true
@@ -1034,7 +1034,7 @@ shadow_opacity = 0.97
 directional_shadow_mode = 0
 
 [node name="Player" parent="." instance=ExtResource("6_0pacg")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2.76, 0.1, 2.1)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 6.46, 3.76, -0.1)
 
 [node name="Lights" type="Node3D" parent="."]
 
@@ -1260,6 +1260,9 @@ BOUNCE_POWER = 0.45
 predefined_vector = Vector2(0.25, 1.956)
 
 [node name="Cushions" type="Node3D" parent="Level"]
+
+[node name="TrashBag" parent="Level/Cushions" instance=ExtResource("46_67pvu")]
+transform = Transform3D(-0.388229, 0, -1.44889, 0, 1.5, 0, 1.44889, 0, -0.388229, 2, 0.0163498, 4.4)
 
 [node name="Mitt" parent="Level/Cushions" instance=ExtResource("11_4fj31")]
 transform = Transform3D(0.482091, 0, 0.574533, 0, 0.75, 0, -0.574533, 0, 0.482091, -6, 2.09874, -1.7)
@@ -1490,6 +1493,12 @@ transform = Transform3D(0.724444, 0, -0.194114, 0, 0.75, 0, 0.194114, 0, 0.72444
 [node name="Box5" parent="Level/Boxes" instance=ExtResource("33_ods8k")]
 transform = Transform3D(0.724444, 0, 0.194114, 0, 0.75, 0, -0.194114, 0, 0.724444, -1.5, 2.1, -4.1)
 
+[node name="kitchenBar" parent="Level" instance=ExtResource("6_o8ny7")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3.45606, 4.76837e-07, 3.3476)
+
+[node name="kitchenBarEnd" parent="Level" instance=ExtResource("13_ujhdv")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3.456, 0, 2.841)
+
 [node name="Room" type="Node3D" parent="."]
 
 [node name="WallRight" type="MeshInstance3D" parent="Room"]
@@ -1554,14 +1563,6 @@ skeleton = NodePath("../../Level")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Room/Floor/StaticBody3D2"]
 shape = SubResource("ConvexPolygonShape3D_10lnh")
 
-[node name="LevelComponentsTEMP" type="Node3D" parent="."]
-
-[node name="kitchenBar" parent="LevelComponentsTEMP" instance=ExtResource("6_o8ny7")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3.45606, 4.76837e-07, 3.3476)
-
-[node name="kitchenBarEnd" parent="LevelComponentsTEMP" instance=ExtResource("13_ujhdv")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3.456, 0, 2.841)
-
 [node name="LightmapGI" type="LightmapGI" parent="."]
 supersampling = true
 supersampling_factor = 4.0
@@ -1569,9 +1570,6 @@ denoiser_strength = 0.15
 denoiser_range = 5
 generate_probes_subdiv = 3
 light_data = ExtResource("4_o8ny7")
-
-[node name="Node3D" parent="." instance=ExtResource("46_67pvu")]
-transform = Transform3D(-0.388229, 0, -1.44889, 0, 1.5, 0, 1.44889, 0, -0.388229, 2, 0.0163498, 4.4)
 
 [editable path="Level/carton-lowpoly"]
 [editable path="Level/fridge-noshelf"]
