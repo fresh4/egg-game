@@ -1,3 +1,7 @@
-[gd_scene format=3 uid="uid://dmasow0rtb46h"]
+[gd_scene load_steps=2 format=3 uid="uid://dmasow0rtb46h"]
 
-[node name="GameMusicPlayer" type="AudioStreamPlayer3D"]
+[ext_resource type="AudioStream" uid="uid://xql6qn34pfit" path="res://assets/audio/music/the-great-eggscape-bgm-sketch.ogg" id="1_e6vaa"]
+
+[node name="GameMusicPlayer" type="AudioStreamPlayer"]
+stream = ExtResource("1_e6vaa")
+bus = &"Music"

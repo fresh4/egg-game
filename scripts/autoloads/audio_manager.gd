@@ -52,7 +52,7 @@ var music_volume: float = 0.5;
 var sfx_volume: float = 0.5;
 
 var menu_music_player: AudioStreamPlayer;
-var game_music_player: AudioStreamPlayer3D;
+var game_music_player: AudioStreamPlayer;
 
 var current_player: AudioStreamPlayer = null;
 var tween: Tween;
@@ -61,7 +61,7 @@ func _enter_tree() -> void:
 	get_tree().node_added.connect(on_node_added);
 
 func _ready() -> void:
-	game_music_player = MUSIC_PLAYER.instantiate() as AudioStreamPlayer3D;
+	game_music_player = MUSIC_PLAYER.instantiate() as AudioStreamPlayer;
 	game_music_player.bus = "Music";
 	
 	process_mode = Node.PROCESS_MODE_ALWAYS;

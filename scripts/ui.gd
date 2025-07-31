@@ -37,6 +37,7 @@ func pause() -> void:
 	settings_scene.modulate.a = 0;
 	var tween = get_tree().create_tween().set_pause_mode(Tween.TWEEN_PAUSE_PROCESS);
 	tween.tween_property(settings_scene, "modulate", Color(1,1,1,1), 0.25);
+	AudioServer.set_bus_effect_enabled(1, 0, true); # TODO: Use enums or gets
 
 func unpause() -> void:
 	get_tree().paused = false;
@@ -53,6 +54,7 @@ func unpause() -> void:
 		return
 	
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED;
+	AudioServer.set_bus_effect_enabled(1, 0, false); # TODO: Use enums or gets
 
 func instance_scene(scene) -> Node:
 	var instance = scene.instantiate();
