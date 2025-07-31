@@ -34,29 +34,29 @@ func on_game_ended(is_won: bool, points: int) -> void:
 	
 	await get_tree().create_timer(0.25).timeout;
 	message_label.visible = true;
-	AudioManager.play_audio(AudioManager.SCORING_NOTE_YELLOW);
+	AudioManager.play_audio(AudioManager.RIDE_1);
 	
 	if is_won:
 		bonuses_label.visible = true;
 		await get_tree().create_timer(0.25).timeout;
 		
 		bonuses_label.text = "Lives x" + str(player.health) + ": " + str(player.health * PER_HP_BONUS);
-		AudioManager.play_audio(AudioManager.SLIME_IMPACT_SLAP);
+		AudioManager.play_audio(AudioManager.HIHAT_1);
 		await get_tree().create_timer(0.25).timeout;
 		
 		bonuses_label.text += "\nFinished: " + str(FINISHED_BONUS);
-		AudioManager.play_audio(AudioManager.SLIME_IMPACT_SLAP);
+		AudioManager.play_audio(AudioManager.HIHAT_OPEN_1);
 		await get_tree().create_timer(0.25).timeout;
 		
 		bonuses_label.text += "\nCoins: " + str(points);
-		AudioManager.play_audio(AudioManager.SLIME_IMPACT_SLAP);
+		AudioManager.play_audio(AudioManager.HIHAT_3);
 		await get_tree().create_timer(0.25).timeout;
 		
 		points += (player.health * PER_HP_BONUS) + FINISHED_BONUS;
 	
 	await get_tree().create_timer(0.25).timeout;
 	points_label.visible = true;
-	AudioManager.play_audio(AudioManager.SCORING_NOTE_BLUE);
+	AudioManager.play_audio(AudioManager.RIDE_2);
 	if points > 0:
 		var tween = get_tree().create_tween();
 		tween.tween_method(update_score, 0, points, 1).set_ease(Tween.EASE_IN_OUT);
@@ -64,7 +64,7 @@ func on_game_ended(is_won: bool, points: int) -> void:
 	
 	await get_tree().create_timer(0.25).timeout;
 	restart_button.visible = true;
-	AudioManager.play_audio(AudioManager.SCORING_NOTE_RED);
+	AudioManager.play_audio(AudioManager.THONK_1);
 
 func update_score(value: int) -> void:
 	points_label.text = str(value) + " Points";

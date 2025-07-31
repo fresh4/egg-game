@@ -11,4 +11,4 @@ func on_pickup_detection_area_body_entered(_body: Node3D) -> void:
 	Globals.add_points(points_value);
 	queue_free();
 	SignalBus.points_updated.emit(Globals.get_points());
-	AudioManager.play_audio(AudioManager.RETRO_8);
+	AudioManager.play_random(AudioManager.SCORING);

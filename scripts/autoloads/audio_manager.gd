@@ -16,7 +16,6 @@ const FLICK_A_WET = preload("res://assets/audio/sfx/impacts/flick_A_WET.ogg");
 const SCORING_NOTE_BLUE = preload("res://assets/audio/sfx/scoring/SCORING_NOTE_BLUE.ogg");
 const SCORING_NOTE_RED = preload("res://assets/audio/sfx/scoring/SCORING_NOTE_RED.ogg");
 const SCORING_NOTE_YELLOW = preload("res://assets/audio/sfx/scoring/SCORING_NOTE_YELLOW.ogg");
-const RETRO_8 = preload("res://assets/audio/sfx/scoring/Retro8.mp3");
 
 const FOOTSTEP_WOOD_000 = preload("res://assets/audio/sfx/impacts/footstep_wood_000.ogg");
 const FOOTSTEP_WOOD_001 = preload("res://assets/audio/sfx/impacts/footstep_wood_001.ogg");
@@ -28,23 +27,65 @@ const FOOTSTEP_GRASS_001 = preload("res://assets/audio/sfx/impacts/footstep_gras
 const FOOTSTEP_GRASS_002 = preload("res://assets/audio/sfx/impacts/footstep_grass_002.ogg");
 const FOOTSTEP_GRASS_003 = preload("res://assets/audio/sfx/impacts/footstep_grass_003.ogg");
 const FOOTSTEP_GRASS_004 = preload("res://assets/audio/sfx/impacts/footstep_grass_004.ogg");
+
+const SLIME_A_IMPACT_A = preload("res://assets/audio/sfx/impacts/Slime_A_Impact_A.ogg")
+const SLIME_A_IMPACT_B = preload("res://assets/audio/sfx/impacts/Slime_A_Impact_B.ogg")
+const SLIME_A_IMPACT_C = preload("res://assets/audio/sfx/impacts/Slime_A_Impact_C.ogg")
+const SLIME_A_IMPACT_D = preload("res://assets/audio/sfx/impacts/Slime_A_Impact_D.ogg")
+
+const CRASH_1 = preload("res://assets/audio/sfx/percussion/crash-1.ogg")
+const CYMBAL_1 = preload("res://assets/audio/sfx/percussion/cymbal-1.ogg")
+const HIHAT_1 = preload("res://assets/audio/sfx/percussion/hihat-1.ogg")
+const HIHAT_2 = preload("res://assets/audio/sfx/percussion/hihat-2.ogg")
+const HIHAT_3 = preload("res://assets/audio/sfx/percussion/hihat-3.ogg")
+const HIHAT_OPEN_1 = preload("res://assets/audio/sfx/percussion/hihat-open-1.ogg")
+const KICK_1 = preload("res://assets/audio/sfx/percussion/kick-1.ogg")
+const RIDE_1 = preload("res://assets/audio/sfx/percussion/ride-1.ogg")
+const RIDE_2 = preload("res://assets/audio/sfx/percussion/ride-2.ogg")
+const RIDE_3 = preload("res://assets/audio/sfx/percussion/ride-3.ogg")
+const SNARE_1 = preload("res://assets/audio/sfx/percussion/snare-1.ogg")
+const SNARE_2 = preload("res://assets/audio/sfx/percussion/snare-2.ogg")
+const THONK_1 = preload("res://assets/audio/sfx/percussion/thonk-1.ogg")
 #endregion
 
 #region Bundled Audio
-const FOOTSTEPS_WOOD: Array[AudioStream] = [
+const OOF: Array[AudioStream] = [
+	SLIME_A_IMPACT_A,
+	SLIME_A_IMPACT_B,
+	SLIME_A_IMPACT_C,
+	SLIME_A_IMPACT_D,
+];
+
+const IMPACT_SOFT: Array[AudioStream] = [
 	FOOTSTEP_WOOD_000,
 	FOOTSTEP_WOOD_001,
 	FOOTSTEP_WOOD_002,
 	FOOTSTEP_WOOD_003,
 	FOOTSTEP_WOOD_004,
-]
+];
 
-const FOOSTEPS_GRASS: Array[AudioStream] = [
+const IMPACT_HARD: Array[AudioStream] = [
 	FOOTSTEP_GRASS_001,
 	FOOTSTEP_GRASS_002,
 	FOOTSTEP_GRASS_003,
 	FOOTSTEP_GRASS_004,
-]
+];
+
+const SCORING: Array[AudioStream] = [
+	SCORING_NOTE_BLUE,
+	SCORING_NOTE_RED,
+	SCORING_NOTE_YELLOW,
+];
+
+const MENU_PERCUSSION: Array[AudioStream] = [
+	HIHAT_1,
+	HIHAT_2,
+	HIHAT_3,
+	HIHAT_OPEN_1,
+	KICK_1,
+	SNARE_1,
+	SNARE_2,
+];
 #endregion
 
 
@@ -146,7 +187,7 @@ func on_node_added(node: Node) -> void:
 		node.pressed.connect(on_button_pressed);
 
 func on_button_hover() -> void:
-	AudioManager.play_audio(AudioManager.BUTTON_A);
+	AudioManager.play_random(AudioManager.MENU_PERCUSSION);
 
 func on_button_pressed() -> void:
-	AudioManager.play_audio(AudioManager.BUTTON_CLICK_A);
+	AudioManager.play_random(AudioManager.MENU_PERCUSSION);

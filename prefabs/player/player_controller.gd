@@ -142,10 +142,10 @@ func _on_hit_ground(body: Node3D) -> void:
 	var delta_v = abs(last_frames_velocity.length()) - abs(ball.linear_velocity.length());
 	if body.collision_layer not in [1,3]: 
 		if abs(delta_v) > 0.15:
-			AudioManager.play_random(AudioManager.FOOSTEPS_GRASS);
+			AudioManager.play_random(AudioManager.IMPACT_SOFT);
 		return;
 	
-	AudioManager.play_random(AudioManager.FOOTSTEPS_WOOD);
+	AudioManager.play_random(AudioManager.IMPACT_HARD);
 	if delta_v >= 4:
 		camera._camera_shake(0.2, 0.05);
 		health = 0;
@@ -158,6 +158,7 @@ func _on_hit_ground(body: Node3D) -> void:
 			var idx = clamp(MAX_HEALTH - health - 1, 0, len(CRACK_TEXTURES) - 1)
 			var texture = CRACK_TEXTURES[idx];
 			egg_mesh.material_override.set_shader_parameter("base_texture", texture);
+		AudioManager.play_random(AudioManager.OOF);
 	if health <= 0:
 		shatter_egg();
 
