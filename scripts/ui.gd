@@ -1,5 +1,9 @@
 class_name UI extends CanvasLayer
 
+## UI Manager. Handles loading of custom UI elements.
+## Includes pause functionality TODO maybe should be in GameManager or Globals
+## that sends signals upon pause.
+
 const START_MENU = preload("res://prefabs/ui/start_menu/start_menu.tscn");
 const SETTINGS = preload("res://prefabs/ui/settings/settings_menu.tscn");
 const END = preload("res://prefabs/ui/end/end_menu.tscn");

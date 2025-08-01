@@ -1,5 +1,7 @@
 extends Node
 
+## This autoload script holds variables and functions useful for all scripts. 
+
 var is_look_inverted: bool = false;
 
 var is_game_started: bool = false :

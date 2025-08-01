@@ -1,9 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://diuoumeppaqyk"]
+[gd_scene load_steps=12 format=3 uid="uid://diuoumeppaqyk"]
 
 [ext_resource type="Script" uid="uid://cn8yj20245k2s" path="res://prefabs/player/player_controller.gd" id="1_72ieh"]
 [ext_resource type="PackedScene" uid="uid://bx7pclwpy1x25" path="res://prefabs/player/egg_shattered.tscn" id="2_binfn"]
 [ext_resource type="Texture2D" uid="uid://bjb05nj1pdf8c" path="res://assets/models/egg/textures/egg-tex-cracked.png" id="2_ev8v4"]
-[ext_resource type="Script" uid="uid://cs2nm3ugkvtk7" path="res://prefabs/player/ball.gd" id="3_klv5p"]
 [ext_resource type="Texture2D" uid="uid://bbnc7b5pb2s6e" path="res://assets/models/egg/textures/egg-tex-cracked-heavy.png" id="3_vhck3"]
 [ext_resource type="Material" uid="uid://bebvy6ovmvi2" path="res://resources/shaders/toon/cel_shader.tres" id="4_klv5p"]
 [ext_resource type="ArrayMesh" uid="uid://t8ghqw5ge0bk" path="res://assets/models/egg/egg-solid-lowerpoly.obj" id="6_iylwk"]
@@ -97,33 +96,30 @@ _data = {
 &"impact": SubResource("Animation_klv5p")
 }
 
-[node name="Player" type="Node3D" groups=["Player"]]
-script = ExtResource("1_72ieh")
-CRACK_TEXTURES = Array[CompressedTexture2D]([ExtResource("2_ev8v4"), ExtResource("3_vhck3")])
-SHATTERED_EGG = ExtResource("2_binfn")
-
-[node name="Ball" type="RigidBody3D" parent="."]
-unique_name_in_owner = true
+[node name="Ball" type="RigidBody3D" groups=["Player"]]
 collision_layer = 2
 collision_mask = 13
 mass = 0.1
 center_of_mass_mode = 1
 contact_monitor = true
 max_contacts_reported = 1
-script = ExtResource("3_klv5p")
+script = ExtResource("1_72ieh")
+CRACK_TEXTURES = Array[CompressedTexture2D]([ExtResource("2_ev8v4"), ExtResource("3_vhck3")])
+SHATTERED_EGG = ExtResource("2_binfn")
 
-[node name="Egg" type="MeshInstance3D" parent="Ball"]
+[node name="Egg" type="MeshInstance3D" parent="."]
 unique_name_in_owner = true
 material_override = ExtResource("4_klv5p")
 gi_mode = 2
 mesh = ExtResource("6_iylwk")
 skeleton = NodePath("../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Ball"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("ConvexPolygonShape3D_klv5p")
 
 [node name="CameraPivot" type="Node3D" parent="."]
 unique_name_in_owner = true
+top_level = true
 
 [node name="SpringArm3D" type="SpringArm3D" parent="CameraPivot"]
 unique_name_in_owner = true

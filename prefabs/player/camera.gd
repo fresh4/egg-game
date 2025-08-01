@@ -1,5 +1,7 @@
 class_name CustomCamera extends Camera3D
 
+## Custom camera with extra functionality, mainly for camera shake.
+
 @export var period: float = 0.3;
 @export var magnitude: float = 0.4;
 @export var camera_rotation_speed: float = 0.01;

@@ -14,6 +14,10 @@ config/name="Egg"
 run/main_scene="uid://4qsc0hl2loma"
 config/features=PackedStringArray("4.4", "Forward Plus")
 
+[audio]
+
+general/default_playback_type.web=0
+
 [autoload]
 
 Globals="*res://scripts/autoloads/globals.gd"

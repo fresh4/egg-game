@@ -1,4 +1,4 @@
-class_name Player extends Node3D
+class_name Player extends RigidBody3D
 
 const SPLAT = preload("res://prefabs/splat.tscn");
 
@@ -9,16 +9,16 @@ const SPLAT = preload("res://prefabs/splat.tscn");
 @export var STRAFE_MULTIPLIER: float = 1.25; ## Speed multiplier for left/right movement.
 @export var BASE_FOV: float = 75.0; ## Default camera FOV.
 @export var MAX_FOV: float = 110.0; ## Maximum allowed camera FOV.
-@export var SHATTER_THRESHOLD: float = 6.0; ## How hard of an impact to trigger a crack.
 @export var MAX_HEALTH: int = 3; ## Max number of times you can get hit before dying.
+@export var INSTANT_SHATTER_THRESHOLD: float = 4.0; ## How hard you have to impact to die immediately.
+@export var CRACK_THRESHOLD: float = 2.0; ## How hard you have to impact to just take damage.
 @export_range(0, 1) var JUMP_POWER: float = 0.25; ## How high the player can jump.
 
-@onready var camera_pivot: Node3D = %CameraPivot;
+@onready var camera_pivot: Node3D = %CameraPivot; ## Top Level; moves independent of ball.
 @onready var camera: CustomCamera = %Camera;
-@onready var ball: RigidBody3D = %Ball;
 @onready var animation_player: AnimationPlayer = %AnimationPlayer;
 @onready var egg_mesh: MeshInstance3D = %Egg;
-@onready var spring_arm: SpringArm3D = %SpringArm3D
+@onready var spring_arm: SpringArm3D = %SpringArm3D;
 
 var health: int; ## The current health of the egg.
 var forward: Vector3 = Vector3.ZERO; ## The calculated forward direction, based on direction of camera.
@@ -36,28 +36,32 @@ func _ready() -> void:
 	health = MAX_HEALTH;
 	camera.fov = BASE_FOV;
 	default_camera_orientation = camera_pivot.rotation;
-	ball.body_entered.connect(_on_hit_ground);
+	body_entered.connect(_on_hit_ground);
+	
+	camera_pivot.global_position = global_position;
+	camera_pivot.global_rotation = global_rotation;
 
 func _process(delta: float) -> void:
 	if Input.is_action_pressed("self_destruct"):
 		self_destruct_timer += delta;
+	
 	if Input.is_action_just_released("self_destruct"):
 		self_destruct_timer = 0;
+	
 	if self_destruct_timer >= 2:
 		self_destruct_timer = 0;
 		shatter_egg();
 
 func _physics_process(_delta: float) -> void:
-	camera_pivot.global_position = ball.global_position;
+	camera_pivot.global_position = global_position;
 	
 	if not Globals.is_game_started: return;
 	if Globals.is_cutscene_playing: return;
 	
 	# Store the previous frame's velocity for calulating velocity deltas on impacts.
-	last_frames_velocity = ball.linear_velocity;
+	last_frames_velocity = linear_velocity;
 	
 	# Set "forward" to be direction camera is facing.
-	#forward = camera.global_transform.basis.z.normalized().cross(Vector3.UP);
 	forward = camera.global_transform.basis.z;
 	forward.y = 0;
 	forward = forward.normalized().cross(Vector3.UP);
@@ -65,7 +69,16 @@ func _physics_process(_delta: float) -> void:
 	handle_input();
 	
 	# Reset position if you fall outside the level bounds
-	if ball.global_position.y < -40: ball.global_position = Vector3(0, 10, 0);
+	if global_position.y < -40: global_position = Vector3(0, 10, 0);
+
+func _integrate_forces(_state: PhysicsDirectBodyState3D) -> void:
+	# Limit ball velocities.
+	linear_velocity.x = clampf(linear_velocity.x, -MAX_SPEED, MAX_SPEED);
+	linear_velocity.y = clampf(linear_velocity.y, -50, 50);
+	linear_velocity.z = clampf(linear_velocity.z, -MAX_SPEED, MAX_SPEED);
+	angular_velocity.x = clampf(angular_velocity.x, -MAX_SPEED, MAX_SPEED);
+	angular_velocity.y = clampf(angular_velocity.y, -MAX_SPEED, MAX_SPEED);
+	angular_velocity.z = clampf(angular_velocity.z, -MAX_SPEED, MAX_SPEED);
 
 func _input(event: InputEvent) -> void:
 	if not Globals.is_game_started: return;
@@ -91,10 +104,10 @@ func _input(event: InputEvent) -> void:
 		camera_pivot.rotation.z = 0;
 
 func midair_move(dir: Vector3) -> void:
-	ball.apply_central_force(dir.cross(Vector3.UP) * ACC_RATE / 20 );
+	apply_central_force( dir.cross(Vector3.UP) * ACC_RATE / 20 );
 
 func move(dir: Vector3) -> void:
-	if abs(ball.linear_velocity.y) > 1:
+	if abs(linear_velocity.y) > 1:
 		midair_move(dir);
 	
 	var horizontal_dir = dir;
@@ -102,7 +115,7 @@ func move(dir: Vector3) -> void:
 	horizontal_dir = horizontal_dir.normalized(); # Important to re-normalize after setting y to 0
 
 	# Push the ball by applying torque along a direction at a passed in rate.
-	ball.apply_torque(horizontal_dir * ACC_RATE / 20);
+	apply_torque(horizontal_dir * ACC_RATE / 20);
 	# ball.apply_torque_impulse(dir * ACC_RATE / 1000);
 	
 	# Change the FOV of the camera based on the speed of the ball.
@@ -112,7 +125,7 @@ func move(dir: Vector3) -> void:
 
 ## Helper function to calculate FOV based on current speed limitation variables.
 func calculate_fov() -> float:
-	return BASE_FOV + ( MAX_FOV - BASE_FOV ) * ( ball.linear_velocity.length() / 30 );
+	return BASE_FOV + ( MAX_FOV - BASE_FOV ) * ( linear_velocity.length() / 30 );
 
 func handle_input() -> void:
 	if Input.is_action_pressed("forward"):
@@ -125,8 +138,12 @@ func handle_input() -> void:
 		move(forward.cross(Vector3.UP) * STRAFE_MULTIPLIER);
 	if Input.is_action_pressed("jump") and !is_jumping:
 		is_jumping = true;
-		ball.linear_velocity.y = 0;
-		ball.apply_central_impulse(Vector3(0,1,0) * JUMP_POWER);
+		linear_velocity.y = 0;
+		apply_central_impulse(Vector3(0,1,0) * JUMP_POWER);
+		
+		# Escape hatch in case jump does not reset on hitting ground.
+		await get_tree().create_timer(3).timeout;
+		if is_jumping: is_jumping = false;
 
 ## Helper function to reset camera orientation.
 func reset_camera() -> void:
@@ -135,60 +152,73 @@ func reset_camera() -> void:
 
 func _on_hit_ground(body: Node3D) -> void:
 	is_jumping = false;
-	# Magic number '1' and '3' is for environment objects (floors, walls, tables, etc)
+	
 	# Check to see if we did indeed hit the ground, not some other object.
 	if body is not StaticBody3D: return;
 	
-	var delta_v = abs(last_frames_velocity.length()) - abs(ball.linear_velocity.length());
+	var delta_v = abs(last_frames_velocity.length()) - abs(linear_velocity.length());
+	
+	# Collision layer names are inaccessible
+	# Magic number '1' and '3' is for environment objects (floors, walls, tables, etc)
 	if body.collision_layer not in [1,3]: 
 		if abs(delta_v) > 0.15:
 			AudioManager.play_random(AudioManager.IMPACT_SOFT);
 		return;
 	
-	if delta_v >= 4:
+	if delta_v >= INSTANT_SHATTER_THRESHOLD:
 		camera._camera_shake(0.2, 0.05);
 		health = 0;
 		AudioManager.play_audio(AudioManager.EGG_IMPACT);
-	elif delta_v > 2:
+	elif delta_v > CRACK_THRESHOLD:
 		Globals.freeze_frame(0.05, 0.25);
 		camera._camera_shake(0.1, 0.025)
 		animation_player.play("impact");
+		
 		health = clamp(health - 1, 0, MAX_HEALTH);
+		
+		# Apply the next available supplied crack texture to indicate damage.
 		if len(CRACK_TEXTURES):
-			var idx = clamp(MAX_HEALTH - health - 1, 0, len(CRACK_TEXTURES) - 1)
+			var idx = clamp(MAX_HEALTH - health - 1, 0, len(CRACK_TEXTURES) - 1);
 			var texture = CRACK_TEXTURES[idx];
 			egg_mesh.material_override.set_shader_parameter("base_texture", texture);
+		
 		AudioManager.play_random(AudioManager.OOF);
 		AudioManager.play_audio(AudioManager.EGG_IMPACT);
+	
 	if health <= 0:
 		shatter_egg();
 
 func shatter_egg() -> void:
 	visible = false;
-	ball.freeze = true;
-	shattered_egg_scene.global_position = ball.global_position;
+	freeze = true;
+	shattered_egg_scene.global_position = global_position;
 	shattered_egg_scene.visible = true;
 	for piece: RigidBody3D in shattered_egg_scene.get_children():
 		piece.freeze = false;
 		piece.apply_impulse(piece.position * 2);
-	SignalBus.egg_shattered.emit();
 	draw_splat();
 	AudioManager.play_audio(AudioManager.SLIME_IMPACT_SLAP);
+	
+	SignalBus.egg_shattered.emit();
 
 func draw_splat() -> void:
 	splat_scene.visible = true;
 	splat_scene.enable_fade = false;
-	splat_scene.global_position = ball.global_position;
+	splat_scene.global_position = global_position;
 	splat_scene.rotation_degrees = Vector3(-24, 0, 24);
 
 func spawn_fragmented_egg() -> void:
-	# TODO: Hacky solution to precompile decal shaders, optimize this.
+	# Hacky solution to precompile decal shaders, since the 'splat' first spawn causes lag.
+	# TODO: Optimize this.
 	splat_scene = SPLAT.instantiate();
 	get_parent().add_child(splat_scene);
-	splat_scene.global_position = ball.global_position;
+	splat_scene.global_position = global_position;
 	await get_tree().create_timer(1).timeout;
 	splat_scene.visible = false;
 	
+	# Spawn the fragmented version of the egg somewhere in the level at game start 
+	# so we don't have to instantiate the entire scene with its physics behavior on demand.
+	# Especially useful on web export, maybe unnecessary otherwise.
 	shattered_egg_scene = SHATTERED_EGG.instantiate();
 	get_parent().add_child(shattered_egg_scene);
 	for body: RigidBody3D in shattered_egg_scene.get_children():

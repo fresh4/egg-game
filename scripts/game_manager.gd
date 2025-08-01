@@ -1,7 +1,5 @@
 class_name GameManager extends Node
 
-var player: Player;
-var camera: Camera3D;
 var points: int = 0;
 var has_won: bool = false;
 

@@ -1,5 +1,10 @@
 extends Node
 
+## The AudioManager is an autoload script that centrally handles all things audio.
+## All SFX are loaded into here (TODO use uids?) and can be accessed by used by any other script.
+## Also provides several audio playback functions and ways to play with an existing
+## audio player (ie crossfades).
+
 const MUSIC_PLAYER = preload("res://prefabs/game_music_player.tscn");
 
 #region Audio Imports
@@ -21,11 +26,6 @@ const FOOTSTEP_WOOD_001 = preload("res://assets/audio/sfx/impacts/footstep_wood_
 const FOOTSTEP_WOOD_002 = preload("res://assets/audio/sfx/impacts/footstep_wood_002.ogg");
 const FOOTSTEP_WOOD_003 = preload("res://assets/audio/sfx/impacts/footstep_wood_003.ogg");
 const FOOTSTEP_WOOD_004 = preload("res://assets/audio/sfx/impacts/footstep_wood_004.ogg");
-
-const FOOTSTEP_GRASS_001 = preload("res://assets/audio/sfx/impacts/footstep_grass_001.ogg");
-const FOOTSTEP_GRASS_002 = preload("res://assets/audio/sfx/impacts/footstep_grass_002.ogg");
-const FOOTSTEP_GRASS_003 = preload("res://assets/audio/sfx/impacts/footstep_grass_003.ogg");
-const FOOTSTEP_GRASS_004 = preload("res://assets/audio/sfx/impacts/footstep_grass_004.ogg");
 
 const SLIME_A_IMPACT_A = preload("res://assets/audio/sfx/impacts/Slime_A_Impact_A.ogg");
 const SLIME_A_IMPACT_B = preload("res://assets/audio/sfx/impacts/Slime_A_Impact_B.ogg");
@@ -65,13 +65,6 @@ const IMPACT_SOFT: Array[AudioStream] = [
 	FOOTSTEP_WOOD_004,
 ];
 
-const IMPACT_HARD: Array[AudioStream] = [
-	FOOTSTEP_GRASS_001,
-	FOOTSTEP_GRASS_002,
-	FOOTSTEP_GRASS_003,
-	FOOTSTEP_GRASS_004,
-];
-
 const SCORING: Array[AudioStream] = [
 	SCORING_NOTE_BLUE,
 	SCORING_NOTE_RED,
@@ -86,7 +79,6 @@ const MENU_PERCUSSION: Array[AudioStream] = [
 	SNARE_2,
 ];
 #endregion
-
 
 var music_volume: float = 0.5;
 var sfx_volume: float = 0.5;
@@ -153,7 +145,7 @@ func set_volume(mixer: String, volume: float) -> float:
 	return volume;
 
 func play_audio(file: AudioStream, mixer: String = "SFX", volume: float = 1) -> void:
-	# given a preloaded soundfile, generate an audio stream player, spawn it
+	# Given a preloaded soundfile, generate an audio stream player, spawn it,
 	# load the file, play it, and then destroy the player.
 	var audio_player: AudioStreamPlayer = AudioStreamPlayer.new();
 	audio_player.stream = file;

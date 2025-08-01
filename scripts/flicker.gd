@@ -1,4 +1,6 @@
 extends OmniLight3D
+## Script is to be attached to any omnilight.
+## When activated (flickering = true), will randomly flicker the birghtness.
 
 @export var flickering: bool = false;
 

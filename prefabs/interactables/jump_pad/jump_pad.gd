@@ -10,8 +10,8 @@ func _ready() -> void:
 	player_detection_area.body_entered.connect(on_player_impact);
 
 func on_player_impact(body: RigidBody3D) -> void:
-	if !(body.get_parent() is Player): return;
-	(body.get_parent() as Player).is_jumping = true;
+	if !(body is Player): return;
+	(body as Player).is_jumping = true;
 	body.linear_velocity.y = 0;
 	if (predefined_vector.x or predefined_vector.y):
 		body.linear_velocity.x = predefined_vector.x;

@@ -8,8 +8,8 @@ func _ready() -> void:
 	egg.visible = false;
 
 func on_victory_detection_area_entered(body: Node3D) -> void:
-	if !(body.get_parent() is Player): return;
-	var player: Player = body.get_parent();
+	if !(body is Player): return;
+	var player: Player = body as Player;
 	var game_manager: GameManager = get_tree().get_first_node_in_group("GameManager");
 	
 	egg.visible = true;

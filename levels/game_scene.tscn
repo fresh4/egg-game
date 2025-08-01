@@ -5,7 +5,7 @@
 [ext_resource type="AudioStream" uid="uid://ffogosorchbv" path="res://assets/audio/sfx/fridge-open.ogg" id="2_83ptd"]
 [ext_resource type="AudioStream" uid="uid://bpoeukwe1ilof" path="res://assets/audio/sfx/cutscene-whoosh.ogg" id="3_3j42l"]
 [ext_resource type="Script" uid="uid://b3myxn58r8tfe" path="res://scripts/fps_counter.gd" id="3_4yu2r"]
-[ext_resource type="Script" uid="uid://cy258v6nyuujo" path="res://scripts/intro_cutscene.gd" id="3_8ycop"]
+[ext_resource type="Script" uid="uid://cy258v6nyuujo" path="res://scripts/cutscenes/intro_cutscene.gd" id="3_8ycop"]
 [ext_resource type="AudioStream" uid="uid://dbtbgnhkdk7ro" path="res://assets/audio/sfx/stovetop/ignite.ogg" id="3_can20"]
 [ext_resource type="AudioStream" uid="uid://bourxjqxrnppq" path="res://assets/audio/sfx/fluorescent-bulb.ogg" id="4_eife2"]
 [ext_resource type="LightmapGIData" uid="uid://c4f14atffvsvo" path="res://game_scene.lmbake" id="4_o8ny7"]
@@ -584,7 +584,7 @@ tracks/5/keys = {
 }
 tracks/6/type = "value"
 tracks/6/imported = false
-tracks/6/enabled = true
+tracks/6/enabled = false
 tracks/6/path = NodePath("../../../IntroCutscene/FireSFX:playing")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
@@ -671,7 +671,7 @@ tracks/5/keys = {
 }
 tracks/6/type = "value"
 tracks/6/imported = false
-tracks/6/enabled = true
+tracks/6/enabled = false
 tracks/6/path = NodePath("../../../IntroCutscene/FireSFX:playing")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
@@ -731,6 +731,33 @@ size = Vector3(2.5, 2.5, 0.1)
 rough = true
 bounce = 0.35
 
+[sub_resource type="Animation" id="Animation_eife2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-1.4, 2.2, 5.2)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_3mxio"]
 resource_name = "roll"
 length = 2.0
@@ -758,33 +785,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Vector3(0, 0, 0), Vector3(-6.28319, 0, 0), Vector3(0, 0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_eife2"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(-1.4, 2.2, 5.2)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_83ptd"]
@@ -947,6 +947,7 @@ bus = &"SFX"
 [node name="SFXPlayer" type="AudioStreamPlayer" parent="IntroCutscene"]
 
 [node name="ShaderCacher" type="AnimationPlayer" parent="."]
+editor_description = "This player triggers some initial environmental animations and effects at runtime so that the shaders are cached on first load."
 root_node = NodePath("../Lights/Fridge/LightShaderCacher")
 libraries = {
 &"": SubResource("AnimationLibrary_can20")
@@ -1292,7 +1293,7 @@ BOUNCE_POWER = 0.75
 transform = Transform3D(0.0188792, -0.0033289, 0, 0.0033289, 0.0188792, 0, 0, 0, 0.0191704, 0.6, 0, 0)
 
 [node name="lowpoly-jello" parent="Level/Jump Pads/lowpoly-jello2" index="1"]
-transform = Transform3D(0.0188792, -0.00332889, 0, 0.00332889, 0.0188792, 0, 0, 0, 0.0191704, 0, 0.0651228, 0)
+transform = Transform3D(0.0188792, -0.00332886, 0, 0.00332886, 0.0188792, 0, 0, 0, 0.0191704, 0, 0.0651228, 0)
 
 [node name="CollisionShape3D" parent="Level/Jump Pads/lowpoly-jello2" index="2"]
 transform = Transform3D(0.0188792, -0.0033289, 0, 0.0033289, 0.0188792, 0, 0, 0, 0.0191704, 0, 0.0651228, 0)
