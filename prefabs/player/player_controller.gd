@@ -38,6 +38,7 @@ func _ready() -> void:
 	default_camera_orientation = camera_pivot.rotation;
 	body_entered.connect(_on_hit_ground);
 	
+	camera_pivot.top_level = true;
 	camera_pivot.global_position = global_position;
 	camera_pivot.global_rotation = global_rotation;
 

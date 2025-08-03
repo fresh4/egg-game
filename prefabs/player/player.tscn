@@ -119,7 +119,6 @@ shape = SubResource("ConvexPolygonShape3D_klv5p")
 
 [node name="CameraPivot" type="Node3D" parent="."]
 unique_name_in_owner = true
-top_level = true
 
 [node name="SpringArm3D" type="SpringArm3D" parent="CameraPivot"]
 unique_name_in_owner = true
